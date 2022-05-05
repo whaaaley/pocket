@@ -1,0 +1,44 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "standard"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "impliedStrict": true,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "quote-props": [
+      "error",
+      "consistent"
+    ],
+    "react/jsx-indent": [
+      "error",
+      2
+    ],
+    "react/jsx-newline": [
+      "error",
+      {
+        "prevent": true
+      }
+    ],
+    "react/jsx-uses-vars": "error"
+  },
+  "globals": {
+    "Deno": "readonly"
+  }
+}

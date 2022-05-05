@@ -1,0 +1,45 @@
+
+@use 'sass:map';
+
+/**
+ * L =    0 to 100 -- Perceptual Lightness
+ * a = -128 to 127 -- Green to Red
+ * b = -128 to 127 -- Blue to Yellow
+ */
+
+$rainbow: (
+  'red': oklab(55, 63, 15),
+  'coral': oklab(75, 24, 12), // 👍
+  'orange': oklab(60, 39, 55),
+  'yellow': oklab(70, 15, 63),
+  'green': oklab(60, -32, 0),
+  'blue': oklab(50, -48, -64),
+  'purple': oklab(75, 24, 12)
+);
+
+$light: (
+  'light-600': oklab(70, 0, -10),
+  'light-500': oklab(75, 0, -9),
+  'light-400': oklab(80, 0, -8),
+  'light-300': oklab(85, 0, -7),
+  'light-200': oklab(90, 0, -6),
+  'light-100': oklab(95, 0, -5)
+);
+
+$dark: (
+  'dark-600': oklab(5, 0, -2),
+  'dark-500': oklab(10, 0, -1),
+  'dark-400': oklab(15, 0, -2), // 👍
+  'dark-300': oklab(20, 0, -2),
+  'dark-200': oklab(30, 0, -2),
+  'dark-100': oklab(40, 0, -2),
+);
+
+$color-map: map.merge($rainbow, $light);
+$color-map: map.merge($color-map, $dark);
+
+:root {
+  @each $key, $value in $color-map {
+    --#{$key}: #{rgb-string($value)};
+  }
+}

@@ -1,0 +1,55 @@
+
+:host {
+  all: initial;
+}
+
+* {
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
+}
+
+#hero {
+  display: grid;
+  place-items: center;
+  padding: 96px 24px;
+  // background: rgb(var(--coral));
+  // background: rgb(var(--dark-300));
+  border: 2px solid rgb(var(--dark-300));
+  border-right: initial;
+  border-left: initial;
+  color: #fff;
+  // color: rgb(var(--coral));
+  font: 24px/1 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font: 600 72px/1 'Inter', sans-serif;
+}
+
+h2 {
+  margin: 24px 0 0;
+}
+
+button {
+  padding: 12px 18px;
+  border: initial;
+  border-radius: 9px;
+  font: 16px/1 'Inter', sans-serif;
+  background: rgb(var(--dark-200));
+  cursor: pointer;
+  transition: background 200ms;
+}
+
+button.-get-started {
+  padding-right: 6px + 24px + 12px;
+  background: rgb(var(--coral)) url(tabler('arrow-right', 2, #fff)) center right 12px / 24px no-repeat;
+}
+
+.actions {
+  display: flex;
+  gap: 24px;
+  padding: 36px 0 0;
+}

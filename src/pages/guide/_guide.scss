@@ -1,0 +1,35 @@
+
+:host {
+  all: initial;
+}
+
+* {
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
+}
+
+#guide {
+  color: #fff;
+  font: 16px/1.5 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+pre {
+  padding: 18px 24px;
+  border-radius: 12px;
+  background: rgb(var(--dark-300));
+}
+
+pre code {
+  font: 13px/21px 'Source Code Pro', monospace;
+}
+
+h1 {
+  color: rgb(var(--coral));
+  font: 600 42px/1.5 'Inter', sans-serif;
+}
+
+h2 {
+  font: 600 24px/1.5 'Inter', sans-serif;
+}

@@ -1,0 +1,30 @@
+
+'use strict'
+
+import fs from 'fs'
+import { spawnSync } from 'child_process'
+import esbuild from 'esbuild'
+import server from './server/index.js'
+import config from './config.js'
+
+async function build () {
+  const bundle = await esbuild.build(config.main)
+  const input = Buffer.from(bundle.outputFiles[0].contents.buffer)
+
+  fs.writeFileSync('./public/index.html', spawnSync('node', { input }).stdout)
+}
+
+function start () {
+  server({
+    port: 3000,
+    extensions: ['.sass', '.scss', '.js', '.jsx', 'ts', 'tsx'],
+    watchDir: 'src'
+  })
+}
+
+function lib () {
+  esbuild.build(config.lib)
+}
+
+const targets = { build, start, lib }
+targets[process.argv[2]]()

@@ -1,0 +1,19 @@
+
+:host {
+  all: initial;
+}
+
+* {
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
+}
+
+#home {
+  font: 16px/1 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: red;
+}

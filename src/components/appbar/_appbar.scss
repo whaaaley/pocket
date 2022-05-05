@@ -1,0 +1,43 @@
+
+:host {
+  all: initial;
+}
+
+* {
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
+}
+
+#appbar {
+  color: #fff;
+  font: 16px/1 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+a {
+  display: flex;
+  place-items: center;
+  padding: 0 24px;
+  text-decoration: none;
+  transition: color 125ms;
+}
+
+a.-active {
+  color: rgb(var(--coral));
+}
+
+a.-logo {
+  display: block;
+  width: 64px;
+  background: url(tabler('bolt', 1.5px, #fff)) center / 36px no-repeat;
+}
+
+a:hover {
+  color: rgb(var(--coral));
+}
+
+nav {
+  display: flex;
+  height: 64px;
+}

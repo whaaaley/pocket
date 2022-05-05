@@ -1,0 +1,50 @@
+
+:host {
+  all: initial;
+}
+
+* {
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
+}
+
+#counter {
+  display: flex;
+  width: (48px * 3) + 24px;
+  padding: 12px;
+  border-radius: 12px;
+  color: #fff;
+  font: 16px/1 'Inter', sans-serif;
+  background: rgb(var(--dark-400));
+  box-sizing: border-box;
+}
+
+// stylelint-disable-next-line selector-list-comma-newline-after
+button, .count {
+  width: 48px;
+  height: 36px;
+}
+
+button {
+  border: initial;
+  border-radius: 6px;
+  color: #fff;
+  background: rgb(var(--coral)) center / 24px no-repeat;
+  cursor: pointer;
+}
+
+button.-plus {
+  background-image: url(tabler('circle-plus', 2px, #fff));
+}
+
+button.-minus {
+  background-image: url(tabler('circle-minus', 2px, #fff));
+}
+
+.count {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  font-size: 24px;
+}

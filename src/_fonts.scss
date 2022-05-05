@@ -1,0 +1,42 @@
+
+/**
+ * Inter by rsms
+ * https://rsms.me/inter/
+ */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/Inter-3.18/Inter-roman.var.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/Inter-3.18/Inter-italic.var.woff2') format('woff2');
+}
+
+/**
+ * Source Code Pro by Adobe
+ * https://github.com/adobe-fonts/source-code-pro
+ */
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/SourceCodePro-1.018/SourceCodeVariable-Roman.ttf.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/SourceCodePro-1.018/SourceCodeVariable-Italic.ttf.woff2') format('woff2');
+}

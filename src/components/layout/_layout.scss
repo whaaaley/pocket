@@ -1,0 +1,29 @@
+
+:host {
+  all: initial;
+}
+
+* {
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
+}
+
+#layout {
+  color: #fff;
+  font: 16px/1 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+header {
+  display: grid;
+  grid: auto / auto 1fr auto;
+}
+
+main {
+  // nothing yet...
+}
+
+footer {
+  // nothing yet...
+}
