@@ -2,6 +2,8 @@
 import { h, text, patch } from 'superfine'
 import * as pocket from '~/modules/pocket'
 
+let index = 0
+
 export function Component ({ id, style, props, init }, children) {
   const setup = init.setup
 
@@ -20,7 +22,9 @@ export function Component ({ id, style, props, init }, children) {
     }
   }
 
-  return pocket.Component({ init, patch, host: h('div', {}), props }, children)
+  const host = h('div', {})
+
+  return pocket.Component({ init, patch, host, props }, children)
 }
 
 export function IFrameRoot ({ id, style }, children) {
@@ -35,7 +39,7 @@ export function IFrameRoot ({ id, style }, children) {
 
 export function ShadowRoot ({ id, style, slots }, children) {
   const result = []
-  const host = h('div', {}, result)
+  const host = h('div', { key: index++ }, result)
 
   if (style) {
     children.push(h('style', {}, text(style)))

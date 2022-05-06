@@ -5,7 +5,7 @@ import style from './_layout.scss'
 import Appbar from '~/components/appbar'
 import Link from '~/components/link.js'
 
-export default function (props, children) {
+export default function (xxx, children) {
   return <ShadowRoot id='layout' style={style} slots={{ children }}>
     <header>
       <Link to='/' class='-logo'>
