@@ -11,7 +11,7 @@ async function build () {
   const bundle = await esbuild.build(config.main)
   const input = Buffer.from(bundle.outputFiles[0].contents.buffer)
 
-  fs.writeFileSync('./public/index.html', spawnSync('node', { input }).stdout)
+  fs.writeFileSync('./deploy/dist/index.html', spawnSync('node', { input }).stdout)
 }
 
 function start () {

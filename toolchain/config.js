@@ -34,7 +34,7 @@ export default {
   },
   main: {
     bundle: true,
-    incremental: true,
+    incremental: !production,
     jsxFactory: 'jsxStatic',
     jsxFragment: 'jsxFragment',
     platform: 'node',
