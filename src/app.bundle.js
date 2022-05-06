@@ -18,7 +18,15 @@ app({
     '/': require('~/pages/home').default,
     '/guide': require('~/pages/guide').default,
     '/api': require('~/pages/api').default,
-    '/about': require('~/pages/about').default
+    '/games': require('~/pages/games').default,
+    '/about': require('~/pages/about').default,
+    '/missing': {
+      setup () {
+        return function () {
+          return <div>missing</div>
+        }
+      }
+    }
   },
   rewrites: [
     // nothing yet...

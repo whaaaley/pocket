@@ -1,0 +1,142 @@
+
+:host {
+  all: initial;
+}
+
+* {
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
+}
+
+#tictactoe {
+  color: #000;
+  font: 16px/1 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+button {
+  padding: initial;
+  border: initial;
+  cursor: pointer;
+}
+
+// stylelint-disable-next-line selector-list-comma-newline-after
+h1, h2, h3 {
+  margin: initial;
+}
+
+.frame {
+  display: grid;
+  grid: auto / 1fr 320px;
+  gap: 24px;
+  position: relative;
+  padding: 24px;
+}
+
+.game {
+  h1 {
+    display: flex;
+    place-content: center;
+    gap: 24px;
+    margin: 0 0 24px;
+    color: #fff;
+    font: 600 48px/1 'Inter', sans-serif;
+    text-align: center;
+  }
+
+  button.-reset {
+    padding: 0 12px 0 (12px + 36px + 12px);
+    border-radius: 9px;
+    font: 24px/1 'Inter', sans-serif;
+    background:
+      rgb(var(--coral))
+      url(tabler('refresh', 2px, #fff)) center left 12px / 36px no-repeat;
+  }
+}
+
+.sidebar {
+  padding: 18px 24px;
+  border-radius: 9px;
+  color: #fff;
+  background: rgba(var(--dark-300));
+
+  button {
+    padding: 6px 12px;
+    border-radius: 9px;
+    background: rgb(var(--coral));
+  }
+
+  h1 {
+    font: 600 24px/1 'Inter', sans-serif;
+  }
+}
+
+.rule {
+  display: grid;
+  place-items: center left;
+  grid: auto / 1fr auto;
+  gap: 12px;
+  margin: 24px 0 0;
+
+  button {
+    min-width: 48px;
+    height: 36px;
+    background: rgb(var(--coral)) center / 24px no-repeat;
+
+    &.circle-minus {
+      background-image: url(tabler('circle-minus', 2px, #fff));
+    }
+
+    &.circle-plus {
+      background-image: url(tabler('circle-plus', 2px, #fff));
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.player {
+  display: grid;
+  grid: auto / 1fr auto;
+  gap: 12px;
+
+  div {
+    display: flex;
+    gap: 12px;
+  }
+}
+
+.board {
+  --size: repeat(var(--board-size), 1fr);
+
+  display: grid;
+  grid: var(--size) / var(--size);
+  gap: 4px;
+  max-width: 75vh;
+  margin: auto;
+  background: rgb(var(--coral));
+
+  button {
+    display: flex;
+    place-content: center;
+    place-items: center;
+    color: #fff;
+    font: 10vmin/1 'Inter', sans-serif;
+    background: rgb(var(--dark-300));
+    transition: background 125ms;
+  }
+
+  button::before {
+    display: block;
+    padding: 100% 0 0;
+    content: '';
+  }
+
+  button:hover {
+    background: rgba(var(--dark-300), 0.75);
+  }
+}

@@ -20,7 +20,7 @@ export default function (props, children) {
       <slot name='children'/>
     </main>
     <footer>
-      <p>Foobar</p>
+      <p>&copy; 2022</p>
     </footer>
   </ShadowRoot>
 }
