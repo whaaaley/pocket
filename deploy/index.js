@@ -1,7 +1,7 @@
 
 import { extname, join } from 'https://deno.land/std/path/mod.ts'
 
-const indexFile = await Deno.readFile('./dist/index.html')
+const indexFile = await Deno.readFile('./deploy/dist/index.html')
 const assets = join(Deno.cwd(), './assets')
 
 const mediaTypes = {
@@ -17,7 +17,7 @@ const mediaTypes = {
 }
 
 async function handler (pathname) {
-  let ext = extname(pathname)
+  const ext = extname(pathname)
 
   if (ext === '') {
     return new Response(indexFile, {
