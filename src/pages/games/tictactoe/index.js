@@ -113,7 +113,11 @@ function setup (state, commit) {
                   commit(place, { x, y })
                 }
 
-                result.push(<button onclick={play}>{row[y]}</button>)
+                result.push(<button onclick={play}>
+                  <svg viewBox='0 0 24 24'>
+                    <text x='50%' y='50%'>{row[y]}</text>
+                  </svg>
+                </button>)
               }
             }
 

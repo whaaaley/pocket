@@ -125,9 +125,18 @@ h1, h2, h3 {
     place-content: center;
     place-items: center;
     color: #fff;
-    font: 10vmin/1 'Inter', sans-serif;
     background: rgb(var(--dark-300));
     transition: background 125ms;
+
+    svg {
+      margin: auto;
+
+      text {
+        fill: currentColor;
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+    }
   }
 
   button::before {

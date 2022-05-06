@@ -9,6 +9,14 @@
     "custom-property-empty-line-before": null,
     "selector-combinator-space-after": "always",
     "selector-combinator-space-before": "always",
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": [
+          "dominant-baseline"
+        ]
+      }
+    ],
     "no-invalid-position-at-import-rule": [
       true,
       {
@@ -188,7 +196,6 @@
       "stroke-dashoffset",
       "stroke",
       "color",
-      "font",
       "font-family",
       "font-size",
       "font-size-adjust",
@@ -280,6 +287,8 @@
       "background-size",
       "box-shadow",
       "fill",
+      "text-anchor",
+      "dominant-baseline",
       "tab-size",
       "counter-reset",
       "counter-increment",
