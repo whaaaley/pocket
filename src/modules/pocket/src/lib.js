@@ -1,8 +1,16 @@
 
-const queryDelimeters = /[&=]/g
+export function clone (target) {
+  const result = {}
+
+  for (const key in result) {
+    target[key] = result[key]
+  }
+
+  return result
+}
 
 export function decode (data) {
-  const query = data.slice(1).split(queryDelimeters)
+  const query = data.slice(1).split(/[&=]/g)
   const result = {}
 
   for (let i = 0; i < query.length; i += 2) {

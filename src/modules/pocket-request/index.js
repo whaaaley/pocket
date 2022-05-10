@@ -10,6 +10,7 @@ const loading = model(null, null, true, null)
 
 function setLoading (state, data) {
   state[data.key] = loading
+  return state
 }
 
 function setResponse (state, data) {
@@ -18,6 +19,8 @@ function setResponse (state, data) {
   state[data.key] = error
     ? model(null, error.messages, null, false)
     : model(data.value, null, null, true)
+
+  return state
 }
 
 export function mockRequest (scope, data) {

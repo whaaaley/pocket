@@ -1,17 +1,37 @@
 
+import { clone } from './lib'
+
 const FF_DEV = process.env.NODE_ENV === 'development'
-const FF_QUIET = process.env.FF_QUIET != null
 
-export function core (init, render) {
-  const state = init.state
+function reactive (state, schedule) {
+  const data = {}
+  const props = {}
 
+  for (const key in state) {
+    data[key] = state[key]
+
+    props[key] = {
+      get () {
+        return data[key]
+      },
+      set (value) {
+        data[key] = value
+        schedule()
+      }
+    }
+  }
+
+  return Object.defineProperties(state, props)
+}
+
+export function core (init, patch) {
   let lock = true
-  const view = init.setup(state, commit)
+  const render = init.setup(reactive(init.state, schedule))
 
   update()
 
   function update () {
-    render(view())
+    patch(render())
     lock = false
   }
 
@@ -21,39 +41,14 @@ export function core (init, render) {
       requestAnimationFrame(update)
     }
   }
-
-  function commit (action, data, options) {
-    if (FF_QUIET) {
-      const name = action && action.name
-      console.log('Commit >>', name ?? '(anon)')
-    }
-
-    const scope = options && options.scope
-    const result = action(scope ? state[scope] : state, data)
-
-    if (result) {
-      if (FF_DEV && typeof result !== 'function') {
-        console.warn('Commit >> Invalid return type >>', action)
-      }
-
-      const caller = options && options.caller
-      const effect = result(caller ?? commit)
-
-      if (effect && effect.then) {
-        return effect.then(schedule)
-      }
-    } else {
-      schedule()
-    }
-  }
 }
 
-export default function (init, render) {
-  const stores = init.stores
-
+export default function (init, patch) {
   const state = {}
   const actions = {}
   const map = {}
+
+  const stores = init.stores
 
   for (const scope in stores) {
     const store = stores[scope]
@@ -69,24 +64,38 @@ export default function (init, render) {
     }
   }
 
-  function setup (state, commit) {
+  core({ state, setup }, patch)
+
+  function setup (state) {
     function dispatch (name, data) {
-      if (FF_QUIET) {
+      if (FF_DEV) {
         console.log('Dispatch >>', name)
       }
 
-      if (FF_DEV && typeof actions[name] !== 'function') {
+      const action = actions[name]
+      const scope = map[name]
+
+      if (FF_DEV && typeof action !== 'function') {
         console.warn('Dispatch >> Invalid action >>', name)
       }
 
-      return commit(actions[name], data, {
-        scope: map[name],
-        caller: dispatch
-      })
+      const result = action(clone(state[scope]), data)
+
+      if (typeof result === 'function') {
+        if (FF_DEV && typeof result !== 'function') {
+          console.warn('Dispatch >> Invalid effect >>', name)
+        }
+
+        const effect = result(dispatch)
+
+        if (effect && effect.then) {
+          return effect.then()
+        }
+      } else {
+        state[scope] = result
+      }
     }
 
     return init.setup(state, dispatch)
   }
-
-  return core({ state, setup }, render)
 }
