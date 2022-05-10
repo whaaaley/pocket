@@ -200,6 +200,7 @@ Here is an example of a reusable counter component with local state and encapsul
 
 ```js
 import { core, Component } from 'pocket-superfine'
+import style from './counter.css'
 
 const app = core('app')
 
@@ -211,7 +212,7 @@ function Counter () {
   return Component({
     id: 'counter',
     init: { state, setup },
-    style
+    styles: [style]
   })
 }
 
