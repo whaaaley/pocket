@@ -15,14 +15,13 @@
   box-sizing: border-box;
 }
 
-pre {
-  padding: 18px 24px;
-  border-radius: 12px;
-  background: rgb(var(--dark-300));
+a {
+  color: rgb(var(--coral));
+  text-decoration: none;
 }
 
-pre code {
-  font: 13px/21px 'Source Code Pro', monospace;
+a:hover {
+  text-decoration: underline;
 }
 
 h1 {
@@ -32,4 +31,14 @@ h1 {
 
 h2 {
   font: 600 24px/1.5 'Inter', sans-serif;
+}
+
+pre {
+  padding: 18px 24px;
+  border-radius: 12px;
+  background: rgb(var(--dark-300));
+}
+
+pre code {
+  font: 13px/21px 'Source Code Pro', monospace;
 }
