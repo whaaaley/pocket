@@ -8,7 +8,7 @@ export default {
   setup () {
     return function () {
       return <div>
-        <ShadowRoot id='about' style={style}>
+        <ShadowRoot id='about' styles={[style]}>
           <Layout>
             <div>This is the about page.</div>
           </Layout>

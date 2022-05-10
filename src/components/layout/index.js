@@ -6,7 +6,7 @@ import Appbar from '~/components/appbar'
 import Link from '~/components/link.js'
 
 export default function (xxx, children) {
-  return <ShadowRoot id='layout' style={style} slots={{ children }}>
+  return <ShadowRoot id='layout' styles={[style]} slots={{ children }}>
     <header>
       <Link to='/' class='-logo'>
         {/* nothing yet... */}

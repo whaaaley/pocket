@@ -17,7 +17,7 @@ export default function () {
   return Component({
     id: 'tictactoe',
     init: { state, setup },
-    style
+    styles: [style]
   })
 }
 
@@ -65,21 +65,21 @@ function setSize (state, value) {
   state.winner = null
 }
 
-function setup (state, commit) {
+function setup (state) {
   function reset () {
-    commit(setSize, state.size)
+    setSize(state, state.size)
   }
 
   function plus () {
-    commit(setSize, state.size + 1)
+    setSize(state, state.size + 1)
   }
 
   function minus () {
-    commit(setSize, state.size - 1)
+    setSize(state, state.size - 1)
   }
 
   function addPlayer_ () {
-    commit(addPlayer)
+    addPlayer(state)
   }
 
   return function () {
@@ -110,7 +110,7 @@ function setup (state, commit) {
 
               for (let y = 0; y < row.length; y++) {
                 function play () {
-                  commit(place, { x, y })
+                  place(state, { x, y })
                 }
 
                 result.push(<button onclick={play}>
@@ -143,7 +143,7 @@ function setup (state, commit) {
         {
           players.map(function (player, index) {
             function remove () {
-              commit(removePlayer, index)
+              removePlayer(state, index)
             }
 
             return <div class='rule'>

@@ -11,7 +11,7 @@ export default {
 
     return function () {
       return <div>
-        <ShadowRoot id='guide' style={style}>
+        <ShadowRoot id='guide' styles={[style]}>
           <Layout>
             {state.docs.intro.loading
               ? <div>Loading...</div>

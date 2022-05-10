@@ -10,7 +10,7 @@ export default function () {
   return Component({
     id: 'counter',
     init: { state, setup },
-    style
+    styles: [style]
   })
 }
 
@@ -22,9 +22,9 @@ function minus (state) {
   state.count--
 }
 
-function setup (state, commit) {
-  const onPlus = () => commit(plus)
-  const onMinus = () => commit(minus)
+function setup (state) {
+  const onPlus = () => plus(state)
+  const onMinus = () => minus(state)
 
   return function () {
     return <>
