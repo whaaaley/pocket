@@ -4,6 +4,26 @@ import * as pocket from '~/modules/pocket'
 
 let index = 0
 
+export function core (id) {
+  const node = document.getElementById(id)
+
+  return function (init) {
+    return pocket.core(init, function (view) {
+      return patch(node, view)
+    })
+  }
+}
+
+// export function pocket (id) {
+//   const node = document.getElementById(id)
+//
+//   return function (init) {
+//     return pocket.pocket(init, function (view) {
+//       return patch(node, view)
+//     })
+//   }
+// }
+
 export function Component ({ id, styles, props, init }, children) {
   const setup = init.setup
 
