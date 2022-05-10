@@ -2,7 +2,7 @@
 import { extname, join } from 'https://deno.land/std/path/mod.ts'
 
 const indexFile = await Deno.readFile('./deploy/dist/index.html')
-const assets = join(Deno.cwd(), './assets')
+const assets = join(Deno.cwd(), './deploy/assets')
 
 const mediaTypes = {
   '.css': 'text/css',
