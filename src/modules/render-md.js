@@ -10,6 +10,16 @@ export default function (data) {
 }
 
 function hfn (tag, props, children) {
+  if (props.class === 'language-ogg') {
+    const src = children[0].trim()
+
+    return h('audio', { controls: true }, [
+      h('source', { src, type: 'audio/ogg' }, [
+        text('Your browser does not support the audio element.')
+      ])
+    ])
+  }
+
   const node = h(tag, props, children)
   const ch = node.children
 

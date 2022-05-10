@@ -11,6 +11,7 @@ const mediaTypes = {
   '.js': 'application/javascript',
   '.json': 'application/json',
   '.md': 'text/markdown',
+  '.ogg': 'audio/ogg',
   '.png': 'image/png',
   '.svg': 'image/svg+xml',
   '.woff': 'font/woff',

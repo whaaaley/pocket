@@ -3,16 +3,18 @@
 
 ## What is Pocket?
 
-Pocket is a library for building web components and small applications. Like many frameworks it provides a component-based model to build interfaces while also including utilities for managing state, page routing, and style encapsulation with shadow DOM.
+```ogg
+audio/what-is-pocket.ogg
+```
 
-Here's a basic example using Superfine and JSX as the view layer.
+Pocket is a library for building web components and small applications. Like many frameworks, it provides a component-based model to create interfaces combined with state management, page routing, and style encapsulation.
+
+Here's a basic example showcasing reactivity in Pocket. This example uses [Superfine](https://github.com/jorgebucaran/superfine) and [JSX](https://github.com/facebook/jsx) to render the view. The package `pocket-superfine` wires Pocket and Superfine together! This is the reccomended way to use Pocket.
 
 ```js
-import { core } from 'pocket'
-import { patch } from 'superfine'
+import { core } from 'pocket-superfine'
 
-const node = document.getElementById('pocket')
-const app = init => core(init, view => patch(node, view))
+const app = core('app')
 
 app({
   state: {
@@ -21,17 +23,18 @@ app({
   setup
 })
 
-function plus () {
-  state.count++
-}
+function setup (state) {
+  function plus () {
+    state.count++
+  }
 
-function setup (state, commit) {
-  return <button onclick={() => commit(plus))}>
+  return <button onclick={plus}>
     Count: {state.count}
   </button>
 }
 ```
 
+<!--
 ## Project Goals
 
 The primary goals of Pocket and related modules are as follows:
@@ -41,21 +44,23 @@ The primary goals of Pocket and related modules are as follows:
 + A full featured page router.
 + Style encapsulation with shadow DOM.
 + Components that can be used in any framework.
+-->
 
 ## Applying Styles
 
-As described previously the desired way to apply styles in Pocket is through the use of shadow DOM. Pocket provides utility functions to do this, however I reccomend that you use `pocket-superfine`. The utilities in this module are already wired for use with Superfine.
+```ogg
+audio/applying-styles.ogg
+```
 
-Continuing from the previous example, and assuming you're using a bundler capable of importing CSS as a string, here's how'd you the `ShadowRoot()` component to apply styles.
+Pocket uses shadow DOM to encapsulate styles. The package `pocket-superfine` exports functions that wire Pocket and Superfine together!
+
+Continuing from the previous example, and assuming you're using a bundler capable of importing CSS as a string, like [Parcel](https://parceljs.org/features/bundle-inlining/), here's how'd you the `ShadowRoot()` component from `pocket-superfine` to apply styles.
 
 ```js
-import { core } from 'pocket'
-import { patch } from 'superfine'
-import { ShadowRoot } from 'pocket-superfine'
+import { core, ShadowRoot } from 'pocket-superfine'
 import style from './counter.css'
 
-const node = document.getElementById('pocket')
-const app = init => core(init, view => patch(node, view))
+const app = core('app')
 
 app({
   state: {
@@ -64,13 +69,13 @@ app({
   setup
 })
 
-function plus () {
-  state.count++
-}
+function setup (state) {
+  function plus () {
+    state.count++
+  }
 
-function setup (state, commit) {
-  return () => <ShadowRoot id='counter' style={style}>
-    <button onclick={() => commit(plus)}>
+  return () => <ShadowRoot id='counter' styles={[style]}>
+    <button onclick={plus}>
       Count: {state.count}
     </button>
   </ShadowRoot>
@@ -79,16 +84,24 @@ function setup (state, commit) {
 
 ## Managing Global State
 
-As your application grows in size it's common to break down concepts of your application into logic stores. In Pocket this is done with the `pocket()` function. This function is a wrapper around `core()` used in previous examples.
+```ogg
+audio/managing-global-state.ogg
+```
 
-Here's how you'd create a simple counter using `pocket()` to manage your global state.
+As your application grows in size it's common to break down concepts of your application into logic containers. In Pocket this is done with the `pocket()` function. This function is a wrapper around `core()` used in previous examples. This function is equivalent to Redux for React or Vuex for Vue.
+
+This is what `pocket()` changes:
+  + The `state` and `actions` properties on `app()`'s `init` object are replaced with the `store` property.
+  + State can no longer be mutated to trigger renders.
+  + Actions must now return a state object to trigger renders.
+  + The setup function now exposes a `dispatch()` function in the paramters.
+
+Here's how you'd create a simple counter using `pocket()` to manage state globaly.
 
 ```js
-import { pocket } from 'pocket'
-import { patch } from 'superfine'
+import { pocket } from 'pocket-superfine'
 
-const node = document.getElementById('pocket')
-const app = init => pocket(init, view => patch(node, view))
+const app = pocket('app')
 
 app({
   stores: {
@@ -104,6 +117,7 @@ const counter = {
   actions: {
     plus (state) {
       state.count++
+      return state
     }
   }
 }
@@ -117,16 +131,27 @@ function setup (state, dispatch) {
 
 ## Routing
 
-Much like how `pocket()` wraps `core()` to add logic containers, `router()` wraps `pocket()` to add page routing. This router wrapper exposes two extra properties on our `init` object. Those properties are `pages` and `rewrites`.
+```ogg
+audio/routing.ogg
+```
 
-Continuing with the counter example, here is a basic example of the router.
+Much like how `pocket()` wraps `core()` to add logic containers, `router()` wraps `pocket()` to add page routing.
+
+<!--
+This router wrapper exposes two extra properties on our `init` object. Those properties are `pages` and `rewrites`.
+-->
+
+Here's what `router()` changes:
+  + Two extra properties are exposed on `app()`'s `init` object, `pages` and `rewrites`.
+  + The `setup()` function is moved from the root of the `init` object to inside each page object.
+  + Each page object also includes a `destroy()` function.
+
+Continuing with the counter example, here is an example of the router.
 
 ```js
-import { pocket } from 'pocket'
-import { patch } from 'superfine'
+import { pocket } from 'pocket-superfine'
 
-const node = document.getElementById('pocket')
-const app = init => pocket(init, view => patch(node, view))
+const app = pocket('app')
 
 app({
   stores: {
@@ -144,13 +169,14 @@ const counter = {
   actions: {
     plus (state) {
       state.count++
+      return state
     }
   }
 }
 
 const home = {
   setup (state, dispatch) {
-    return () =>  <button onclick={() => dispatch('counter/plus')}>
+    return () => <button onclick={() => dispatch('counter/plus')}>
       Count: {state.count}
     </button>
   },
@@ -162,19 +188,20 @@ const home = {
 
 ## Managing Local State
 
-As your application grows even further it's also common to avoid adding small bits of state in the global state object and instead keep unimportant parts of state inside of stateful components. In Pocket we use the function `Component()` to do this. Local state in `Component()` internally uses the very same `core()` function used in the very first example of this introduction.
+```ogg
+audio/managing-local-state.ogg
+```
 
-Also, in Pocket the concept of localized state is combined with the use of shadow DOM for style encapsulation. As a result, much like `ShadowRoot()` I reccomend using `pocket-superfine` which is already wired to be used with Superfine.
+As your application grows even further it's also common to avoid adding small bits of state in the global state object and instead keep unimportant parts of state inside of stateful components. In Pocket we use the function `Component()` to do this. Local state in `Component()` internally uses the very same `core()` function used in the first example of this introduction.
 
-An example of a reusable counter component with local state and encapsulated styles is as follows.
+Also, in Pocket the concept of localized state is combined with the use of shadow DOM for style encapsulation. As a result, much like the `ShadowRoot()` component I reccomend using `pocket-superfine` which wires Pocket and Superfine together!
+
+Here is an example of a reusable counter component with local state and encapsulated styles.
 
 ```js
-import { core } from 'pocket'
-import { patch } from 'superfine'
-import { Component } from 'pocket-superfine'
+import { core, Component } from 'pocket-superfine'
 
-const node = document.getElementById('pocket')
-const app = init => core(init, view => patch(node, view))
+const app = core('app')
 
 function Counter () {
   const state = {
@@ -188,13 +215,13 @@ function Counter () {
   })
 }
 
-function plus (state) {
-  state.count++
-}
-
 function setup (state, commit) {
+  function plus () {
+    state.count++
+  }
+
   return function () {
-    return <button onclick={() => commit(plus)}>
+    return <button onclick={plus}>
       {state.count}
     </button>
   }
