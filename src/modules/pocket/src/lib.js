@@ -1,9 +1,9 @@
 
-export function clone (target) {
+export function clone (obj) {
   const result = {}
 
-  for (const key in result) {
-    target[key] = result[key]
+  for (const key in obj) {
+    result[key] = obj[key]
   }
 
   return result
