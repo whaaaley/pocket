@@ -6,13 +6,16 @@ export default {
   },
   actions: {
     plus (state) {
-      return { count: state.count + 1 }
+      state.count++
+      return state
     },
     minus (state) {
-      return { count: state.count - 1 }
+      state.count--
+      return state
     },
     toggleSidebar (state) {
-      return { sidebar: !state.sidebar }
+      state.sidebar = !state.sidebar
+      return state
     }
   }
 }
