@@ -10,7 +10,6 @@ import Counter from './counter'
 export default {
   setup (state, dispatch) {
     return function () {
-      console.log('rerendering...')
       return <div>
         <ShadowRoot id='home' styles={[style]}>
           <Layout>
