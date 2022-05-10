@@ -4,7 +4,27 @@ import * as pocket from '~/modules/pocket'
 
 let index = 0
 
-export function Component ({ id, style, props, init }, children) {
+export function core (id) {
+  const node = document.getElementById(id)
+
+  return function (init) {
+    return pocket.core(init, function (view) {
+      return patch(node, view)
+    })
+  }
+}
+
+// export function pocket (id) {
+//   const node = document.getElementById(id)
+//
+//   return function (init) {
+//     return pocket.pocket(init, function (view) {
+//       return patch(node, view)
+//     })
+//   }
+// }
+
+export function Component ({ id, styles, props, init }, children) {
   const setup = init.setup
 
   init.setup = function (state, dispatch) {
@@ -14,9 +34,13 @@ export function Component ({ id, style, props, init }, children) {
       let view = render(props2, children2)
       view = Array.isArray(view) ? view : [view]
 
-      if (style) {
-        view.push(h('style', {}, text(style)))
+      if (styles) {
+        for (const key in styles) {
+          view.push(h('style', { key }, text(styles[key])))
+        }
       }
+
+      // TODO: slots
 
       return h('div', { id }, view)
     }
@@ -27,27 +51,31 @@ export function Component ({ id, style, props, init }, children) {
   return pocket.Component({ init, patch, host, props }, children)
 }
 
-export function IFrameRoot ({ id, style }, children) {
+export function IFrameRoot ({ id, styles }, children) {
   const host = h('iframe', {})
 
-  if (style) {
-    children.push(h('style', {}, text(style)))
+  if (styles) {
+    for (const key in styles) {
+      children.push(h('style', { key }, text(styles[key])))
+    }
   }
 
   return pocket.IFrameRoot({ host, patch }, h('div', { id }, children))
 }
 
-export function ShadowRoot ({ id, style, slots }, children) {
+export function ShadowRoot ({ id, styles, slots }, children) {
   const result = []
   const host = h('div', { key: index++ }, result)
 
-  if (style) {
-    children.push(h('style', {}, text(style)))
+  if (styles) {
+    for (const key in styles) {
+      children.push(h('style', { key }, text(styles[key])))
+    }
   }
 
   if (slots) {
     for (const key in slots) {
-      result.push(h('div', { slot: key }, slots[key]))
+      result.push(h('div', { key, slot: key }, slots[key]))
     }
   }
 

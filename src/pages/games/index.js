@@ -9,7 +9,7 @@ export default {
   setup (state, dispatch) {
     return function () {
       return <div>
-        <ShadowRoot id='games' style={style}>
+        <ShadowRoot id='games' styles={[style]}>
           <Layout>
             <Tictactoe/>
           </Layout>

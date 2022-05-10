@@ -5,7 +5,7 @@ import style from './_appbar.scss'
 import Link from '~/components/link.js'
 
 export default function () {
-  return <ShadowRoot id='layout' style={style}>
+  return <ShadowRoot id='layout' styles={[style]}>
     <nav>
       <Link to='/guide'>Guide</Link>
       <Link to='/api'>API</Link>

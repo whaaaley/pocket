@@ -24,7 +24,7 @@ function sync (state, rewrites) {
         state.id = result
         state.to = rewrite.destination
 
-        return
+        return state
       }
 
       const result = pathname.match(rewrite.source)
@@ -33,13 +33,15 @@ function sync (state, rewrites) {
         state.id = result[0]
         state.to = rewrite.destination
 
-        return
+        return state
       }
     }
   }
 
   state.id = null
   state.to = pathname
+
+  return state
 }
 
 export function link (to, query) {
