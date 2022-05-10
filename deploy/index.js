@@ -10,6 +10,7 @@ const mediaTypes = {
   '.jpg': 'image/jpeg',
   '.js': 'application/javascript',
   '.json': 'application/json',
+  '.md': 'text/markdown',
   '.png': 'image/png',
   '.svg': 'image/svg+xml',
   '.woff': 'font/woff',
