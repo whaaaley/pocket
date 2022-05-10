@@ -9,7 +9,7 @@ audio/what-is-pocket.ogg
 
 Pocket is a library for building web components and small applications. Like many frameworks, it provides a component-based model to create interfaces combined with state management, page routing, and style encapsulation.
 
-Here's a basic example showcasing reactivity in Pocket. This example uses [Superfine](https://github.com/jorgebucaran/superfine) and [JSX](https://github.com/facebook/jsx) to render the view. The package `pocket-superfine` wires Pocket and Superfine together! This is the reccomended way to use Pocket.
+Here's a basic example showcasing reactivity in Pocket. This example uses [Superfine](https://github.com/jorgebucaran/superfine) and [JSX](https://github.com/facebook/jsx) to render the view. The package `pocket-superfine` wires Pocket and Superfine together! This is the recommended way to use Pocket.
 
 ```js
 import { core } from 'pocket-superfine'
@@ -194,7 +194,7 @@ audio/managing-local-state.ogg
 
 As your application grows even further it's also common to avoid adding small bits of state in the global state object and instead keep unimportant parts of state inside of stateful components. In Pocket we use the function `Component()` to do this. Local state in `Component()` internally uses the very same `core()` function used in the first example of this introduction.
 
-Also, in Pocket the concept of localized state is combined with the use of shadow DOM for style encapsulation. As a result, much like the `ShadowRoot()` component I reccomend using `pocket-superfine` which wires Pocket and Superfine together!
+Also, in Pocket the concept of localized state is combined with the use of shadow DOM for style encapsulation. As a result, much like the `ShadowRoot()` component I recommend using `pocket-superfine` which wires Pocket and Superfine together!
 
 Here is an example of a reusable counter component with local state and encapsulated styles.
 
