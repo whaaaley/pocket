@@ -1,0 +1,71 @@
+
+// https://github.com/PrismJS/prism-themes/blob/master/themes/prism-material-oceanic.css
+@use './prism-material-oceanic.css';
+
+:host {
+  all: initial;
+}
+
+* {
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
+}
+
+#markdown {
+  color: #fff;
+  font: 16px/1.5 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+// stylelint-disable-next-line selector-list-comma-newline-after
+pre, code {
+  background: rgb(var(--dark-300)) !important;
+  font: 13px/21px 'Source Code Pro', monospace !important;
+}
+
+a {
+  color: rgb(var(--coral));
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1 {
+  color: rgb(var(--coral));
+  font: 600 42px/1.5 'Inter', sans-serif;
+}
+
+h2 {
+  font: 600 24px/1.5 'Inter', sans-serif;
+}
+
+span {
+  font-style: normal !important;
+}
+
+pre {
+  padding: 18px 24px !important;
+  border-radius: 12px;
+}
+
+//
+//
+
+.token {
+  &.function {
+    // blue - copilot suggestion
+    color: #61afef;
+  }
+
+  &.class-name {
+    // blue - copilot suggestion
+    color: #61afef;
+  }
+
+  &.punctuation {
+    color: #fff;
+  }
+}

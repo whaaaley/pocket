@@ -10,14 +10,19 @@ export default function (data) {
 }
 
 function hfn (tag, props, children) {
-  if (props.class === 'language-ogg') {
-    const src = children[0].trim()
+  if (tag === 'p' && children.length) {
+    const child = children[0]
+    let src = child.match(/{{(.*)}}/)
 
-    return h('audio', { controls: true }, [
-      h('source', { src, type: 'audio/ogg' }, [
-        text('Your browser does not support the audio element.')
+    if (src) {
+      src = src[1].trim()
+
+      return h('audio', { controls: true }, [
+        h('source', { src, type: 'audio/ogg' }, [
+          text('Your browser does not support the audio element.')
+        ])
       ])
-    ])
+    }
   }
 
   const node = h(tag, props, children)

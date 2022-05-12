@@ -3,15 +3,13 @@
 
 ## What is Pocket?
 
-```ogg
-audio/what-is-pocket.ogg
-```
+{{ audio/what-is-pocket.ogg }}
 
 Pocket is a library for building web components and small applications. Like many frameworks, it provides a component-based model to create interfaces combined with state management, page routing, and style encapsulation.
 
 Here's a basic example showcasing reactivity in Pocket. This example uses [Superfine](https://github.com/jorgebucaran/superfine) and [JSX](https://github.com/facebook/jsx) to render the view. The package `pocket-superfine` wires Pocket and Superfine together! This is the recommended way to use Pocket.
 
-```js
+```jsx
 import { core } from 'pocket-superfine'
 
 const app = core('app')
@@ -48,15 +46,13 @@ The primary goals of Pocket and related modules are as follows:
 
 ## Applying Styles
 
-```ogg
-audio/applying-styles.ogg
-```
+{{ audio/applying-styles.ogg }}
 
 Pocket uses shadow DOM to encapsulate styles. The package `pocket-superfine` exports functions that wire Pocket and Superfine together!
 
 Continuing from the previous example, and assuming you're using a bundler capable of importing CSS as a string, like [Parcel](https://parceljs.org/features/bundle-inlining/), here's how'd you the `ShadowRoot()` component from `pocket-superfine` to apply styles.
 
-```js
+```jsx
 import { core, ShadowRoot } from 'pocket-superfine'
 import style from './counter.css'
 
@@ -84,9 +80,7 @@ function setup (state) {
 
 ## Managing Global State
 
-```ogg
-audio/managing-global-state.ogg
-```
+{{ audio/managing-global-state.ogg }}
 
 As your application grows in size it's common to break down concepts of your application into logic containers. In Pocket this is done with the `pocket()` function. This function is a wrapper around `core()` used in previous examples. This function is equivalent to Redux for React or Vuex for Vue.
 
@@ -98,7 +92,7 @@ This is what `pocket()` changes:
 
 Here's how you'd create a simple counter using `pocket()` to manage state globaly.
 
-```js
+```jsx
 import { pocket } from 'pocket-superfine'
 
 const app = pocket('app')
@@ -131,9 +125,7 @@ function setup (state, dispatch) {
 
 ## Routing
 
-```ogg
-audio/routing.ogg
-```
+{{ audio/routing.ogg }}
 
 Much like how `pocket()` wraps `core()` to add logic containers, `router()` wraps `pocket()` to add page routing.
 
@@ -148,7 +140,7 @@ Here's what `router()` changes:
 
 Continuing with the counter example, here is an example of the router.
 
-```js
+```jsx
 import { pocket } from 'pocket-superfine'
 
 const app = pocket('app')
@@ -188,9 +180,7 @@ const home = {
 
 ## Managing Local State
 
-```ogg
-audio/managing-local-state.ogg
-```
+{{ audio/managing-local-state.ogg }}
 
 As your application grows even further it's also common to avoid adding small bits of state in the global state object and instead keep unimportant parts of state inside of stateful components. In Pocket we use the function `Component()` to do this. Local state in `Component()` internally uses the very same `core()` function used in the first example of this introduction.
 
@@ -198,7 +188,7 @@ Also, in Pocket the concept of localized state is combined with the use of shado
 
 Here is an example of a reusable counter component with local state and encapsulated styles.
 
-```js
+```jsx
 import { core, Component } from 'pocket-superfine'
 import style from './counter.css'
 
