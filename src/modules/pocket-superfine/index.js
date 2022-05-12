@@ -65,7 +65,7 @@ export function IFrameRoot ({ id, styles }, children) {
 
 export function ShadowRoot ({ id, styles, slots }, children) {
   const result = []
-  const host = h('div', { key: index++ }, result)
+  const host = h('div', { key: index++, id: id + '-host' }, result)
 
   if (styles) {
     for (const key in styles) {
