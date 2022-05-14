@@ -10,9 +10,16 @@
 }
 
 #layout {
-  color: #fff;
-  font: 16px/1 'Inter', sans-serif;
+  display: grid;
+  place-content: center;
+  gap: 24px;
+  // color: #fff;
+  // font: 16px/1 'Inter', sans-serif;
   box-sizing: border-box;
+}
+
+.content {
+  max-width: 960px;
 }
 
 header {
@@ -21,7 +28,7 @@ header {
 }
 
 main {
-  // nothing yet...
+  padding: 0 48px;
 }
 
 footer {

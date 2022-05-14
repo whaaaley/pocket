@@ -1,5 +1,8 @@
 
-import path from 'path'
+import path from 'node:path'
+
+import mdx from '@mdx-js/esbuild'
+import rehypePrism from '@mapbox/rehype-prism'
 
 import javascript from './plugins/javascript.js'
 import resolution from './plugins/resolution.js'
@@ -71,7 +74,20 @@ export default {
       '.js': 'jsx'
     },
     plugins: [
-      resolution({ home: baseDir }),
+      resolution({
+        home: baseDir
+      }),
+      mdx({
+        development: !production,
+        jsxRuntime: 'classic',
+        pragma: 'jsx.jsx',
+        pragmaFrag: 'jsx.jsxFragment',
+        pragmaImportSource: '~/modules/superstatic/src/jsx-pragma.js',
+        rehypePlugins: [
+          // rehypeHighlight
+          rehypePrism
+        ]
+      }),
       sass
     ]
   },

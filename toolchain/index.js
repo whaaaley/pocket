@@ -17,7 +17,7 @@ async function build () {
 function start () {
   server({
     port: 3000,
-    extensions: ['.sass', '.scss', '.js', '.jsx', 'ts', 'tsx'],
+    extensions: ['.js', '.jsx', '.md', '.mdx', '.sass', '.scss', '.ts', '.tsx'],
     watchDir: 'src'
   })
 }

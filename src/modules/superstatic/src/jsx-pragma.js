@@ -81,3 +81,9 @@ export function jsxStatic (type, props, ...children) {
 
   return marker + staticNode(type, props, children).replaceAll(marker, '')
 }
+
+/**
+ *
+ */
+
+export default { jsx, jsxStatic }

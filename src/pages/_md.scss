@@ -1,0 +1,27 @@
+
+a {
+  color: rgb(var(--coral));
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1 {
+  color: rgb(var(--coral));
+  font: 600 48px/1 'Inter', sans-serif;
+}
+
+h2 {
+  font: 600 24px/1 'Inter', sans-serif;
+}
+
+hr {
+  height: 96px;
+  border: initial;
+}
+
+p {
+  font: 16px/1.5 'Inter', sans-serif;
+}

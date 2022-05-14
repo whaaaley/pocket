@@ -1,0 +1,100 @@
+
+$red: #f0727d;
+$orange: #f9a559;
+$yellow: #f3d37b;
+$green: #abd682;
+$cyan: #7ecad0;
+$blue: #6cb6ff;
+$purple: #b78cf2;
+
+// $background: #1c2128;
+$background: #22272e;
+$comment: #768390;
+$foreground: #cdd9e5;
+
+pre {
+  padding: 18px 24px;
+  overflow: auto;
+  background: $background;
+}
+
+.language-jsx {
+  color: $foreground;
+  font: 14px/21px 'Source Code Pro', monospace;
+}
+
+.token {
+  &.comment {
+    color: $comment;
+  }
+
+  &.number {
+    color: $orange;
+  }
+
+  &.operator {
+    color: $cyan;
+  }
+
+  &.parameter {
+    color: $red;
+  }
+
+  &.string,
+  &.string-property {
+    color: $green;
+  }
+
+  &.class-name,
+  &.function {
+    color: $blue;
+  }
+
+  &.attr-name,
+  &.keyword {
+    color: $purple;
+  }
+
+  &.arrow {
+    &.operator {
+      color: $purple;
+    }
+  }
+
+  &.tag .token {
+    &.tag {
+      color: $red;
+    }
+
+    &.punctuation {
+      color: $foreground;
+    }
+  }
+
+  &.attr-value {
+    color: $green;
+
+    .token {
+      &.punctuation {
+        color: $green;
+      }
+
+      &.attr-equals {
+        color: $cyan;
+      }
+    }
+  }
+
+  &.script.language-javascript {
+    .token.script-punctuation.punctuation {
+      color: $cyan;
+    }
+  }
+
+  &.literal-property,
+  &.string-property {
+    &.property + .token.operator {
+      color: $foreground;
+    }
+  }
+}
