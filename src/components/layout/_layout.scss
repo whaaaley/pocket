@@ -10,27 +10,15 @@
 }
 
 #layout {
-  display: grid;
-  place-content: center;
-  gap: 24px;
-  // color: #fff;
-  // font: 16px/1 'Inter', sans-serif;
+  color: #fff;
+  font: 16px/1 'Inter', sans-serif;
   box-sizing: border-box;
 }
 
-.content {
-  max-width: 960px;
-}
-
-header {
-  display: grid;
-  grid: auto / auto 1fr auto;
-}
-
-main {
-  padding: 0 48px;
-}
-
-footer {
-  // nothing yet...
-}
+// main {
+//   // nothing yet...
+// }
+//
+// footer {
+//   // nothing yet...
+// }

@@ -6,7 +6,7 @@ export default function (props, children) {
   const { to, query } = props
 
   const classList = cc([
-    to === location.pathname && '-active',
+    to === location.pathname && 'active',
     props.class
   ])
 

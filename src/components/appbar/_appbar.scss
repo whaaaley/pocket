@@ -11,34 +11,33 @@
 
 #appbar {
   color: #fff;
-  font: 16px/1 'Inter', sans-serif;
+  font: 18px/64px 'Inter', sans-serif;
   box-sizing: border-box;
 }
 
-a {
-  display: flex;
-  place-items: center;
-  text-decoration: none;
-  transition: color 125ms;
-}
-
-a.-active {
-  color: rgb(var(--coral));
-}
-
-a.-logo {
-  display: block;
-  width: 64px;
-  background: url(tabler('bolt', 1.5px, #fff)) center / 36px no-repeat;
-}
-
-a:hover {
-  color: rgb(var(--coral));
+header {
+  display: grid;
+  grid: auto / auto 1fr auto;
 }
 
 nav {
   display: flex;
   gap: 36px;
-  height: 64px;
   padding: 0 24px;
+}
+
+a {
+  text-decoration: none;
+  transition: color 125ms;
+
+  // stylelint-disable-next-line selector-list-comma-newline-after
+  &.active, &:hover {
+    color: rgb(var(--coral));
+  }
+}
+
+.logo {
+  display: block;
+  width: 64px;
+  background: url(tabler('bolt', 1.5px, #fff)) center / 36px no-repeat;
 }

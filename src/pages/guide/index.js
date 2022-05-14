@@ -13,7 +13,11 @@ export default {
     return function () {
       return <div id='app'>
         <ShadowRoot id='guide' styles={[md, prismjs, style]}>
-          <Layout>{Intro().children}</Layout>
+          <Layout>
+            <div class='page'>
+              {Intro().children}
+            </div>
+          </Layout>
         </ShadowRoot>
       </div>
     }
