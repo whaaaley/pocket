@@ -11,7 +11,7 @@ export default function (xxx, children) {
       <slot name='children'/>
     </main>
     <footer>
-      <p>&copy; 2022</p>
+      {/* <p>&copy; 2022</p> */}
     </footer>
   </ShadowRoot>
 }

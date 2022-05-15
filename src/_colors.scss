@@ -1,38 +1,33 @@
 
 @use 'sass:map';
 
-/**
- * L =    0 to 100 -- Perceptual Lightness
- * a = -128 to 127 -- Green to Red
- * b = -128 to 127 -- Blue to Yellow
- */
+// Okhsl
+// h = 0 to 360 -- Hue
+// s = 0 to 100 -- Saturation (Okhsl)
+// l = 0 to 100 -- Lightness
 
 $rainbow: (
-  'red': oklab(55, 63, 15),
-  'coral': oklab(75, 24, 12), // 👍
-  'orange': oklab(60, 39, 55),
-  'yellow': oklab(70, 15, 63),
-  'green': oklab(60, -32, 0),
-  'blue': oklab(50, -48, -64),
-  'purple': oklab(75, 24, 12)
+  'red':  okhsl(23, 100, 64),
+  'yellow': okhsl(90, 100, 85),
+  'green':  okhsl(160, 100, 70),
+  'blue':   okhsl(250, 100, 65),
+  'purple': okhsl(310, 100, 65)
 );
 
 $light: (
-  'light-600': oklab(70, 0, -10),
-  'light-500': oklab(75, 0, -9),
-  'light-400': oklab(80, 0, -8),
-  'light-300': oklab(85, 0, -7),
-  'light-200': oklab(90, 0, -6),
-  'light-100': oklab(95, 0, -5)
+  'light-500': okhsl(240, 20, 70 + 5),
+  'light-400': okhsl(240, 20, 75 + 5),
+  'light-300': okhsl(240, 20, 80 + 5),
+  'light-200': okhsl(240, 20, 85 + 5),
+  'light-100': okhsl(240, 20, 90 + 5)
 );
 
 $dark: (
-  'dark-600': oklab(5, 0, -2),
-  'dark-500': oklab(10, 0, -1),
-  'dark-400': oklab(15, 0, -2), // 👍
-  'dark-300': oklab(20, 0, -2),
-  'dark-200': oklab(30, 0, -2),
-  'dark-100': oklab(40, 0, -2),
+  'dark-500': okhsl(240, 25, 10),
+  'dark-400': okhsl(240, 25, 15),
+  'dark-300': okhsl(240, 25, 20),
+  'dark-200': okhsl(240, 25, 25),
+  'dark-100': okhsl(240, 25, 30)
 );
 
 $color-map: map.merge($rainbow, $light);

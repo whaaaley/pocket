@@ -10,6 +10,7 @@
 }
 
 #appbar {
+  border-bottom: 2px solid rgb(var(--dark-300));
   color: #fff;
   font: 18px/64px 'Inter', sans-serif;
   box-sizing: border-box;
@@ -32,7 +33,7 @@ a {
 
   // stylelint-disable-next-line selector-list-comma-newline-after
   &.active, &:hover {
-    color: rgb(var(--coral));
+    color: rgb(var(--red));
   }
 }
 

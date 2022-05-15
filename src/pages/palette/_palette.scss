@@ -1,0 +1,18 @@
+
+@use 'sass:map';
+@import '../../_colors.scss';
+
+.group {
+  display: flex;
+
+  > div {
+    width: 96px;
+    height: 96px;
+
+    @each $key, $value in $color-map {
+      &.#{$key} {
+        background: rgb(var(--#{$key}));
+      }
+    }
+  }
+}

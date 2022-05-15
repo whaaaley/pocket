@@ -1,21 +1,22 @@
 
 import { ShadowRoot } from '~/modules/pocket-superfine'
-
-import md from '../_md.scss'
-import prismjs from '../_prismjs.scss'
 import style from './_guide.scss'
 
 import Layout from '~/components/layout'
+import Markdown from '~/components/markdown'
+
 import Intro from './intro.mdx'
 
 export default {
   setup (state, dispatch) {
     return function () {
       return <div id='app'>
-        <ShadowRoot id='guide' styles={[md, prismjs, style]}>
+        <ShadowRoot id='guide' styles={[style]}>
           <Layout>
             <div class='page'>
-              {Intro().children}
+              <Markdown>
+                {Intro().children}
+              </Markdown>
             </div>
           </Layout>
         </ShadowRoot>

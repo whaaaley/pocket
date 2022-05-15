@@ -50,7 +50,7 @@ h1, h2, h3 {
     border-radius: 9px;
     font: 24px/1 'Inter', sans-serif;
     background:
-      rgb(var(--coral))
+      rgb(var(--red))
       url(tabler('refresh', 2px, #fff)) center left 12px / 36px no-repeat;
   }
 }
@@ -64,7 +64,7 @@ h1, h2, h3 {
   button {
     padding: 6px 12px;
     border-radius: 9px;
-    background: rgb(var(--coral));
+    background: rgb(var(--red));
   }
 
   h1 {
@@ -82,7 +82,7 @@ h1, h2, h3 {
   button {
     min-width: 48px;
     height: 36px;
-    background: rgb(var(--coral)) center / 24px no-repeat;
+    background: rgb(var(--red)) center / 24px no-repeat;
 
     &.circle-minus {
       background-image: url(tabler('circle-minus', 2px, #fff));
@@ -118,7 +118,7 @@ h1, h2, h3 {
   gap: 4px;
   max-width: 75vh;
   margin: auto;
-  background: rgb(var(--coral));
+  background: rgb(var(--red));
 
   button {
     display: flex;

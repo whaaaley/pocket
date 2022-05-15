@@ -20,6 +20,7 @@ app({
     '/api': require('~/pages/api').default,
     '/games': require('~/pages/games').default,
     '/about': require('~/pages/about').default,
+    '/palette': require('~/pages/palette').default,
     '/missing': {
       setup () {
         return function () {

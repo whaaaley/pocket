@@ -1,0 +1,43 @@
+
+:host {
+
+}
+
+* {
+
+}
+
+#markdown {
+
+}
+
+a {
+  color: rgb(var(--red));
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+audio {
+  height: 36px;
+}
+
+h1 {
+  color: rgb(var(--red));
+  font: 900 72px/1 'Inter', sans-serif;
+}
+
+h2 {
+  font: 700 42px/1 'Inter', sans-serif;
+}
+
+hr {
+  height: 96px;
+  border: initial;
+}
+
+p {
+  font: 16px/1.5 'Inter', sans-serif;
+}

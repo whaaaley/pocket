@@ -14,8 +14,9 @@ $foreground: #cdd9e5;
 
 pre {
   padding: 18px 24px;
+  border-radius: 9px;
   overflow: auto;
-  background: $background;
+  background: rgb(var(--dark-300));
 }
 
 .language-jsx {
