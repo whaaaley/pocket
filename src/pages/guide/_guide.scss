@@ -16,8 +16,10 @@
 }
 
 .page {
+  $margin: max(24px, min(48px, (48 / 1024) * 100vw));
+
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  padding: 0 48px;
+  padding: 0 $margin;
 }
