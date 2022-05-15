@@ -19,8 +19,8 @@
   box-sizing: border-box;
 }
 
-$title-size: max(36px, min(72px, (72 / 1024) * 100vw));
-$subtitle-size: max(18px, min(30px, (30 / 1024) * 100vw));
+$title-size: clamp(36px, 72 / 1024 * 100vw, 72px);
+$subtitle-size: clamp(18px, 30 / 1024 * 100vw, 30px);
 
 // stylelint-disable-next-line selector-list-comma-newline-after
 h1, h2 {
