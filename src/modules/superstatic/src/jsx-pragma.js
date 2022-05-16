@@ -53,11 +53,15 @@ export function jsx (type, props, ...children) {
       : child
   }
 
+  if (type === 'fragment' || type == null) {
+    return children
+  }
+
   return virtualNode(type, props, children)
 }
 
-export function jsxFragment (xxx, children) {
-  return children
+export function jsxFragment (props, ...children) {
+  return jsx('fragment', props, children)
 }
 
 /**
@@ -86,4 +90,4 @@ export function jsxStatic (type, props, ...children) {
  *
  */
 
-export default { jsx, jsxStatic }
+export default { jsx, jsxFragment }
