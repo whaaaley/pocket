@@ -18,8 +18,8 @@ function Page (props) {
       <noscript>Please enable JavaScript and try again.</noscript>
       <div id='pocket'></div>
       <script type='module'>{'<!-- xxx -->' + script}</script>
-      <link rel='preload' href='/fonts/Inter-3.18/Inter-roman.var.woff2' as='font' type='font/woff2'></link>
-      <link rel='preload' href='/fonts/SourceCodePro-1.018/SourceCodeVariable-Roman.ttf.woff2' as='font' type='font/woff2'></link>
+      <link rel='preload' href='/fonts/Inter-3.18/Inter-roman.var.woff2' as='font' type='font/woff2' crossorigin></link>
+      <link rel='preload' href='/fonts/SourceCodePro-1.018/SourceCodeVariable-Roman.ttf.woff2' as='font' type='font/woff2' crossorigin></link>
       <style>{'<!-- xxx -->' + fonts}</style>
     </body>
   </html>
