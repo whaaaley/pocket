@@ -84,7 +84,6 @@ export default {
         pragmaFrag: 'jsx.jsxFragment',
         pragmaImportSource: '~/modules/superstatic/src/jsx-pragma.js',
         rehypePlugins: [
-          // rehypeHighlight
           rehypePrism
         ]
       }),
