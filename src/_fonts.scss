@@ -8,7 +8,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100 900;
-  font-display: fallback;
+  font-display: swap;
   src: url('/fonts/Inter-3.18/Inter-roman.var.woff2') format('woff2');
 }
 
@@ -29,7 +29,7 @@
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: 100 900;
-  font-display: fallback;
+  font-display: swap;
   src: url('/fonts/SourceCodePro-1.018/SourceCodeVariable-Roman.ttf.woff2') format('woff2');
 }
 
