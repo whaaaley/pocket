@@ -7,7 +7,7 @@ import Markdown from '~/components/markdown'
 import CodeTabs from '~/components/code-tabs'
 
 import Hero from './hero.js'
-import Rationale from './docs/rationale.mdx'
+import Content from './content.mdx'
 import Script from './tabs/script.mdx'
 import Style from './tabs/style.mdx'
 
@@ -28,9 +28,9 @@ export default {
             <Hero/>
             <div class='page'>
               <Markdown>
-                <Rationale/>
+                <Content/>
               </Markdown>
-              <CodeTabs tabs={tabs}/>
+              {/* <CodeTabs tabs={tabs}/> */}
             </div>
           </Layout>
         </ShadowRoot>
