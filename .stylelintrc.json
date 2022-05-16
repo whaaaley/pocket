@@ -196,6 +196,7 @@
       "stroke-dashoffset",
       "stroke",
       "color",
+      "font",
       "font-family",
       "font-size",
       "font-size-adjust",
