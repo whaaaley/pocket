@@ -1,14 +1,44 @@
 
 :host {
-
+  all: initial;
 }
 
 * {
-
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
 }
 
 #markdown {
+  // color: #fff;
+  // font: 16px/1 'Inter', sans-serif;
+  font-size: between(16px, 18px);
+  line-height: 1.75;
+  box-sizing: border-box;
+}
 
+// stylelint-disable-next-line selector-list-comma-newline-after
+h1, h2, p {
+  margin: 1em 0 0;
+}
+
+// stylelint-disable-next-line selector-list-comma-newline-after
+h1, h2 {
+  color: rgb(var(--red));
+  font-weight: 600;
+}
+
+h2 {
+  font-size: between(24px, 36px);
+}
+
+h1 {
+  color: rgb(var(--red));
+  font-size: between(36px, 72px);
+
+  ~ h2 {
+    color: #fff;
+  }
 }
 
 a {
@@ -24,20 +54,19 @@ audio {
   height: 36px;
 }
 
-h1 {
-  color: rgb(var(--red));
-  font: 900 72px/1 'Inter', sans-serif;
-}
-
-h2 {
-  font: 700 42px/1 'Inter', sans-serif;
-}
-
 hr {
   height: 96px;
   border: initial;
 }
 
-p {
-  font: 16px/1.5 'Inter', sans-serif;
-}
+// p {
+//   // font-size: $paragraph;
+//   // line-height: 1.75;
+//
+//   code {
+//     padding: 3px 6px;
+//     border-radius: 6px;
+//     color: rgb(var(--light-500));
+//     background: rgb(var(--dark-300));
+//   }
+// }

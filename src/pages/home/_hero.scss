@@ -13,14 +13,10 @@
   display: grid;
   place-items: center;
   padding: 96px 24px;
-  border-bottom: 2px solid rgb(var(--dark-300));
+  border-bottom: 2px solid color(--dark-300);
   color: #fff;
-  font: 24px/1 'Inter', sans-serif;
   box-sizing: border-box;
 }
-
-$title-size: clamp(36px, 72 / 1024 * 100vw, 72px);
-$subtitle-size: clamp(18px, 30 / 1024 * 100vw, 30px);
 
 // stylelint-disable-next-line selector-list-comma-newline-after
 h1, h2 {
@@ -28,38 +24,39 @@ h1, h2 {
 }
 
 h1 {
-  margin: 0 0 12px;
-  font: 700 $title-size/1 'Inter', sans-serif;
+  margin: 0 0 calc(18em / 72); // 18px when font-size is 72px
+  font-size: between(30px, 72px);
+  font-weight: 700;
 
   > span {
-    color: rgb(var(--red));
+    color: color(--red);
   }
 }
 
 h2 {
-  font: $subtitle-size/1 'Inter', sans-serif;
-  margin: 24px 0 0;
+  margin: calc(32em / 30) 0 0; // 32px when font-size is 30px
+  font-size: between(18px, 30px);
 }
 
 button {
-  padding: 12px 18px;
+  padding: calc(12em / 18) calc(16em / 18); // 12px 16px when font-size is 18px
   border: initial;
   border-radius: 9px;
-  font: 16px/1 'Inter', sans-serif;
+  font-size: between(16px, 18px);
   background: rgb(var(--dark-200));
   cursor: pointer;
   transition: background 200ms;
 
   &.-get-started {
+    $icon: tabler('arrow-right', 2, #fff);
+
     padding-right: 6px + 24px + 12px;
-    background:
-      rgb(var(--red))
-      url(tabler('arrow-right', 2, #fff)) center right 12px / 24px no-repeat;
+    background: color(--red) $icon center right 12px / 24px no-repeat;
   }
 }
 
 .actions {
   display: flex;
-  gap: 24px;
+  gap: 18px;
   padding: 36px 0 0;
 }

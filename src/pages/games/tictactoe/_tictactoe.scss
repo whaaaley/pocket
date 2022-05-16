@@ -51,7 +51,7 @@ h1, h2, h3 {
     font: 24px/1 'Inter', sans-serif;
     background:
       rgb(var(--red))
-      url(tabler('refresh', 2px, #fff)) center left 12px / 36px no-repeat;
+      tabler('refresh', 2px, #fff) center left 12px / 36px no-repeat;
   }
 }
 
@@ -85,11 +85,11 @@ h1, h2, h3 {
     background: rgb(var(--red)) center / 24px no-repeat;
 
     &.circle-minus {
-      background-image: url(tabler('circle-minus', 2px, #fff));
+      background-image: tabler('circle-minus', 2px, #fff);
     }
 
     &.circle-plus {
-      background-image: url(tabler('circle-plus', 2px, #fff));
+      background-image: tabler('circle-plus', 2px, #fff);
     }
   }
 }

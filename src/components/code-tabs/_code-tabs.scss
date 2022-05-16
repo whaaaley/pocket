@@ -1,0 +1,41 @@
+
+:host {
+  all: initial;
+}
+
+* {
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
+}
+
+#code-tabs {
+  color: #fff;
+  font: 16px/1 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+.tabs {
+  padding: 12px 12px 0;
+  border-radius: 9px 9px 0 0;
+  background: rgb(var(--dark-450));
+}
+
+.content {
+  border-radius: 0 0 9px 9px;
+  background: rgb(var(--dark-300));
+}
+
+button {
+  padding: 9px 18px 12px;
+  border: initial;
+  border-top: 3px solid transparent;
+  background: initial;
+  cursor: pointer;
+
+  &.-active {
+    border-top: 2px solid rgb(var(--blue));
+    border-radius: 2px 2px 0 0;
+    background: rgb(var(--dark-300));
+  }
+}

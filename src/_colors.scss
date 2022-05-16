@@ -24,10 +24,12 @@ $light: (
 
 $dark: (
   'dark-500': okhsl(240, 25, 10),
+  'dark-450': okhsl(240, 25, 12.5),
   'dark-400': okhsl(240, 25, 15),
   'dark-300': okhsl(240, 25, 20),
-  'dark-200': okhsl(240, 25, 25),
-  'dark-100': okhsl(240, 25, 30)
+  'dark-200': okhsl(240, 25, 30),
+  'dark-250': okhsl(240, 25, 40),
+  'dark-100': okhsl(240, 25, 50)
 );
 
 $color-map: map.merge($rainbow, $light);

@@ -13,13 +13,16 @@ $comment: #768390;
 $foreground: #cdd9e5;
 
 pre {
+  margin: initial;
   padding: 18px 24px;
-  border-radius: 9px;
+  // border-radius: 6px;
   overflow: auto;
-  background: rgb(var(--dark-300));
+  // background: rgb(var(--dark-300));
 }
 
-.language-jsx {
+.language-js,
+.language-jsx,
+.language-scss {
   color: $foreground;
   font: 14px/21px 'Source Code Pro', monospace;
 }

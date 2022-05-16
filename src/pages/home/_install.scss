@@ -1,0 +1,73 @@
+
+// Notes:
+// min-font-size = 14px
+// max-font-size = 18px
+
+// @function strip-unit($number) {
+//   @return $number / ($number * 0 + 1);
+// }
+
+@function scale($size) {
+  @return calc($size * 1em / 18);
+}
+
+:host {
+  all: initial;
+}
+
+* {
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
+}
+
+#install {
+  display: flex;
+  margin: scale(48) 0 0;
+  font-size: between(14px, 18px);
+  white-space: pre;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.command {
+  display: flex;
+  place-items: center;
+  padding: 0 scale(18);
+  border-radius: 9px 0 0 9px;
+  color: color(--light-300);
+  font-family: 'Source Code Pro', monospace;
+  background: color(--dark-300);
+}
+
+span {
+  color: color(--dark-100);
+  font-weight: 600;
+  user-select: none;
+}
+
+button {
+  $color: color(--dark-200);
+  $icon: tabler('copy', 2, #fff);
+
+  width: scale(48);
+  height: scale(48);
+  border: initial;
+  border-radius: 0 9px 9px 0;
+  color: transparent;
+  text-align: initial;
+  background: $color $icon center left #{scale(12)} / #{scale(24)} no-repeat;
+  cursor: pointer;
+  transition: background 200ms, color 200ms, width 150ms;
+
+  &:hover {
+    background-color: color(--dark-250);
+  }
+
+  &.-copied {
+    width: scale(126); // 126px from chrome dev tools
+    padding: 0 scale(18) 0 scale(42);
+    color: #fff;
+    background-color: color(--green);
+  }
+}

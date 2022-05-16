@@ -15,7 +15,7 @@ export default {
           <Layout>
             <div class='page'>
               <Markdown>
-                {Intro().children}
+                <Intro/>
               </Markdown>
             </div>
           </Layout>

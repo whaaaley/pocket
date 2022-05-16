@@ -16,7 +16,7 @@ function Page (props) {
     <body>
       <noscript>Please enable JavaScript and try again.</noscript>
       <div id='pocket'></div>
-      <script>{'<!-- xxx -->' + script}</script>
+      <script type='module'>{'<!-- xxx -->' + script}</script>
     </body>
   </html>
 }

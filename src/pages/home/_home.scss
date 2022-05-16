@@ -13,3 +13,10 @@
   font: 16px/1 'Inter', sans-serif;
   box-sizing: border-box;
 }
+
+.page {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: between(24px, 48px);
+}
