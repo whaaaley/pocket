@@ -64,6 +64,8 @@ export default {
       cache.set(path, template)
     }
 
-    return new sass.SassString(template(width, color))
+    return new sass.SassString('url("' + template(width, color) + '")', {
+      quotes: false
+    })
   }
 }

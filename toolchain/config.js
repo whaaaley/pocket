@@ -8,8 +8,8 @@ import javascript from './plugins/javascript.js'
 import resolution from './plugins/resolution.js'
 import sass from './plugins/sass.js'
 
+import helpers from './sass-functions/helpers.js'
 import oklab from './sass-functions/oklab.js'
-import rgbString from './sass-functions/rgb-string.js'
 import tabler from './sass-functions/tabler.js'
 
 const production = process.env.NODE_ENV === 'production'
@@ -125,8 +125,8 @@ export default {
     sourceMap: true,
     sourceMapIncludeSources: true,
     functions: {
+      ...helpers,
       ...oklab,
-      ...rgbString,
       ...tabler
     }
   },
