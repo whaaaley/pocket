@@ -2,6 +2,7 @@
 'use strict'
 
 import style from './_main.scss'
+import fonts from './_fonts.scss'
 import script from './app.bundle.js'
 
 function Page (props) {
@@ -17,6 +18,7 @@ function Page (props) {
       <noscript>Please enable JavaScript and try again.</noscript>
       <div id='pocket'></div>
       <script type='module'>{'<!-- xxx -->' + script}</script>
+      <style>{'<!-- xxx -->' + fonts}</style>
     </body>
   </html>
 }
