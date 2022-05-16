@@ -1,5 +1,6 @@
 
 import CodeTabs from '~/components/code-tabs/index.js'
+import Markdown from '~/components/markdown'
 
 import Script from './tabs/script.mdx'
 import Style from './tabs/style.mdx'
@@ -12,22 +13,24 @@ export const tabs = [{
   content: <Style/>
 }]
 
-Pocket is a library for building small applications and universal components that can be rendered by any framework that uses hyperscript functions or [JSX](https://reactjs.org/docs/introducing-jsx.html). Like many frameworks, it provides a component-based model to create interfaces combined with state management, page routing, and style encapsulation.
+<Markdown>
+  Pocket is a library for building small applications and universal components that can be rendered by any framework that uses hyperscript functions or [JSX](https://reactjs.org/docs/introducing-jsx.html). Like many frameworks, it provides a component-based model to create interfaces combined with state management, page routing, and style encapsulation.
 
-## How does Pocket work?
+  ## How does Pocket work?
 
-<br/>
-<CodeTabs tabs={tabs}/>
+  <br/>
+  <CodeTabs tabs={tabs}/>
 
-{/* The [esbuild](https://esbuild.github.io/) plugin [esbuild-plugin-pocket]() makes it easy to compile your components for ReactDOM, Vue.js render functions, Superfine, and Custom Elements (with the help of Superfine). Using a generic compatibility layer components use the same virtual dom used by the parent application.
+  {/* The [esbuild](https://esbuild.github.io/) plugin [esbuild-plugin-pocket]() makes it easy to compile your components for ReactDOM, Vue.js render functions, Superfine, and Custom Elements (with the help of Superfine). Using a generic compatibility layer components use the same virtual dom used by the parent application.
 
-This compatibility layer enables developers to build components using a generic, simple, and stable architecture without worrying about using complicated web apis, bundling a second view layer, or rebuilding a component for every framework. Pocket makes no compromises. */}
+  This compatibility layer enables developers to build components using a generic, simple, and stable architecture without worrying about using complicated web apis, bundling a second view layer, or rebuilding a component for every framework. Pocket makes no compromises. */}
 
-## Prior art
+  ## Prior art
 
-Pocket was influenced by many frameworks. I'd like to showcase the following projects here as the primary sources of inspiration.
+  Pocket was influenced by many frameworks. I'd like to showcase the following projects here as the primary sources of inspiration.
 
-+ [Hyperapp](https://github.com/jorgebucaran/hyperapp)
-+ [Superfine](https://github.com/jorgebucaran/superfine)
-+ [Mithril](https://mithril.js.org/)
-+ [Vue.js](https://vuejs.org/)
+  + [Hyperapp](https://github.com/jorgebucaran/hyperapp)
+  + [Superfine](https://github.com/jorgebucaran/superfine)
+  + [Mithril](https://mithril.js.org/)
+  + [Vue.js](https://vuejs.org/)
+</Markdown>

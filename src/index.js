@@ -22,9 +22,9 @@ function Page (props) {
 }
 
 const html = Page({
-  title: 'Pocket Micro Framework',
+  title: 'Pocket Micro Framework | A tiny library for building small applications.',
   author: 'Dustin Dowell',
-  description: '',
+  description: 'Pocket is a library for building small applications and universal components that can be rendered by any framework that uses hyperscript functions or JSX. Like many frameworks, it provides a component-based model to create interfaces combined with state management, page routing, and style encapsulation.',
   viewport: 'width=device-width,maximum-scale=5'
 })
 

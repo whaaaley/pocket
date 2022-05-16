@@ -34,7 +34,8 @@ async function handler (pathname) {
     return new Response(await Deno.readFile(join(assets, pathname)), {
       status: 200,
       headers: {
-        'content-type': mediaTypes[ext] ?? 'text/plain;charset=utf-8'
+        'content-type': mediaTypes[ext] ?? 'text/plain;charset=utf-8',
+        'cache-control': ext === '.woff2' ? 'max-age=31536000' : 'no-cache' // TODO: expand cached media types
       }
     })
   } catch {

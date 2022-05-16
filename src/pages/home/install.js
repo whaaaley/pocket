@@ -31,7 +31,7 @@ function setup (state) {
       <div class='command'>
         <span>$ </span>npm i @onclick/pocket-superfine
       </div>
-      <button class={cc({ '-copied': state.copied })} onclick={copy}>
+      <button class={cc({ '-copied': state.copied })} aria-label='Copy Command' onclick={copy}>
         {state.copied ? 'Copied!' : ''}
       </button>
     </>

@@ -41,4 +41,8 @@ a {
   display: block;
   width: 64px;
   background: tabler('bolt', 1.5px, #fff) center / 36px no-repeat;
+
+  span {
+    display: none;
+  }
 }

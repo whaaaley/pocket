@@ -7,6 +7,7 @@ import Markdown from '~/components/markdown'
 
 export default function (props) {
   const state = {
+    copied: false,
     index: 0
   }
 
@@ -19,6 +20,18 @@ export default function (props) {
 }
 
 function setup (state) {
+  function copyContent (value) {
+    return function () {
+      state.copied = true
+
+      setTimeout(function () {
+        state.copied = false
+      }, 2000)
+
+      navigator.clipboard.writeText(value)
+    }
+  }
+
   function setIndex (index) {
     return function () {
       state.index = index
@@ -27,20 +40,27 @@ function setup (state) {
 
   return function (props) {
     const tabs = props.tabs
+    const content = tabs[state.index].content
+
+    const classList = cc({
+      'btn-copy': true,
+      '-copied': state.copied
+    })
 
     return <>
       <div class='tabs'>
         {tabs.map(function (tab, index) {
-          const classList = cc(['tab', index === state.index && '-active'])
+          const classList = cc(['btn-tab', index === state.index && '-active'])
           return <button class={classList} onclick={setIndex(index)}>
             {tab.title}
           </button>
         })}
       </div>
       <div class='content'>
-        <Markdown>
-          {tabs[state.index].content}
-        </Markdown>
+        <button class={classList} aria-label='Copy Code' onclick={copyContent(content)}>
+          {state.copied ? 'Copied!' : ''}
+        </button>
+        <Markdown>{content}</Markdown>
       </div>
     </>
   }

@@ -9,6 +9,12 @@
   box-sizing: inherit;
 }
 
+button {
+  border: initial;
+  background: initial;
+  cursor: pointer;
+}
+
 #code-tabs {
   color: #fff;
   font: 16px/1 'Inter', sans-serif;
@@ -21,21 +27,46 @@
   background: rgb(var(--dark-450));
 }
 
-.content {
-  border-radius: 0 0 9px 9px;
-  background: rgb(var(--dark-300));
-}
-
-button {
+.btn-tab {
   padding: 9px 18px 12px;
-  border: initial;
   border-top: 3px solid transparent;
-  background: initial;
-  cursor: pointer;
 
   &.-active {
     border-top: 2px solid rgb(var(--blue));
     border-radius: 2px 2px 0 0;
     background: rgb(var(--dark-300));
+  }
+}
+
+.content {
+  position: relative;
+  border-radius: 0 0 9px 9px;
+  background: rgb(var(--dark-300));
+}
+
+.btn-copy {
+  $color: color(--dark-200);
+  $icon: tabler('copy', 2, #fff);
+
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  width: 48px;
+  height: 42px;
+  border-radius: 9px;
+  color: transparent;
+  overflow: hidden;
+  background: $color $icon center left 12px / 24px no-repeat;
+  transition: background 200ms, color 200ms, width 150ms;
+
+  &:hover {
+    background-color: color(--dark-250);
+  }
+
+  &.-copied {
+    width: 112px; // 112px from chrome dev tools
+    padding: 0 12px 0 42px;
+    color: #fff;
+    background-color: color(--green);
   }
 }
