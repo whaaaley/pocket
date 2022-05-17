@@ -13,7 +13,7 @@ export default function () {
         <Link to='/guide'>Guide</Link>
         <Link to='/api'>API</Link>
         <Link to='/games'>Games</Link>
-        <a href='https://github.com/whaaaley/pocket'>Github</a>
+        <a href='https://github.com/whaaaley/pocket'>GitHub</a>
       </nav>
     </header>
   </ShadowRoot>
