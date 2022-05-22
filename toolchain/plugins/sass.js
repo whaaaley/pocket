@@ -2,14 +2,13 @@
 import path from 'path'
 import sass from 'sass'
 import CleanCSS from 'clean-css'
-import config from '../config.js'
 
 const production = process.env.NODE_ENV === 'production'
 const cwd = process.cwd()
 
-function handler (args) {
+function handler (args, options) {
   try {
-    const result = sass.compile(args.path, config.sass)
+    const result = sass.compile(args.path, options.sass)
     const sourceMap = result.sourceMap
 
     sourceMap.file = args.path
@@ -26,7 +25,7 @@ function handler (args) {
     return {
       loader: 'text',
       contents: production
-        ? new CleanCSS(config.cleancss).minify(data).styles
+        ? new CleanCSS(options.cleancss).minify(data).styles
         : Buffer.from(data).toString()
     }
   } catch (err) {
@@ -52,9 +51,15 @@ function handler (args) {
   }
 }
 
-export default {
-  name: 'plugin-sass',
-  setup (build) {
-    build.onLoad({ filter: /\.scss$/ }, handler)
+export default function (options) {
+  function load (args) {
+    return handler(args, options)
+  }
+
+  return {
+    name: 'plugin-sass',
+    setup (build) {
+      build.onLoad({ filter: /\.scss$/ }, load)
+    }
   }
 }

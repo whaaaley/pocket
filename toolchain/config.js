@@ -15,45 +15,22 @@ import tabler from './sass-functions/tabler.js'
 const production = process.env.NODE_ENV === 'production'
 const baseDir = path.join(process.cwd(), './src')
 
-export default {
-  lib: {
-    // bundle: true,
-    // format: 'esm',
-    // outdir: './lib',
-    // define: {
-    //   'process.env.FF_QUIET': true,
-    //   'process.env.NODE_ENV': 'production'
-    // },
-    // entryPoints: [
-    //   './src/modules/pocket/index.js',
-    //   './src/modules/pocket-superfine/index.js'
-    // ],
-    // plugins: [
-    //   resolution({ home: baseDir })
-    // ]
+const sassPluginOptions = {
+  sass: {
+    sourceMap: true,
+    sourceMapIncludeSources: true,
+    functions: {
+      ...helpers,
+      ...oklab,
+      ...tabler
+    }
   },
-  main: {
-    bundle: true,
-    incremental: !production,
-    jsxFactory: 'jsxStatic',
-    jsxFragment: 'jsxFragment',
-    platform: 'node',
-    write: false,
-    entryPoints: [
-      './src/index.js'
-    ],
-    inject: [
-      './src/modules/superstatic/src/jsx-pragma.js'
-    ],
-    loader: {
-      '.js': 'jsx',
-      '.bundle.js': 'text'
-    },
-    plugins: [
-      javascript,
-      sass
-    ]
-  },
+  cleancss: {
+    level: 2
+  }
+}
+
+const javascriptPluginOptions = {
   esbuild: {
     bundle: true,
     incremental: !production,
@@ -82,12 +59,17 @@ export default {
         jsxRuntime: 'classic',
         pragma: 'jsx.jsx',
         pragmaFrag: 'jsx.jsxFragment',
-        pragmaImportSource: '~/modules/superstatic/src/jsx-pragma.js',
+        pragmaImportSource: path.join(
+          process.cwd(),
+          './src/modules/superstatic/src/jsx-pragma.js'
+        ),
         rehypePlugins: [
           rehypePrism
         ]
       }),
-      sass
+      sass({
+        ...sassPluginOptions
+      })
     ]
   },
   // babel: {
@@ -120,17 +102,51 @@ export default {
     mangle: {
       toplevel: true
     }
+  }
+}
+
+export default {
+  lib: {
+    // bundle: true,
+    // format: 'esm',
+    // outdir: './lib',
+    // define: {
+    //   'process.env.FF_QUIET': true,
+    //   'process.env.NODE_ENV': 'production'
+    // },
+    // entryPoints: [
+    //   './src/modules/pocket/index.js',
+    //   './src/modules/pocket-superfine/index.js'
+    // ],
+    // plugins: [
+    //   resolution({ home: baseDir })
+    // ]
   },
-  sass: {
-    sourceMap: true,
-    sourceMapIncludeSources: true,
-    functions: {
-      ...helpers,
-      ...oklab,
-      ...tabler
-    }
-  },
-  cleancss: {
-    level: 2
+  main: {
+    bundle: true,
+    incremental: !production,
+    jsxFactory: 'jsxStatic',
+    jsxFragment: 'jsxFragment',
+    // minifiy: production,
+    platform: 'node',
+    write: false,
+    entryPoints: [
+      './src/index.js'
+    ],
+    inject: [
+      './src/modules/superstatic/src/jsx-pragma.js'
+    ],
+    loader: {
+      '.js': 'jsx',
+      '.bundle.js': 'text'
+    },
+    plugins: [
+      javascript({
+        ...javascriptPluginOptions
+      }),
+      sass({
+        ...sassPluginOptions
+      })
+    ]
   }
 }

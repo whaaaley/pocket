@@ -2,24 +2,23 @@
 import esbuild from 'esbuild'
 import typescript from 'typescript'
 import uglify from 'uglify-js'
-import config from '../config.js'
 
 const production = process.env.NODE_ENV === 'production'
 const cache = {} // Persist across build errors
 
-async function handler (args) {
+async function handler (args, options) {
   const path = args.path
 
   cache[path] = cache[path] == null
-    ? await esbuild.build({ ...config.esbuild, entryPoints: [path] })
+    ? await esbuild.build({ ...options.esbuild, entryPoints: [path] })
     : await cache[path].rebuild()
 
   let data = cache[path].outputFiles[0].contents.buffer
   data = Buffer.from(data).toString()
 
   if (production === true) {
-    data = typescript.transpileModule(data, config.typescript).outputText
-    data = uglify.minify(data, config.uglify).code
+    data = typescript.transpileModule(data, options.typescript).outputText
+    data = uglify.minify(data, options.uglify).code
   }
 
   return {
@@ -28,9 +27,15 @@ async function handler (args) {
   }
 }
 
-export default {
-  name: 'plugin-javascript',
-  setup (build) {
-    build.onLoad({ filter: /\.bundle\.(js|jsx)$/ }, handler)
+export default function (options) {
+  function load (args) {
+    return handler(args, options)
+  }
+
+  return {
+    name: 'plugin-javascript',
+    setup (build) {
+      build.onLoad({ filter: /\.bundle\.(js|jsx|ts|tsx)$/ }, load)
+    }
   }
 }

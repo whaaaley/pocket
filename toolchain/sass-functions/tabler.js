@@ -1,9 +1,10 @@
 
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
+
 import sass from 'sass'
-import svgo from 'svgo'
 import svgDataURI from 'mini-svg-data-uri'
+import svgo from 'svgo'
 
 const cache = new Map()
 const svgPath = path.join(process.cwd(), './node_modules/@tabler/icons/icons')
@@ -58,13 +59,13 @@ export default {
         open = open.replace(strokeAttr, 'stroke="' + color + '"')
         open = open.replace(strokeWidthAttr, 'stroke-width="' + width + '"')
 
-        return svgDataURI(open + content)
+        return 'url("' + svgDataURI(open + content) + '")'
       }
 
       cache.set(path, template)
     }
 
-    return new sass.SassString('url("' + template(width, color) + '")', {
+    return new sass.SassString(template(width, color), {
       quotes: false
     })
   }
