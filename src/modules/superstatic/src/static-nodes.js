@@ -1,5 +1,5 @@
 
-import escapeHTML from './escape-html'
+import escapeHTML from 'escape-html'
 
 function isSafe (value) {
   switch (typeof value) {
