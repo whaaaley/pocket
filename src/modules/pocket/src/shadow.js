@@ -4,10 +4,7 @@ import { core } from './pocket'
 const nodeMap = new WeakMap()
 const shadowInit = { mode: 'open' }
 
-export function Component (props, view) {
-  const host = props.host
-  const patch = props.patch
-
+export function Component ({ host, init, props, patch }, view) {
   let node
 
   Object.defineProperty(host, 'node', {
@@ -18,13 +15,13 @@ export function Component (props, view) {
       const data = nodeMap.get(node = value) ?? {}
       let root = data.root
 
-      data.props = props.props
+      data.props = props
       data.view = view
 
       if (root) {
         patch(root, data.render())
       } else {
-        const init = props.init
+        // cache original setup function
         const setup = init.setup
 
         init.setup = function (state, dispatch) {
@@ -39,6 +36,7 @@ export function Component (props, view) {
         root = node.attachShadow(shadowInit)
         root = root.appendChild(data.root = document.createElement('div'))
 
+        // should i unwrap this callback?
         core(init, function (view) {
           return patch(root, view)
         })
@@ -51,8 +49,7 @@ export function Component (props, view) {
   return host
 }
 
-export function IFrameRoot (props, view) {
-  const host = props.host
+export function IFrameRoot ({ host, patch }, view) {
   let node
 
   Object.defineProperty(host, 'node', {
@@ -68,7 +65,7 @@ export function IFrameRoot (props, view) {
           node.contentDocument.documentElement.replaceWith(root)
         }
 
-        props.patch(root, view)
+        patch(root, view)
       })
     }
   })
@@ -76,8 +73,7 @@ export function IFrameRoot (props, view) {
   return host
 }
 
-export function ShadowRoot (props, view) {
-  const host = props.host
+export function ShadowRoot ({ host, patch }, view) {
   let node
 
   Object.defineProperty(host, 'node', {
@@ -92,7 +88,7 @@ export function ShadowRoot (props, view) {
         node.attachShadow(shadowInit).appendChild(root)
       }
 
-      props.patch(root, view)
+      patch(root, view)
     }
   })
 
