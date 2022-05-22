@@ -36,8 +36,13 @@ const javascriptPluginOptions = {
     incremental: !production,
     jsxFactory: 'jsx',
     jsxFragment: 'jsxFragment',
-    sourcemap: !production,
+    sourcemap: production ? false : 'inline',
     write: false,
+
+    format: 'esm',
+    outdir: './deploy/dist/',
+    splitting: true,
+
     define: {
       'process.env.FF_QUIET': true,
       'process.env.NODE_ENV': JSON.stringify(production

@@ -1,4 +1,6 @@
 
+import fs from 'node:fs'
+
 import esbuild from 'esbuild'
 import typescript from 'typescript'
 import uglify from 'uglify-js'
@@ -13,17 +15,46 @@ async function handler (args, options) {
     ? await esbuild.build({ ...options.esbuild, entryPoints: [path] })
     : await cache[path].rebuild()
 
-  let data = cache[path].outputFiles[0].contents.buffer
-  data = Buffer.from(data).toString()
+  // let data = cache[path].outputFiles[0].contents.buffer
+  // data = Buffer.from(data).toString()
+  //
+  // if (production === true) {
+  //   data = typescript.transpileModule(data, options.typescript).outputText
+  //   data = uglify.minify(data, options.uglify).code
+  // }
+  //
+  // return {
+  //   loader: 'text',
+  //   contents: data
+  // }
 
-  if (production === true) {
-    data = typescript.transpileModule(data, options.typescript).outputText
-    data = uglify.minify(data, options.uglify).code
+  function process (file) {
+    let data = file.contents.buffer
+    data = Buffer.from(data).toString()
+
+    if (production === true) {
+      data = typescript.transpileModule(data, options.typescript).outputText
+      data = uglify.minify(data, options.uglify).code
+    }
+
+    console.log(
+      (Math.round(Buffer.byteLength(data) / 1000) + ' kB').padStart(8),
+      file.path
+    )
+
+    return data
+  }
+
+  const [main, ...chunks] = cache[path].outputFiles
+
+  for (let i = 0; i < chunks.length; i++) {
+    const file = chunks[i]
+    fs.writeFileSync(file.path, process(file))
   }
 
   return {
     loader: 'text',
-    contents: data
+    contents: process(main)
   }
 }
 

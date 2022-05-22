@@ -3,6 +3,7 @@ import { extname, join } from 'https://deno.land/std/path/mod.ts'
 
 const indexFile = await Deno.readFile('./deploy/dist/index.html')
 const assets = join(Deno.cwd(), './deploy/assets')
+const dist = join(Deno.cwd(), './deploy/dist')
 
 const mediaTypes = {
   '.css': 'text/css',
@@ -31,7 +32,15 @@ async function handler (pathname) {
   }
 
   try {
-    return new Response(await Deno.readFile(join(assets, pathname)), {
+    let file
+
+    try {
+      file = await Deno.readFile(join(dist, pathname))
+    } catch {
+      file = await Deno.readFile(join(assets, pathname))
+    }
+
+    return new Response(file, {
       status: 200,
       headers: {
         'content-type': mediaTypes[ext] ?? 'text/plain;charset=utf-8',

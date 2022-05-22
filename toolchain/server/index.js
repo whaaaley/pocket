@@ -1,7 +1,8 @@
 
-import fs from 'fs/promises'
-import http from 'http'
-import path from 'path'
+import fs from 'node:fs/promises'
+import http from 'node:http'
+import path from 'node:path'
+
 import watch from './modules/watch.js'
 import * as log from './modules/log.js'
 import * as build from './build.js'
@@ -38,7 +39,7 @@ async function handler (req, res) {
   const pathname = req.url
   const ext = path.extname(pathname)
 
-  if (ext === '' || pathname === '/index.html') {
+  if (ext === '') {
     res.setHeader('content-type', 'text/html')
     res.writeHead(200)
 
@@ -46,7 +47,13 @@ async function handler (req, res) {
   }
 
   try {
-    const file = await fs.readFile(path.join('./deploy/assets', pathname))
+    let file
+
+    try {
+      file = await fs.readFile(path.join('./deploy/dist', pathname))
+    } catch {
+      file = await fs.readFile(path.join('./deploy/assets', pathname))
+    }
 
     res.setHeader('content-type', mediaTypes[ext] ?? 'text/plain')
     res.writeHead(200)
