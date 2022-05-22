@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "lib": "node toolchain lib",
+    "gzip": "gzip --best --keep --no-name deploy/dist/index.html",
     "prepare": "rm -rf deploy/dist && mkdir deploy/dist",
     "build": "npm run prepare && NODE_ENV=production node toolchain build",
     "start": "npm run prepare && NODE_ENV=development node toolchain start"
@@ -22,6 +23,7 @@
     "clean-css": "^5.3.0",
     "culori": "^2.0.3",
     "esbuild": "^0.14.39",
+    "escape-html": "^1.0.3",
     "mini-svg-data-uri": "^1.4.4",
     "sass": "^1.51.0",
     "svgo": "^2.8.0",
