@@ -36,10 +36,9 @@ function Component2 ({ id, init, props, styles, slots }, children) {
 
     return function (props2, children2) {
       let vdom = render(props2, children2)
-      vdom = Array.isArray(vdom) ? vdom : [vdom]
 
-      // should vdom always be an array?
-      // i haven't decided yet...
+      // children cannot be guaranteed to be an array
+      vdom = Array.isArray(vdom) ? vdom : [vdom]
       copy('style', styles, vdom)
 
       return h('div', { id }, vdom)
