@@ -1,15 +1,15 @@
 
 import { h, text } from 'superfine'
 
-function slot (key, value) {
-  return h('div', { key, slot: key }, value)
-}
-
 function style (key, value) {
   return h('style', { key }, text(value))
 }
 
-const types = { slot, style }
+function slot (key, value) {
+  return h('div', { key, slot: key }, value)
+}
+
+const types = { style, slot }
 
 export function copy (type, source, target) {
   if (source) {

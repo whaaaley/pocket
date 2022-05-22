@@ -1,5 +1,5 @@
 
-import { ShadowRoot } from '~/modules/pocket-superfine'
+import { Async, ShadowRoot } from '~/modules/pocket-superfine'
 import style from './_home.scss'
 
 import Layout from '~/components/layout'
@@ -15,6 +15,9 @@ export default {
           <Layout>
             <Hero/>
             <div class='page'>
+              <Async module={import('./counter/index.js')}>
+                <h1>loading...</h1>
+              </Async>
               <Content/>
             </div>
           </Layout>
