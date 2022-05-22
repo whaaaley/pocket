@@ -74,34 +74,39 @@ export function router (init, app) {
 
   app({
     stores: init.stores,
-    setup (state, dispatch) {
-      let destroy = null
-      let view = null
-
-      function main () {
-        dispatch('router/sync', init.rewrites)
-
-        if (destroy != null) {
-          destroy(state, dispatch)
-        }
-
-        let route = pages[state.router.to]
-        route = route == null ? pages['/missing'] : route
-
-        const setup = route.setup
-        view = setup != null && setup(state, dispatch)
-
-        destroy = route.destroy
-      }
-
-      main()
-
-      addEventListener('pocket-pushstate', main)
-      addEventListener('popstate', main)
-
-      return function () {
-        return view()
-      }
-    }
+    setup
   })
+
+  function setup (state, dispatch) {
+    let render = null
+    let destroy = null
+
+    function main () {
+      dispatch('router/sync', init.rewrites)
+
+      if (destroy != null) {
+        destroy(state, dispatch)
+      }
+
+      let route = pages[state.router.to]
+      route = route == null ? pages['/missing'] : route
+
+      const setup = route.setup
+
+      if (setup != null) {
+        render = setup(state, dispatch)
+      }
+
+      destroy = route.destroy
+    }
+
+    main()
+
+    addEventListener('pocket-pushstate', main)
+    addEventListener('popstate', main)
+
+    return function () {
+      return render()
+    }
+  }
 }

@@ -1,21 +1,16 @@
 
 'use strict'
 
-import { patch } from 'superfine'
-import { pocket, router } from '~/modules/pocket'
+import { app } from '~/modules/pocket-superfine'
 
-const node = document.getElementById('pocket')
-
-const context = init => pocket(init, view => patch(node, view))
-const app = init => router(init, context)
-
-app({
+app('pocket', {
   stores: {
     common: require('~/stores/common.js').default,
     docs: require('~/stores/docs.js').default
   },
   pages: {
     '/': require('~/pages/home').default,
+    // '/guide': import('~/pages/guide'),
     '/guide': require('~/pages/guide').default,
     '/api': require('~/pages/api').default,
     '/games': require('~/pages/games').default,
