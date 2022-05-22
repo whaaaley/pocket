@@ -27,7 +27,7 @@ function addPlayer (state) {
   if (newPlayer == null) {
     state.maxPlayers = true
   } else {
-    state.players.push(newPlayer)
+    state.players = [...state.players, newPlayer]
   }
 }
 
