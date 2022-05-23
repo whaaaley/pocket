@@ -1,43 +1,27 @@
 
-// Notes:
-// min-font-size = 14px
-// max-font-size = 18px
-
-// @function strip-unit($number) {
-//   @return $number / ($number * 0 + 1);
-// }
-
-@function scale($size) {
-  @return calc($size * 1em / 18);
-}
+$height: calc(48em / 18); // 48px to em
 
 :host {
   all: initial;
 }
 
 * {
-  color: inherit;
-  font: inherit;
-  box-sizing: inherit;
+  font-size: inherit;
 }
 
 #install {
   display: flex;
-  margin: scale(48) 0 0;
-  // font-size: between(14px, 18px);
-  font: between(14px, 18px)/1 'Inter', sans-serif;
-  white-space: pre;
-  overflow: hidden;
-  box-sizing: border-box;
+  margin: linear-clamp(36px, 48px) 0 0;
+  font-family: 'Inter', sans-serif;
+  font-size: linear-clamp(16px, 18px);
 }
 
 .command {
-  display: flex;
-  place-items: center;
-  padding: 0 scale(18);
+  padding: 0 1em;
   border-radius: 9px 0 0 9px;
   color: color(--light-300);
   font-family: 'Source Code Pro', monospace;
+  line-height: $height;
   background: color(--dark-300);
 }
 
@@ -51,23 +35,30 @@ button {
   $color: color(--dark-200);
   $icon: tabler('copy', 2, #fff);
 
-  width: scale(48);
-  height: scale(48);
+  $pos-left: calc(12em / 18); // 12px to em
+  $bg-size: calc(24em / 18); // 24px to em
+
+  // TODO: Remove text only after transitions are complete
+
+  width: $height;
   border: initial;
   border-radius: 0 9px 9px 0;
   color: transparent;
-  text-align: initial;
-  background: $color $icon center left #{scale(12)} / #{scale(24)} no-repeat;
-  cursor: pointer;
+  overflow: hidden;
+  background: $color $icon center left #{$pos-left} / #{$bg-size} no-repeat;
   transition: background 200ms, color 200ms, width 150ms;
+  cursor: pointer;
 
   &:hover {
     background-color: color(--dark-250);
   }
 
   &.-copied {
-    width: scale(126); // 126px from chrome dev tools
-    padding: 0 scale(18) 0 scale(42);
+    $pad-right: calc(18em / 18); // 18px to em
+    $pad-left: calc(42em / 18); // 42px to em
+
+    width: calc(122em / 18); // 122px to em -- Width from Chrome DevTools
+    padding: 0 $pad-right 0 $pad-left;
     color: #fff;
     background-color: color(--green);
   }

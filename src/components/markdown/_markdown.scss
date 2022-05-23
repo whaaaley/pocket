@@ -12,7 +12,8 @@
 #markdown {
   // color: #fff;
   // font: 16px/1 'Inter', sans-serif;
-  font-size: between(16px, 18px);
+  // font-size: between(16px, 18px);
+  font-size: linear-clamp(16px, 18px);
   line-height: 1.75;
   box-sizing: border-box;
 }
@@ -29,12 +30,14 @@ h1, h2 {
 }
 
 h2 {
-  font-size: between(24px, 36px);
+  // font-size: between(24px, 36px);
+  font-size: linear-clamp(24px, 36px);
 }
 
 h1 {
   color: rgb(var(--red));
-  font-size: between(36px, 72px);
+  // font-size: between(36px, 72px);
+  font-size: linear-clamp(36px, 72px);
 
   ~ h2 {
     color: #fff;

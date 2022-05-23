@@ -13,13 +13,18 @@ export default {
       quotes: false
     })
   },
-  'between($min, $max)': function ([min, max]) {
+  'linear-clamp($min, $max)': function ([min, max]) {
     min = min.assertNumber('min').value
     max = max.assertNumber('max').value
 
-    const val = max / 1024 * 100
+    const minWidth = 425
+    const maxWidth = 1024
 
-    return sass.SassString(`clamp(${min}px, ${val}vw, ${max}px)`, {
+    const slope = (max - min) / (maxWidth - minWidth)
+    const intercept = min - slope * minWidth
+    const value = slope * 100
+
+    return sass.SassString(`clamp(${min}px, ${intercept}px + ${value}vw, ${max}px)`, {
       quotes: false
     })
   },
