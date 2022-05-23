@@ -12,7 +12,7 @@ function Page (props) {
     <meta name='author' content={props.author}/>
     <meta name='description' content={props.description}/>
     <meta name='viewport' content={props.viewport}/>
-    <link rel='icon' href='/cache/logo.svg'/>
+    <link rel='icon' href='/logo.svg'/>
     <body>
       <noscript>Please enable JavaScript and try again.</noscript>
       <div id='pocket'></div>
