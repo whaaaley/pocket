@@ -5,6 +5,7 @@
 
 * {
   color: inherit;
+  font-family: inherit;
   box-sizing: inherit;
 }
 
@@ -38,6 +39,7 @@ h1 {
 h2 {
   margin: calc(32em / 30) 0 0; // 32px when font-size is 30px
   font-size: between(18px, 30px);
+  font-weight: 400;
   line-height: 1;
 }
 
