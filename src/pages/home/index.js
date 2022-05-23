@@ -1,11 +1,9 @@
 
-import { ShadowRoot } from '~/modules/pocket-superfine'
+import { Async, ShadowRoot } from '~/modules/pocket-superfine'
 import style from './_home.scss'
 
 import Layout from '~/components/layout'
-
 import Hero from './hero.js'
-import Content from './content.mdx'
 
 export default {
   setup (state, dispatch) {
@@ -15,7 +13,11 @@ export default {
           <Layout>
             <Hero/>
             <div class='page'>
-              <Content/>
+              <Async module={import('./content.mdx')}>
+                <div style='min-height: 1309px'>
+                  {/* CLS - Height from Chrome DevTools */}
+                </div>
+              </Async>
             </div>
           </Layout>
         </ShadowRoot>
