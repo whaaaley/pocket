@@ -16,6 +16,7 @@
   border-bottom: 2px solid color(--dark-300);
   color: #fff;
   box-sizing: border-box;
+  line-height: 1em;
 }
 
 // stylelint-disable-next-line selector-list-comma-newline-after
@@ -27,6 +28,7 @@ h1 {
   margin: 0 0 calc(18em / 72); // 18px when font-size is 72px
   font-size: between(30px, 72px);
   font-weight: 700;
+  line-height: 1em;
 
   > span {
     color: color(--red);
