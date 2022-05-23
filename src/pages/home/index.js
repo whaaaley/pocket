@@ -15,9 +15,9 @@ export default {
           <Layout>
             <Hero/>
             <div class='page'>
-              <Async module={import('./counter/index.js')}>
+              {/* <Async module={import('./counter/index.js')}>
                 <h1>loading...</h1>
-              </Async>
+              </Async> */}
               <Content/>
             </div>
           </Layout>
