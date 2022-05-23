@@ -1,9 +1,8 @@
 
-import { ShadowRoot } from '~/modules/pocket-superfine'
+import { Async, ShadowRoot } from '~/modules/pocket-superfine/'
 import style from './_games.scss'
 
-import Layout from '~/components/layout'
-import Tictactoe from './tictactoe'
+import Layout from '~/components/layout/'
 
 export default {
   setup (state, dispatch) {
@@ -11,7 +10,9 @@ export default {
       return <div>
         <ShadowRoot id='games' styles={[style]}>
           <Layout>
-            <Tictactoe/>
+            <Async module={import('./tictactoe/')}>
+              <div>Loading...</div>
+            </Async>
           </Layout>
         </ShadowRoot>
       </div>

@@ -10,7 +10,6 @@ app('pocket', {
   },
   pages: {
     '/': require('~/pages/home').default,
-    // '/guide': import('~/pages/guide'),
     '/guide': require('~/pages/guide').default,
     '/api': require('~/pages/api').default,
     '/games': require('~/pages/games').default,

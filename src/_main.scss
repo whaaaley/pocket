@@ -1,5 +1,4 @@
 
-// @import './_fonts.scss';
 @import './_colors.scss';
 
 html {
@@ -28,15 +27,3 @@ body {
   border-radius: 9px;
   box-shadow: inset 0 0 0 3px rgb(var(--pink));
 }
-
-/**
- * NOTE: This sets the maximum page width when using this viewport meta tag.
- * Mobile devices will downscale from this size.
- * <meta name="viewport" content="width=device-width,maximum-scale=5">
- */
-
-// @media (max-width: 425px) {
-//   body {
-//     width: 425px;
-//   }
-// }

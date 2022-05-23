@@ -13,11 +13,11 @@ function Page (props) {
     <meta name='description' content={props.description}/>
     <meta name='viewport' content={props.viewport}/>
     <link rel='icon' href='/cache/logo.svg'/>
-    <style>{'<!-- xxx -->' + style}</style>
     <body>
       <noscript>Please enable JavaScript and try again.</noscript>
       <div id='pocket'></div>
       <script type='module'>{'<!-- xxx -->' + script}</script>
+      <style>{'<!-- xxx -->' + style}</style>
       <style>{'<!-- xxx -->' + fonts}</style>
     </body>
   </html>
