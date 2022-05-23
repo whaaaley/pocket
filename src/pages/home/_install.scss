@@ -24,7 +24,8 @@
 #install {
   display: flex;
   margin: scale(48) 0 0;
-  font-size: between(14px, 18px);
+  // font-size: between(14px, 18px);
+  font: between(14px, 18px)/1 'Inter', sans-serif;
   white-space: pre;
   overflow: hidden;
   box-sizing: border-box;

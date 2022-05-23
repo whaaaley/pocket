@@ -16,7 +16,7 @@
   border-bottom: 2px solid color(--dark-300);
   color: #fff;
   box-sizing: border-box;
-  line-height: 1em;
+  // line-height: 1em;
 }
 
 // stylelint-disable-next-line selector-list-comma-newline-after
@@ -26,9 +26,10 @@ h1, h2 {
 
 h1 {
   margin: 0 0 calc(18em / 72); // 18px when font-size is 72px
-  font-size: between(30px, 72px);
-  font-weight: 700;
-  line-height: 1em;
+  // font-size: between(30px, 72px);
+  // font-weight: 700;
+  // line-height: 1em;
+  font: 600 between(30px, 72px)/1 'Inter', sans-serif;
 
   > span {
     color: color(--red);
@@ -37,15 +38,17 @@ h1 {
 
 h2 {
   margin: calc(32em / 30) 0 0; // 32px when font-size is 30px
-  font-size: between(18px, 30px);
+  // font-size: between(18px, 30px);
+  font: between(18px, 30px)/1 'Inter', sans-serif;
 }
 
 button {
   padding: calc(12em / 18) calc(16em / 18); // 12px 16px when font-size is 18px
   border: initial;
   border-radius: 9px;
-  font-size: between(16px, 18px);
-  line-height: 1em;
+  // font-size: between(16px, 18px);
+  // line-height: 1em;
+  font: between(16px, 18px)/1 'Inter', sans-serif;
   background: rgb(var(--dark-200));
   cursor: pointer;
   transition: background 200ms;
