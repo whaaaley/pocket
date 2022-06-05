@@ -3,18 +3,21 @@
 
 import { app } from '~/modules/pocket-superfine'
 
+import pages from './pages/**/*.js'
+import stores from './stores/**/*.js'
+
 app('pocket', {
   stores: {
-    common: require('~/stores/common.js').default,
-    docs: require('~/stores/docs.js').default
+    common: stores.common,
+    docs: stores.docs
   },
   pages: {
-    '/': require('~/pages/home').default,
-    '/guide': require('~/pages/guide').default,
-    '/api': require('~/pages/api').default,
-    '/games': require('~/pages/games').default,
-    '/about': require('~/pages/about').default,
-    '/palette': require('~/pages/palette').default,
+    '/': pages.home,
+    '/guide': pages.guide,
+    '/api': pages.api,
+    '/games': pages.games,
+    '/about': pages.about,
+    '/palette': pages.palette,
     '/missing': {
       setup () {
         return function () {
