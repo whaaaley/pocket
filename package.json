@@ -25,6 +25,7 @@
     "culori": "^2.0.3",
     "esbuild": "^0.14.39",
     "escape-html": "^1.0.3",
+    "fast-glob": "^3.2.11",
     "mini-svg-data-uri": "^1.4.4",
     "sass": "^1.51.0",
     "svgo": "^2.8.0",
