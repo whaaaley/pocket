@@ -5,7 +5,8 @@ import mdx from '@mdx-js/esbuild'
 import rehypePrism from '@mapbox/rehype-prism'
 
 import javascript from './plugins/javascript.js'
-import resolution from './plugins/resolution.js'
+import resolve from './plugins/resolve.js'
+import globImport from './plugins/glob-import.js'
 import sass from './plugins/sass.js'
 
 import helpers from './sass-functions/helpers.js'
@@ -13,7 +14,6 @@ import oklab from './sass-functions/oklab.js'
 import tabler from './sass-functions/tabler.js'
 
 const production = process.env.NODE_ENV === 'production'
-const baseDir = path.join(process.cwd(), './src')
 
 const sassPluginOptions = {
   sass: {
@@ -33,11 +33,13 @@ const sassPluginOptions = {
 const javascriptPluginOptions = {
   esbuild: {
     bundle: true,
+    write: false,
+
     incremental: !production,
+    sourcemap: production ? false : 'inline',
+
     jsxFactory: 'jsx',
     jsxFragment: 'jsxFragment',
-    sourcemap: production ? false : 'inline',
-    write: false,
 
     format: 'esm',
     outdir: './deploy/dist/',
@@ -56,8 +58,13 @@ const javascriptPluginOptions = {
       '.js': 'jsx'
     },
     plugins: [
-      resolution({
-        home: baseDir
+      resolve({
+        loadpaths: [
+          path.join(process.cwd(), './src')
+        ]
+      }),
+      globImport({
+        // nothing yet...
       }),
       mdx({
         development: !production,
