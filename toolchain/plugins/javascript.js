@@ -15,32 +15,17 @@ async function handler (args, options) {
     ? await esbuild.build({ ...options.esbuild, entryPoints: [path] })
     : await cache[path].rebuild()
 
-  // let data = cache[path].outputFiles[0].contents.buffer
-  // data = Buffer.from(data).toString()
-  //
-  // if (production === true) {
-  //   data = typescript.transpileModule(data, options.typescript).outputText
-  //   data = uglify.minify(data, options.uglify).code
-  // }
-  //
-  // return {
-  //   loader: 'text',
-  //   contents: data
-  // }
-
   function process (file) {
     let data = file.contents.buffer
     data = Buffer.from(data).toString()
 
-    if (production === true) {
+    if (production) {
       data = typescript.transpileModule(data, options.typescript).outputText
       data = uglify.minify(data, options.uglify).code
     }
 
-    console.log(
-      (Math.round(Buffer.byteLength(data) / 1000) + ' kB').padStart(8),
-      file.path
-    )
+    const bytes = Math.round(Buffer.byteLength(data) / 1000) + ' kB'
+    console.log(bytes.padStart(8), file.path)
 
     return data
   }
