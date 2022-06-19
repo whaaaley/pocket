@@ -18,13 +18,7 @@ app('pocket', {
     '/games': pages.games,
     '/about': pages.about,
     '/palette': pages.palette,
-    '/missing': {
-      setup () {
-        return function () {
-          return <div>missing</div>
-        }
-      }
-    }
+    '/missing': pages.missing
   },
   rewrites: [
     // nothing yet...
