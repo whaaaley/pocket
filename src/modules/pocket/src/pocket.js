@@ -3,7 +3,7 @@ import { clone } from './lib'
 
 const FF_DEV = process.env.NODE_ENV === 'development'
 
-function reactive (state, schedule) {
+export function reactive (state, schedule) {
   const data = {}
   const props = {}
 
