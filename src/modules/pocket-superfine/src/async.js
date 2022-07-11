@@ -2,6 +2,8 @@
 import { patch } from 'superfine'
 import { Component } from './shadow.js'
 
+// TODO: This is outdated now that Component has been replaced with defineComponent.
+
 export default function (props, children) {
   const state = {
     success: null
