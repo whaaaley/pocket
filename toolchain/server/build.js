@@ -3,7 +3,6 @@ import fs from 'fs'
 import { spawn } from 'child_process'
 import esbuild from 'esbuild'
 import { info } from './modules/log.js'
-import now from './modules/now.js'
 import { reload } from './reload.js'
 import config from '../config.js'
 
@@ -49,18 +48,18 @@ export function fromCache () {
 
 export async function build () {
   try {
-    let start = now()
+    let start = Date.now()
 
     info('Building...')
     cache = cache == null
       ? await esbuild.build(config.main)
       : await cache.rebuild()
 
-    info(`Build is done! ${now() - start}ms`)
-    start = now()
+    info(`Build is done! ${Date.now() - start}ms`)
+    start = Date.now()
 
     await render()
-    info(`Rendering is done! ${now() - start}ms`)
+    info(`Rendering is done! ${Date.now() - start}ms`)
 
     errorCache = null
   } catch (err) {

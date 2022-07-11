@@ -1,6 +1,4 @@
 
-import now from './now.js'
-
 const colorMap = {
   black: '\x1b[30m',
   red: '\x1b[31m',
@@ -23,10 +21,10 @@ function statusColor (code) {
   return 'red'
 }
 
-const start = now()
+const start = Date.now()
 
 function elapsed () {
-  const duration = now() - start
+  const duration = Date.now() - start
   const timestamp = new Date(duration).toISOString().slice(11, 19)
   return `[${timestamp}]`
 }
