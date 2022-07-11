@@ -8,7 +8,7 @@ import Markdown from '~/components/markdown'
 export default {
   setup (state, dispatch) {
     return function () {
-      return <div id='app'>
+      return <div id='page-guide'>
         <ShadowRoot id='guide' styles={[style]}>
           <Layout>
             <div class='page'>

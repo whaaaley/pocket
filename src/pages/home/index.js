@@ -8,7 +8,7 @@ import Hero from './hero.js'
 export default {
   setup (state, dispatch) {
     return function () {
-      return <div>
+      return <div id='page-home'>
         <ShadowRoot id='home' styles={[style]}>
           <Layout>
             <Hero/>
