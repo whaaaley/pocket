@@ -1,0 +1,17 @@
+// :host {}
+
+* {
+  font: inherit;
+}
+
+// #root {}
+
+button {
+  padding: 12px 24px;
+
+  color: var(--ui-button-text);
+
+  background: var(--ui-primary);
+  border: initial;
+  border-radius: 6px;
+}

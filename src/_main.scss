@@ -1,15 +1,18 @@
 
-@import './_colors.scss';
+@import "./colors";
 
 html {
   overflow: overlay;
+
   scrollbar-width: none;
 }
 
 body {
   margin: initial;
+
+  font: 400 1em/1 Inter, sans-serif;
   color: white;
-  font: 400 1em/1 'Inter', sans-serif;
+
   background: rgb(var(--dark-400));
 
   @media (max-width: 425px) {

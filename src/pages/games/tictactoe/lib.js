@@ -90,3 +90,7 @@ export function randomLetter (exclude) {
 
   return letters[Math.floor(Math.random() * letters.length)]
 }
+
+export default {
+
+}

@@ -43,7 +43,7 @@ export function core (init, patch) {
   }
 }
 
-export default function (init, patch) {
+export default function pocket (init, patch) {
   const state = {}
   const actions = {}
   const map = {}

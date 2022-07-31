@@ -51,7 +51,7 @@ export function link (to, query) {
   const state = history.state ?? {}
 
   if (state.to === to && state.query === query) {
-    return
+    return // early exit
   }
 
   history.pushState({ to, query }, null, query)
@@ -72,14 +72,16 @@ export function router (init, app) {
     }
   }
 
-  app({
-    stores: init.stores,
-    setup
-  })
+  app({ stores: init.stores, setup })
 
   function setup (state, dispatch) {
     let render = null
     let destroy = null
+
+    main()
+
+    addEventListener('pocket-pushstate', main)
+    addEventListener('popstate', main)
 
     function main () {
       dispatch('router/sync', init.rewrites)
@@ -100,13 +102,6 @@ export function router (init, app) {
       destroy = route.destroy
     }
 
-    main()
-
-    addEventListener('pocket-pushstate', main)
-    addEventListener('popstate', main)
-
-    return function () {
-      return render()
-    }
+    return render
   }
 }

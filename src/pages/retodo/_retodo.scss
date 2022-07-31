@@ -1,0 +1,111 @@
+
+:host {
+  all: initial;
+
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+
+  font: inherit;
+  color: inherit;
+}
+
+#root {
+  font: 14px/24px Inter, sans-serif;
+  color: #fff;
+}
+
+.retodo {
+  padding: 24px;
+
+  h1, h2 {
+    margin: initial;
+
+    text-align: center;
+  }
+
+  h1 {
+    font: 900 96px/1 Inter, sans-serif;
+  }
+}
+
+.content {
+  display: grid;
+  gap: 12px;
+
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.add-todo {
+  display: flex;
+  gap: 12px;
+
+  padding: 0 0 12px;
+
+  line-height: 20px;
+
+  button, input {
+    padding: 8px 12px;
+
+    border: initial;
+    border-radius: 6px;
+  }
+
+  button {
+    background: rgb(var(--red));
+  }
+
+  input {
+    flex: 1;
+
+    background: rgb(var(--dark-200));
+    border: 2px solid transparent;
+    outline: none;
+
+    &::placeholder {
+      color: rgb(var(--dark-100));
+    }
+
+    &:focus {
+      border-color: rgb(var(--red));
+    }
+  }
+}
+
+.item {
+  cursor: pointer;
+  user-select: none;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  padding: 12px;
+
+  background: rgb(var(--dark-300));
+  border-radius: 6px;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+
+  background: rgb(var(--dark-400));
+  border-radius: 12px;
+
+  &.-checked {
+    background: rgb(var(--red));
+  }
+}
+
+.handle {
+  width: 24px;
+  height: 24px;
+
+  background: rgb(var(--dark-400));
+  border-radius: 12px;
+}
