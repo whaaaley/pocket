@@ -23,7 +23,7 @@ function Retodo (props, children) {
       date: Date.now(),
       title: '',
 
-      todo: [],
+      todos: [],
       errors: [],
       history: []
     })
@@ -49,13 +49,12 @@ function Retodo (props, children) {
         return // early exit
       }
 
-      state.todo = [...state.todo, {
+      state.todos = [...state.todos, {
         title: state.title,
         created: Date.now(),
         checked: null,
         unchecked: Date.now(),
-        // scheduled: Date.now() + 3600000
-        scheduled: Date.now() + 36000
+        scheduled: null
       }]
 
       state.title = ''
@@ -69,8 +68,8 @@ function Retodo (props, children) {
 
     function toggleItem (created) {
       return function checkItemHandler () {
-        const todo = state.todo
-        const item = todo.find(item => item.created === created)
+        const todos = state.todos
+        const item = todos.find(item => item.created === created)
 
         if (item.checked) {
           item.checked = null
@@ -79,33 +78,23 @@ function Retodo (props, children) {
         } else {
           item.checked = Date.now()
           item.unchecked = null
-          // item.scheduled = Date.now() + 3600000
           item.scheduled = Date.now() + 36000
         }
 
-        state.todo = todo
+        state.todos = todos
       }
     }
 
     interval = setInterval(function setIntervalHandler () {
-      state.date = Date.now()
+      const now = Date.now()
+      state.date = now
 
-      // check state.todo for items that are due, check them if they are
-      // not checked, and add them to state.history if they are checked
+      for (let index = 0; index < state.todos.length; index++) {
+        const item = state.todos[index]
 
-      // state.todo.forEach(item => {
-      //   if (item.scheduled < now) {
-      //     item.scheduled = null
-      //   }
-      // })
-      // state.todo = state.todo
-
-      for (let index = 0; index < state.todo.length; index++) {
-        const item = state.todo[index]
-
-        if (item.scheduled < state.date) {
+        if (item.scheduled < now) {
           item.checked = null
-          item.unchecked = state.date
+          item.unchecked = now
           item.scheduled = null
         }
       }
@@ -115,13 +104,7 @@ function Retodo (props, children) {
       // Render is called every component state update
 
       // TODO: This sort can be optimized
-      // const todoList = [...state.todo]
-      //   .sort((a, b) => a.checked - b.checked)
-      //   .sort((a, b) => b.unchecked - a.unchecked)
-      //   .sort((a, b) => a.checked ? -1 : 1)
-
-      // TODO: This sort can be optimized
-      const todoList = [...state.todo]
+      const todoList = [...state.todos]
         .sort((a, b) => a.checked - b.checked)
         .sort((a, b) => a.unchecked - b.unchecked)
         .sort((a, b) => b.checked ? -1 : 1)
@@ -138,7 +121,7 @@ function Retodo (props, children) {
 
       return <div class='retodo'>
         <div class='content'>
-          <h1>Retodo</h1>
+          <h1>Ret<span></span>d<span></span></h1>
           <h2>A smart reccuring todo list.</h2>
           {state.errors.map(function listErrors (error, index) {
             return <div class='error'>{error.message}</div>
@@ -155,16 +138,20 @@ function Retodo (props, children) {
           </div>
           {todoList.map(function listTodos (item, index) {
             return <label class='item'>
-              <div class={cc(['checkbox', item.checked && '-checked'])}></div>
-              <input
-                type='checkbox'
-                onchange={toggleItem(item.created)}
-                checked={item.checked}
-                hidden
-              />
-              <span>{item.title}</span>
-              {item.scheduled && <span>{getTimeUntil(item)}</span>}
-              {/* <span>median {item.timestamp}</span> */}
+              <div>
+                <div class={cc(['checkbox', item.checked && '-checked'])}></div>
+                <input
+                  type='checkbox'
+                  onchange={toggleItem(item.created)}
+                  checked={item.checked}
+                  hidden
+                />
+                <span>{item.title}</span>
+              </div>
+              <div>
+                {/* <span>median {item.timestamp}</span> */}
+                {item.scheduled && <span>{getTimeUntil(item)}</span>}
+              </div>
             </label>
           })}
         </div>

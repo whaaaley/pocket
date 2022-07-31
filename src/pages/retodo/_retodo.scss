@@ -28,6 +28,23 @@
 
   h1 {
     font: 900 96px/1 Inter, sans-serif;
+
+    span {
+      &::before {
+        content: "";
+
+        display: inline-block;
+
+        width: 58px;
+        height: 58px;
+
+        vertical-align: middle;
+
+        visibility: initial;
+        background: rgb(var(--red));
+        border-radius: 32px;
+      }
+    }
   }
 }
 
@@ -81,13 +98,17 @@
   user-select: none;
 
   display: flex;
-  gap: 12px;
-  align-items: center;
+  justify-content: space-between;
 
-  padding: 12px;
+  padding: 12px 18px;
 
   background: rgb(var(--dark-300));
   border-radius: 6px;
+
+  div {
+    display: flex;
+    gap: 12px;
+  }
 }
 
 .checkbox {
