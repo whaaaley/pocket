@@ -1,5 +1,5 @@
 
-import { clone } from './lib'
+import { clone } from './lib.js'
 
 const FF_DEV = process.env.NODE_ENV === 'development'
 

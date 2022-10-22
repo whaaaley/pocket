@@ -42,10 +42,10 @@ function defineComponent2 ({ props, slots }, setup2) {
     }
   }
 
-  return defineComponent({ props, host, patch }, function setup (context) {
+  return defineComponent({ props, host, patch }, context => {
     let styles
     context.useStyles = styles2 => styles = styles2
-    // const render = setup2(context, host)
+
     const render2 = setup2(context)
 
     return function render (props2) {

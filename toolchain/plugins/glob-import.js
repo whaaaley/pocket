@@ -5,7 +5,7 @@ import glob from 'fast-glob'
 const filter = /\*/
 const namespace = 'plugin-glob-imports'
 
-export default function (options) {
+export default function globImportPlugin (options) {
   options ??= {}
 
   options.entryPoint ??= 'index'

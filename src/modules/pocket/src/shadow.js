@@ -1,6 +1,6 @@
 /* eslint-disable no-return-assign */
 
-import { core } from './pocket'
+import { core } from './pocket.js'
 
 const nodeMap = new WeakMap()
 const shadowInit = { mode: 'open' }
@@ -35,7 +35,7 @@ export function defineInlineFrame ({ host, patch }, view) {
     set (value) {
       let root = nodeMap.get(node = value)
 
-      requestAnimationFrame(function callback () {
+      requestAnimationFrame(() => {
         if (!root) {
           nodeMap.set(node, root = document.createElement('iframe'))
           node.contentDocument.documentElement.replaceWith(root)
@@ -75,23 +75,18 @@ export function defineComponent ({ props, host, patch }, setup) {
         return // early exit
       }
 
-      const root = value
-        .attachShadow(shadowInit)
+      const root = value.attachShadow(shadowInit)
         .appendChild(cache.root = document.createElement('div'))
 
       const render = setup({
         host: value,
         node: root,
-        useState (state) {
-          return cache.state = state
-        }
+        useState: state => cache.state = state
       })
 
       core({
         state: cache.state,
-        setup () {
-          return cache.render = () => render(cache.props)
-        }
+        setup: () => cache.render = () => render(cache.props)
       }, view => patch(root, view))
 
       nodeMap.set(value, cache)

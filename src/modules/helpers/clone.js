@@ -1,5 +1,5 @@
 
-export default function (src) {
+export default function clone (src) {
   const target = {}
 
   for (const key in src) {

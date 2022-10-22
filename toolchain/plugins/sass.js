@@ -12,7 +12,7 @@ function handler (args, options) {
     const sourceMap = result.sourceMap
 
     sourceMap.file = args.path
-    sourceMap.sources = sourceMap.sources.map(function (src) {
+    sourceMap.sources = sourceMap.sources.map(src => {
       return path.relative('file:' + cwd, src)
     })
 
@@ -51,7 +51,7 @@ function handler (args, options) {
   }
 }
 
-export default function (options) {
+export default function sassPlugin (options) {
   function load (args) {
     return handler(args, options)
   }

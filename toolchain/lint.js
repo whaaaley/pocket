@@ -6,7 +6,7 @@ import { ESLint } from 'eslint'
 import stylelint from 'stylelint'
 import watch from './watch.js'
 
-watch('./src', async function (eventType, filepath) {
+watch('./src', async (eventType, filepath) => {
   const ext = path.extname(filepath)
   let code = await fs.readFile(filepath, 'utf8')
 

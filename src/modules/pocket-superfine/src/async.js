@@ -2,7 +2,7 @@
 import { patch } from 'superfine'
 import { defineComponent } from './shadow.js'
 
-export default function (props, children) {
+export default function defineAsyncComponent (props, children) {
   const config = {
     stash: {
       props,
@@ -13,20 +13,24 @@ export default function (props, children) {
     }
   }
 
-  return defineComponent(config, function (context, host) {
+  return defineComponent(config, function setup (context, host) {
     const state = context.useState({ success: null })
 
-    props.module.then(function (data) {
+    props.module.then(function handler (data) {
       state.success = true
 
       patch(
         host.node.querySelector('div[slot=default]'),
-        <div slot='default'>{data.default(props.props, children)}</div>
+        <div slot='default'>
+          {data.default(props.props, children)}
+        </div>
       )
     })
 
-    return function (stash) {
-      return <slot name='default'>{stash.children}</slot>
+    return function render (stash) {
+      return <slot name='default'>
+        {stash.children}
+      </slot>
     }
   })
 }

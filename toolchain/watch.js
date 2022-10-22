@@ -5,19 +5,17 @@ import path from 'node:path'
 function throttle (handler, delay) {
   let last = 0
 
-  return function (dir) {
-    return function (eventType, filepath) {
-      const now = Date.now()
+  return dir => (eventType, filepath) => {
+    const now = Date.now()
 
-      if (now - last > delay) {
-        last = now
-        handler(eventType, path.resolve(dir, filepath))
-      }
+    if (now - last > delay) {
+      last = now
+      handler(eventType, path.resolve(dir, filepath))
     }
   }
 }
 
-export default async function (root, handler) {
+export default async function watch (root, handler) {
   const dirs = [root]
   const listener = throttle(handler, 1000)
 

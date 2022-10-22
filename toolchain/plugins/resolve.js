@@ -2,7 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 
-export default function ({ loadpaths }) {
+export default function resolvePlugin ({ loadpaths }) {
   function handler (args) {
     // TODO: remove dups
 
