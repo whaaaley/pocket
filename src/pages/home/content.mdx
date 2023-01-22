@@ -5,12 +5,19 @@ import Markdown from '~/components/markdown'
 import Script from './tabs/script.mdx'
 import Style from './tabs/style.mdx'
 
+import Counter from './counter'
+
 export const tabs = [{
   title: 'index.js',
   content: <Script/>
 }, {
   title: '_counter.scss',
   content: <Style/>
+}, {
+  title: 'Live Example!',
+  content: <div style='padding: 48px'>
+    <Counter/>
+  </div>
 }]
 
 <Markdown>

@@ -3,7 +3,8 @@
 import { h, text, patch } from 'superfine'
 import { ShadowRoot, InlineFrame, defineComponent } from '~/modules/pocket'
 
-function ShadowRootWrapper ({ styles, slots }, children) {
+function ShadowRootWrapper (options, children) {
+  const { styles, slots } = options ?? {}
   const host = h('div', {}, [])
 
   if (styles) {
@@ -21,7 +22,8 @@ function ShadowRootWrapper ({ styles, slots }, children) {
   return ShadowRoot({ host, patch }, h('div', {}, children))
 }
 
-function InlineFrameWrapper ({ styles }, children) {
+function InlineFrameWrapper (options, children) {
+  const { styles } = options ?? {}
   const host = h('iframe', {})
 
   if (styles) {
@@ -33,7 +35,8 @@ function InlineFrameWrapper ({ styles }, children) {
   return InlineFrame({ host, patch }, h('div', {}, children))
 }
 
-function defineComponentWrapper ({ props, slots, isolate }, setup2) {
+function defineComponentWrapper (options, setup2) {
+  const { props, slots, isolate } = options ?? {}
   const host = h('div', {}, [])
 
   if (slots) {

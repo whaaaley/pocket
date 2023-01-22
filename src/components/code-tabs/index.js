@@ -5,7 +5,7 @@ import codeTabsStyles from './_code-tabs.scss'
 import Markdown from '~/components/markdown'
 
 export default (props, children) => {
-  return defineComponent({ props, slots: { children } }, context => {
+  return defineComponent({ props }, context => {
     const state = context.reactive({
       copied: false,
       index: 0
@@ -42,7 +42,7 @@ export default (props, children) => {
         '-copied': state.copied
       })
 
-      return <>
+      return <div id='code-tabs'>
         <div class='tabs'>
           {tabs.map((tab, index) => {
             const classList = cc(['btn-tab', index === state.index && '-active'])
@@ -57,7 +57,7 @@ export default (props, children) => {
           </button>
           <Markdown>{content}</Markdown>
         </div>
-      </>
+      </div>
     }
   })
 }

@@ -18,19 +18,11 @@ export default (parentProps, children) => {
       count: 0
     })
 
-    function minus () {
-      state.count--
-    }
-
-    function plus () {
-      state.count++
-    }
-
     return props => {
       return <div id='counter'>
-        <button class='-minus' onclick={minus}></button>
+        <button class='-minus' onclick={() => { state.count-- }}></button>
         <div class='count'>{state.count}</div>
-        <button class='-plus' onclick={plus}></button>
+        <button class='-plus' onclick={() => { state.count++ }}></button>
       </div>
     }
   })

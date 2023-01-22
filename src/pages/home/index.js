@@ -4,12 +4,15 @@ import homeStyles from './_home.scss'
 
 import Layout from '~/components/layout'
 import Hero from './hero.js'
+import Install from './install.js'
 
 const Page = (props, children) => {
   return <ShadowRoot styles={{ homeStyles }} slots={{ children }}>
     <div id='home'>
       <Layout>
-        <Hero/>
+        <Hero>
+          <Install/>
+        </Hero>
         <div class='page'>
           <AsyncComponent module={import('./content.mdx')}>
             <div style='min-height: 1309px'>
