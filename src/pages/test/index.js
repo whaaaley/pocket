@@ -1,80 +1,70 @@
 
 import { defineComponent } from '~/modules/pocket-superfine'
-import Button from '~/modules/pocket-ui/components/button'
+import testStyles from './_test.scss'
 
-const DisplayStream = (props, children) => {
+const DisplayStream = (parentProps, children) => {
   const options = {
     isolate: true,
-    props: {
-      ...props,
-      collection: []
-    },
+    props: parentProps,
     slots: {
-      one: <div>{props?.countOne ?? 'abc'}</div>,
-      two: <div>{props?.countTwo ?? 'abc'}</div>
+      one: <div>{parentProps.countOne ?? '...'}</div>,
+      two: <div>{parentProps.countTwo ?? '...'}</div>
     }
   }
 
   return defineComponent(options, context => {
     const state = context.reactive({
-      red: 100,
-      green: 100,
-      blue: 100,
       count: 0,
-      dataStream1: [],
-      dataStream2: []
+      collection: []
     })
 
     context.watch({
       count: (value, oldValue) => {
-        state.dataStream1.push(value)
+        state.collection.push({
+          id: crypto.randomUUID(),
+          count: value
+        })
       }
     })
 
-    context.styles({
-      other: 'div { background: rgb(var(--red), var(--green), var(--blue)); }'
-    })
+    context.styles([
+      testStyles
+    ])
 
-    function randomUpdate () {
+    function increment () {
       state.count++
-      state.red = Math.floor(Math.random() * 255)
-      state.green = Math.floor(Math.random() * 255)
-      state.blue = Math.floor(Math.random() * 255)
     }
 
-    return _props => {
-      return <div>
-        {state.count}
-        <button onclick={randomUpdate}>
-          Click to update interal data
+    return props => {
+      return <div class='page'>
+        <button onclick={increment}>
+          <span>Manual Increment</span>
         </button>
-        {/*  */}
         <div style='padding: 12px'>
-          <h1>props</h1>
-          <div>{props?.countOne ?? '???'}</div>
-          <div>{props?.countTwo ?? '???'}</div>
+          <h1>Collection</h1>
+          <div class='collection'>
+            {state.collection.map(item => {
+              return <div class='item'>
+                <div>id: {item.count}</div>
+                <div>uuid: {item.id}</div>
+              </div>
+            })}
+          </div>
         </div>
-        {/*  */}
         <div style='padding: 12px'>
-          <h1>props2</h1>
-          <div>{_props?.countOne ?? '???'}</div>
-          <div>{_props?.countTwo ?? '???'}</div>
-        </div>
-        {/*  */}
-        <div style='padding: 12px'>
-          <h1>slots</h1>
+          <h1>Slots</h1>
           <slot name='one'/>
           <slot name='two'/>
         </div>
-        {/*  */}
         <div style='padding: 12px'>
-          <h1>data stream 1</h1>
-          {state.dataStream1.map(item => <div>{item}</div>)}
+          <h1>Parent props</h1>
+          <div>{parentProps.countOne ?? '...'}</div>
+          <div>{parentProps.countTwo ?? '...'}</div>
         </div>
-        {/*  */}
-        <div style={`padding: 12px; --red: ${state.red}; --green: ${state.green}; --blue: ${state.blue}`}>
-          <h1>data stream 2</h1>
-          {state.dataStream2.map(item => <div>{item}</div>)}
+        <div style='padding: 12px'>
+          <h1>Render props</h1>
+          <div>{props.countOne ?? '...'}</div>
+          <div>{props.countTwo ?? '...'}</div>
         </div>
       </div>
     }
@@ -83,31 +73,19 @@ const DisplayStream = (props, children) => {
 
 export default {
   setup (state, dispatch) {
-    // setup
-
-    function click () {
-      console.log('click')
-    }
-
     setInterval(() => { dispatch('foobar.plusOne') }, 1000)
     setInterval(() => { dispatch('foobar.plusTwo') }, 1500)
 
     return () => {
-      // computed
-      // console.log(state.foobar)
-
-      return <div id='page-retodo'>
+      return <div id='page-test'>
         <DisplayStream
           countOne={state.foobar.countOne}
           countTwo={state.foobar.countTwo}
         />
-        <Button onclick={click}>
-          <span>Button</span>
-        </Button>
       </div>
     }
   },
   destroy () {
-
+    // Nothing yet...
   }
 }

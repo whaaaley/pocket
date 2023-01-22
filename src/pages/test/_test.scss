@@ -1,0 +1,25 @@
+
+button {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 12px;
+  color: white;
+  background: dodgerblue;
+}
+
+.page {
+  padding: 24px;
+}
+
+.collection {
+  display: grid;
+  gap: 6px;
+}
+
+.item {
+  display: flex;
+  gap: 12px;
+  border-radius: 12px;
+  background: gray;
+  padding: 12px;
+}
