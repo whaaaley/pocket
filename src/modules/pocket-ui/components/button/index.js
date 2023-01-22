@@ -1,12 +1,12 @@
 
 import { defineComponent } from '~/modules/pocket-superfine'
-import style from './_button.scss'
+import buttonStyles from './_button.scss'
 
 export default function Button (props, children) {
   // Render is called every state update
 
-  const config = {
-    stash: {
+  const options = {
+    props: {
       // Nothing yet...
     },
     slots: {
@@ -14,16 +14,16 @@ export default function Button (props, children) {
     }
   }
 
-  return defineComponent(config, function setup (context) {
+  return defineComponent(options, context => {
     // Setup is called only once when the component is created
 
     const state = context.reactive({ count: 0 })
-    const styles = context.styles({ button: style })
+    const styles = context.styles({ buttonStyles })
 
     console.log('state >>', state)
     console.log('styles >>', styles)
 
-    return function render (props) {
+    return props => {
       // Render is called every state update
 
       return <button onclick={props?.onclick}>

@@ -5,7 +5,7 @@ import { core } from './pocket.js'
 const nodeMap = new WeakMap()
 const shadowInit = { mode: 'open' }
 
-export function defineShadowRoot ({ host, patch }, view) {
+export function ShadowRoot ({ host, patch }, view) {
   let node
 
   return Object.defineProperty(host, 'node', {
@@ -25,7 +25,7 @@ export function defineShadowRoot ({ host, patch }, view) {
   })
 }
 
-export function defineInlineFrame ({ host, patch }, view) {
+export function InlineFrame ({ host, patch }, view) {
   let node
 
   return Object.defineProperty(host, 'node', {
@@ -55,7 +55,7 @@ export function defineComponent ({ props, host, patch, isolate }, setup) {
       return node
     },
     set (value) {
-      const cache = nodeMap.get(node = value) ?? {}
+      const cache = nodeMap.get(node = value) || {}
       let shouldUpdate = false
 
       for (const key in props) {

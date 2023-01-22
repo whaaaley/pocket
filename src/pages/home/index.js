@@ -1,43 +1,34 @@
 
-import { defineComponent } from '~/modules/pocket-superfine'
+import { ShadowRoot, AsyncComponent } from '~/modules/pocket-superfine'
+import homeStyles from './_home.scss'
+import Layout from '~/components/layout'
 import Hero from './hero.js'
 
-function Page (props, children) {
-  const config = {
-    stash: {
-      props: null
-    },
-    slots: {
-      default: null
-    }
-  }
-
-  return defineComponent(config, ({ reactive, styles }) => {
-    const data = reactive({
-      counter: 0,
-      text: 'hello world'
-    })
-
-    const updateText = e => {
-      data.text = e.target.value
-    }
-
-    return stash => {
-      return <div>
-        <Hero>hi</Hero>
-        <h1>{data.text}</h1>
-        <input value={data.text} oninput={updateText}/>
-      </div>
-    }
-  })
+const Page = (props, children) => {
+  return <ShadowRoot styles={{ homeStyles }} slots={{ children }}>
+    <div id='home'>
+      <Layout>
+        <Hero/>
+        <div class='page'>
+          <AsyncComponent module={import('./content.mdx')}>
+            <div style='min-height: 1309px'>
+              {/* CLS - Height from Chrome DevTools */}
+            </div>
+          </AsyncComponent>
+        </div>
+      </Layout>
+    </div>
+  </ShadowRoot>
 }
 
 export default {
   setup (state, dispatch) {
-    return () => <Page/>
+    return () => {
+      return <Page/>
+    }
   },
   destroy () {
-    // nothing yet...
+    // Nothing yet...
   }
 }
 

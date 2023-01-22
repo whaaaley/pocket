@@ -85,3 +85,6 @@ export function jsxStatic (type, props, ...children) {
 
   return marker + staticNode(type, props, children).replaceAll(marker, '')
 }
+
+// Note: MDX needs this
+export default { jsx }

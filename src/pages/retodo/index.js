@@ -5,17 +5,19 @@ import style from './_retodo.scss'
 
 let interval = null
 
-function Retodo (props, children) {
+function Retodo (parentProps, children) {
   // Render is called every state update from the parent
 
-  const config = {
-    props,
+  const options = {
+    props: {
+      ...parentProps
+    },
     slots: {
       default: children
     }
   }
 
-  return defineComponent(config, context => {
+  return defineComponent(options, context => {
     // Setup is called when the component is created
 
     const state = context.reactive({

@@ -1,9 +1,9 @@
 /* eslint-disable no-return-assign */
 
 import { h, text, patch } from 'superfine'
-import { defineShadowRoot, defineInlineFrame, defineComponent } from '~/modules/pocket/'
+import { ShadowRoot, InlineFrame, defineComponent } from '~/modules/pocket'
 
-function shadowRootWrapper ({ styles, slots }, children) {
+function ShadowRootWrapper ({ styles, slots }, children) {
   const host = h('div', {}, [])
 
   if (styles) {
@@ -14,14 +14,14 @@ function shadowRootWrapper ({ styles, slots }, children) {
 
   if (slots) {
     for (const key in slots) {
-      host.children.push(h('slot', { slot: key }, slots[key]))
+      host.children.push(h('div', { slot: key }, slots[key]))
     }
   }
 
-  return defineShadowRoot({ host, patch }, h('div', {}, children))
+  return ShadowRoot({ host, patch }, h('div', {}, children))
 }
 
-function inlineFrameWrapper ({ styles }, children) {
+function InlineFrameWrapper ({ styles }, children) {
   const host = h('iframe', {})
 
   if (styles) {
@@ -30,15 +30,15 @@ function inlineFrameWrapper ({ styles }, children) {
     }
   }
 
-  return defineInlineFrame({ host, patch }, h('div', {}, children))
+  return InlineFrame({ host, patch }, h('div', {}, children))
 }
 
-function componentWrapper ({ props, slots, isolate }, setup2) {
+function defineComponentWrapper ({ props, slots, isolate }, setup2) {
   const host = h('div', {}, [])
 
   if (slots) {
     for (const key in slots) {
-      host.children.push(h('slot', { slot: key }, slots[key]))
+      host.children.push(h('div', { slot: key }, slots[key]))
     }
   }
 
@@ -64,7 +64,7 @@ function componentWrapper ({ props, slots, isolate }, setup2) {
 }
 
 export {
-  shadowRootWrapper as defineShadowRoot,
-  inlineFrameWrapper as defineInlineFrame,
-  componentWrapper as defineComponent
+  ShadowRootWrapper as ShadowRoot,
+  InlineFrameWrapper as InlineFrame,
+  defineComponentWrapper as defineComponent
 }

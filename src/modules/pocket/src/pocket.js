@@ -25,6 +25,10 @@ export function reactive (state, schedule) {
 }
 
 export function core (init, patch, watch) {
+  if (FF_DEV && !init.state) {
+    console.warn('[Pocket] Core >> State is required')
+  }
+
   let lock = true
   const render = init.setup(reactive(init.state, schedule))
 
@@ -84,14 +88,14 @@ export default function pocket (init, patch) {
       const scope = map[name]
 
       if (FF_DEV && typeof action !== 'function') {
-        console.warn('Dispatch >> Invalid action >>', name)
+        console.warn('[Pocket] Dispatch >> Invalid action >>', name)
       }
 
       const result = action(clone(state[scope]), data)
 
       if (typeof result === 'function') {
         if (FF_DEV && typeof result !== 'function') {
-          console.warn('Dispatch >> Invalid effect >>', name)
+          console.warn('[Pocket] Dispatch >> Invalid effect >>', name)
         }
 
         const effect = result(dispatch)

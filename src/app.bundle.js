@@ -3,7 +3,7 @@
 
 import { app } from '~/modules/pocket-superfine'
 
-// import home from './pages/home/index.js'
+import home from './pages/home/index.js'
 import retodo from './pages/retodo/index.js'
 import test from './pages/test/index.js'
 
@@ -17,7 +17,7 @@ app('pocket', {
     foobar: stores.foobar
   },
   pages: {
-    // '/': home,
+    '/': home,
     // '/guide': pages.guide,
     // '/api': pages.api,
     // '/games': pages.games,
