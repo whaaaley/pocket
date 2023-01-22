@@ -1,17 +1,22 @@
-// :host {}
+
+:host {
+  // Nothing yet...
+}
 
 * {
   font: inherit;
 }
 
-// #root {}
+#root {
+  // Nothing yet...
+}
 
 button {
   padding: 12px 24px;
 
-  color: var(--ui-button-text);
+  color: var(--ui-button-text, white);
 
-  background: var(--ui-primary);
+  background: var(--ui-primary, dodgerblue);
   border: initial;
   border-radius: 6px;
 }

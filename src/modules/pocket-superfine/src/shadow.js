@@ -3,7 +3,7 @@
 import { h, text, patch } from 'superfine'
 import { defineShadowRoot, defineInlineFrame, defineComponent } from '~/modules/pocket/'
 
-function defineShadowRoot2 ({ styles, slots }, children) {
+function shadowRootWrapper ({ styles, slots }, children) {
   const host = h('div', {}, [])
 
   if (styles) {
@@ -21,7 +21,7 @@ function defineShadowRoot2 ({ styles, slots }, children) {
   return defineShadowRoot({ host, patch }, h('div', {}, children))
 }
 
-function defineInlineFrame2 ({ styles }, children) {
+function inlineFrameWrapper ({ styles }, children) {
   const host = h('iframe', {})
 
   if (styles) {
@@ -33,7 +33,7 @@ function defineInlineFrame2 ({ styles }, children) {
   return defineInlineFrame({ host, patch }, h('div', {}, children))
 }
 
-function defineComponent2 ({ props, slots }, setup2) {
+function componentWrapper ({ props, slots, isolate }, setup2) {
   const host = h('div', {}, [])
 
   if (slots) {
@@ -42,9 +42,9 @@ function defineComponent2 ({ props, slots }, setup2) {
     }
   }
 
-  return defineComponent({ props, host, patch }, context => {
+  return defineComponent({ props, host, patch, isolate }, context => {
     let styles
-    context.useStyles = styles2 => styles = styles2
+    context.styles = styles2 => styles = styles2
 
     const render2 = setup2(context)
 
@@ -64,7 +64,7 @@ function defineComponent2 ({ props, slots }, setup2) {
 }
 
 export {
-  defineShadowRoot2 as defineShadowRoot,
-  defineInlineFrame2 as defineInlineFrame,
-  defineComponent2 as defineComponent
+  shadowRootWrapper as defineShadowRoot,
+  inlineFrameWrapper as defineInlineFrame,
+  componentWrapper as defineComponent
 }

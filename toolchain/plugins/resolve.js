@@ -28,6 +28,7 @@ export default function resolvePlugin ({ loadpaths }) {
     name: 'plugin-resolve',
     setup (build) {
       build.onResolve({ filter: /^~\// }, handler)
+      build.onResolve({ filter: /^@\// }, handler)
     }
   }
 }

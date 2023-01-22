@@ -48,7 +48,7 @@ export function link (to, query) {
   to = to == null ? location.pathname : to
   query = query == null ? to : to + encode(query)
 
-  const state = history.state ?? {}
+  const state = history.state || {}
 
   if (state.to === to && state.query === query) {
     return // early exit
@@ -84,7 +84,7 @@ export function router (init, app) {
     addEventListener('popstate', main)
 
     function main () {
-      dispatch('router/sync', init.rewrites)
+      dispatch('router.sync', init.rewrites)
 
       if (destroy != null) {
         destroy(state, dispatch)

@@ -3,8 +3,12 @@ import { patch } from 'superfine'
 import { defineComponent } from './shadow.js'
 
 export default function defineAsyncComponent (props, children) {
-  const config = {
-    stash: {
+  const options = {
+    // stash: {
+    //   props,
+    //   children
+    // },
+    props: {
       props,
       children
     },
@@ -13,8 +17,8 @@ export default function defineAsyncComponent (props, children) {
     }
   }
 
-  return defineComponent(config, function setup (context, host) {
-    const state = context.useState({ success: null })
+  return defineComponent(options, function setup (context, host) {
+    const state = context.reactive({ success: null })
 
     props.module.then(function handler (data) {
       state.success = true
@@ -27,9 +31,9 @@ export default function defineAsyncComponent (props, children) {
       )
     })
 
-    return function render (stash) {
+    return _props => {
       return <slot name='default'>
-        {stash.children}
+        {_props.children}
       </slot>
     }
   })

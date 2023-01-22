@@ -18,7 +18,7 @@ function Retodo (props, children) {
   return defineComponent(config, function setup (context) {
     // Setup is called when the component is created
 
-    const state = context.useState({
+    const state = context.reactive({
       count: 0,
       date: Date.now(),
       title: '',
@@ -28,7 +28,7 @@ function Retodo (props, children) {
       history: []
     })
 
-    context.useStyles({
+    context.styles({
       default: style
     })
 

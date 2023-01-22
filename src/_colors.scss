@@ -6,6 +6,7 @@
 // s = 0 to 100 -- Saturation (Okhsl)
 // l = 0 to 100 -- Lightness
 
+//
 $rainbow: (
   "red":    okhsl(23, 100, 64),
   "yellow": okhsl(90, 100, 85),
@@ -13,6 +14,8 @@ $rainbow: (
   "blue":   okhsl(250, 100, 65),
   "purple": okhsl(310, 100, 65)
 );
+
+//
 $light: (
   "light-500": okhsl(240, 20, 70 + 5),
   "light-400": okhsl(240, 20, 75 + 5),
@@ -20,6 +23,8 @@ $light: (
   "light-200": okhsl(240, 20, 85 + 5),
   "light-100": okhsl(240, 20, 90 + 5)
 );
+
+//
 $dark: (
   "dark-500": okhsl(240, 25, 10),
   "dark-450": okhsl(240, 25, 12.5),
@@ -29,6 +34,8 @@ $dark: (
   "dark-250": okhsl(240, 25, 40),
   "dark-100": okhsl(240, 25, 50)
 );
+
+//
 $color-map: map.merge($rainbow, $light);
 $color-map: map.merge($color-map, $dark);
 
@@ -37,7 +44,7 @@ $color-map: map.merge($color-map, $dark);
     --#{$key}: #{rgb-string($value)};
   }
 
-  --ui-primary: rgb(var(--red));
-  --ui-border-radius: 6px;
-  --ui-button-text: #fff;
+  // --ui-primary: rgb(var(--red));
+  // --ui-border-radius: 6px;
+  // --ui-button-text: #fff;
 }

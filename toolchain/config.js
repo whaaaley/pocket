@@ -147,8 +147,8 @@ export default {
       './src/index.js'
     ],
     inject: [
-      './src/modules/superstatic/src/jsx-pragma.js',
-      './src/modules/superstatic/src/declarative-shadow-dom.js'
+      './src/modules/superstatic/src/jsx-pragma.js'
+      // './src/modules/superstatic/src/declarative-shadow-dom.js'
     ],
     loader: {
       '.js': 'jsx',

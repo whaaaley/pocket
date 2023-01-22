@@ -47,7 +47,7 @@ export function defineInlineFrame ({ host, patch }, view) {
   })
 }
 
-export function defineComponent ({ props, host, patch }, setup) {
+export function defineComponent ({ props, host, patch, isolate }, setup) {
   let node
 
   return Object.defineProperty(host, 'node', {
@@ -56,38 +56,39 @@ export function defineComponent ({ props, host, patch }, setup) {
     },
     set (value) {
       const cache = nodeMap.get(node = value) ?? {}
-
-      let shouldComponentUpdate = false
+      let shouldUpdate = false
 
       for (const key in props) {
         if (cache[key] !== props[key]) {
-          shouldComponentUpdate = true
+          shouldUpdate = true
         }
       }
 
       cache.props = props
 
       if (cache.root) {
-        if (shouldComponentUpdate) {
+        if (shouldUpdate && !isolate) {
           patch(cache.root, cache.render())
         }
 
         return // early exit
       }
 
-      const root = value.attachShadow(shadowInit)
+      const root = value
+        .attachShadow(shadowInit)
         .appendChild(cache.root = document.createElement('div'))
 
       const render = setup({
         host: value,
         node: root,
-        useState: state => cache.state = state
+        reactive: state => cache.state = state,
+        watch: watch => cache.watch = watch
       })
 
       core({
         state: cache.state,
         setup: () => cache.render = () => render(cache.props)
-      }, view => patch(root, view))
+      }, view => patch(root, view), cache.watch)
 
       nodeMap.set(value, cache)
     }

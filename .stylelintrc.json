@@ -19,6 +19,9 @@
           "inside-block"
         ]
       }
-    ]
+    ],
+    "order/properties-order": {
+      "emptyLineMinimumPropertyThreshold": 99
+    }
   }
 }

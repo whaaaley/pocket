@@ -6,17 +6,19 @@ export default function Button (props, children) {
   // Render is called every state update
 
   const config = {
-    props,
+    stash: {
+      // Nothing yet...
+    },
     slots: {
       default: children
     }
   }
 
   return defineComponent(config, function setup (context) {
-    // Setup is called when the component is created
+    // Setup is called only once when the component is created
 
-    const state = context.useState({ count: 0 })
-    const styles = context.useStyles({ button: style })
+    const state = context.reactive({ count: 0 })
+    const styles = context.styles({ button: style })
 
     console.log('state >>', state)
     console.log('styles >>', styles)
@@ -24,7 +26,7 @@ export default function Button (props, children) {
     return function render (props) {
       // Render is called every state update
 
-      return <button class='p-button' onclick={props?.onclick}>
+      return <button onclick={props?.onclick}>
         <slot name='default'/>
       </button>
     }
