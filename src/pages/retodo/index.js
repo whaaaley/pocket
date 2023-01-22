@@ -15,14 +15,13 @@ function Retodo (props, children) {
     }
   }
 
-  return defineComponent(config, function setup (context) {
+  return defineComponent(config, context => {
     // Setup is called when the component is created
 
     const state = context.reactive({
       count: 0,
       date: Date.now(),
       title: '',
-
       todos: [],
       errors: [],
       history: []

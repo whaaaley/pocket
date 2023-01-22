@@ -27,9 +27,9 @@ const DisplayStream = (parentProps, children) => {
       }
     })
 
-    context.styles([
-      testStyles
-    ])
+    context.styles({
+      default: testStyles
+    })
 
     function increment () {
       state.count++
