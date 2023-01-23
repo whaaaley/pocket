@@ -4,9 +4,9 @@ import gamesStyles from './_games.scss'
 
 import Layout from '~/components/layout/'
 
-const PageGames = (props, children) => {
+const Games = (props, children) => {
   return <ShadowRoot styles={{ gamesStyles }}>
-    <div key='page-games' id='games'>
+    <div key='component-games' id='games'>
       <AsyncComponent module={import('./tictactoe')}>
         <div>Loading...</div>
       </AsyncComponent>
@@ -17,9 +17,11 @@ const PageGames = (props, children) => {
 export default {
   setup (state, dispatch) {
     return () => {
-      return <Layout>
-        <PageGames/>
-      </Layout>
+      return <div key='page-games'>
+        <Layout>
+          <Games/>
+        </Layout>
+      </div>
     }
   },
   destroy () {

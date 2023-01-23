@@ -19,6 +19,7 @@
 
 .retodo {
   padding: 24px;
+  min-height: calc(100vh - 240px - 64px); // 240px footer, 64px appbar
 
   h1, h2 {
     margin: initial;

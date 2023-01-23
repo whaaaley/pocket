@@ -1,24 +1,17 @@
 
 import { defineComponent } from '~/modules/pocket-superfine'
 import cc from 'classcat'
-import style from './_retodo.scss'
+import Layout from '~/components/layout'
+import retodoStyles from './_retodo.scss'
 
 let interval = null
 
 function Retodo (parentProps, children) {
   // Render is called every state update from the parent
 
-  const options = {
-    props: {
-      ...parentProps
-    },
-    slots: {
-      default: children
-    }
-  }
-
-  return defineComponent(options, context => {
+  return defineComponent(null, context => {
     // Setup is called when the component is created
+    context.styles({ retodoStyles })
 
     const state = context.reactive({
       count: 0,
@@ -27,10 +20,6 @@ function Retodo (parentProps, children) {
       todos: [],
       errors: [],
       history: []
-    })
-
-    context.styles({
-      default: style
     })
 
     function update (event) {
@@ -101,7 +90,7 @@ function Retodo (parentProps, children) {
       }
     }, 1000)
 
-    return function render (props) {
+    return props => {
       // Render is called every component state update
 
       // TODO: This sort can be optimized
@@ -120,7 +109,7 @@ function Retodo (parentProps, children) {
         return `${hours}h ${minutes}m ${seconds}s`
       }
 
-      return <div class='retodo'>
+      return <div key='component-retodo' id='retodo' class='retodo'>
         <div class='content'>
           <h1>Ret<span></span>d<span></span></h1>
           <h2>A smart reccuring todo list.</h2>
@@ -165,10 +154,18 @@ export default {
   setup (state, dispatch) {
     // Setup is called when the page is created
 
-    return function render () {
+    return () => {
       // Render is called every global state update
 
-      return <Retodo/>
+      return <div key='page-retodo'>
+        {/* Note: There's some issues with superfine's node recycling when combined with shadow dom */}
+        {/* This is still beta software */}
+        <div key='workaround-retodo'>
+          <Layout>
+            <Retodo/>
+          </Layout>
+        </div>
+      </div>
     }
   },
   destroy () {

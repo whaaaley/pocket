@@ -6,10 +6,10 @@ import Layout from '~/components/layout'
 import Hero from './hero.js'
 import Install from './install.js'
 
-const PageHome = (props, children) => {
+const Home = (props, children) => {
   return <ShadowRoot styles={{ homeStyles }} slots={{ children }}>
     {/* CLS - Height from Chrome DevTools */}
-    <div key='page-home' id='home' style='min-height: 1963.5px'>
+    <div key='component-home' id='home' style='min-height: 1963.5px'>
       <Hero>
         <Install/>
       </Hero>
@@ -25,9 +25,11 @@ const PageHome = (props, children) => {
 export default {
   setup (state, dispatch) {
     return () => {
-      return <Layout>
-        <PageHome/>
-      </Layout>
+      return <div key='page-home'>
+        <Layout>
+          <Home/>
+        </Layout>
+      </div>
     }
   },
   destroy () {

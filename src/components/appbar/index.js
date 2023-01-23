@@ -13,6 +13,7 @@ export default (props, children) => {
           <Link to='/'>Home</Link>
           <Link to='/guide'>Guide</Link>
           <Link to='/games'>TicTacToe</Link>
+          <Link to='/retodo'>ReTodo</Link>
           <a href='https://github.com/whaaaley/pocket' target='_blank'>GitHub</a>
         </nav>
       </header>
