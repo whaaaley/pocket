@@ -16,6 +16,7 @@ const Page = (props, children) => {
         <div class='page'>
           <AsyncComponent module={import('./content.mdx')}>
             <div style='min-height: 1309px'>
+              <div>Loading...</div>
               {/* CLS - Height from Chrome DevTools */}
             </div>
           </AsyncComponent>

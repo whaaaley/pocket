@@ -1,0 +1,40 @@
+
+```jsx
+import { pocket } from 'pocket-superfine'
+
+const app = pocket('app')
+
+const counter = {
+  state: {
+    count: 0
+  },
+  actions: {
+    plus (state) {
+      state.count++
+      return state
+    }
+  }
+}
+
+const home = {
+  setup: (state, dispatch) => {
+    return () => {
+      return <button onclick={() => { dispatch('counter/plus') }}>
+        Count: {state.count}
+      </button>
+    }
+  },
+  destroy () {
+    // Nothing yet...
+  }
+}
+
+app({
+  stores: {
+    counter
+  },
+  pages: {
+    '/': home
+  }
+})
+```

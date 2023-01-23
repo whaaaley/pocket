@@ -1,0 +1,34 @@
+
+```jsx
+import { core, defineComponent } from 'pocket-superfine'
+import counterStyles from './counter.css'
+
+const app = core('app')
+
+const Counter = (props, children) => {
+  return defineComponent(null, context => {
+    context.styles({ counterStyles })
+
+    const state = context.reactive({
+      count: 0
+    })
+
+    return props => {
+      return <div id='counter'>
+        <button onclick={() => { state.count++ }}>
+          {state.count}
+        </button>
+      </div>
+    }
+  })
+}
+
+app({
+  state: {},
+  setup (state, dispatch) {
+    return () => {
+      return <Counter/>
+    }
+  }
+})
+```

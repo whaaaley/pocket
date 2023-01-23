@@ -6,13 +6,11 @@ import Markdown from '~/components/markdown'
 
 export default (props, children) => {
   return defineComponent({ props }, context => {
+    context.styles({ codeTabsStyles })
+
     const state = context.reactive({
       copied: false,
       index: 0
-    })
-
-    context.styles({
-      codeTabsStyles
     })
 
     function copyContent (value) {

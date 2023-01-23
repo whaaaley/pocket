@@ -4,6 +4,7 @@
 import { app } from '~/modules/pocket-superfine'
 
 import home from './pages/home/index.js'
+import guide from './pages/guide/index.js'
 import retodo from './pages/retodo/index.js'
 import test from './pages/test/index.js'
 
@@ -18,7 +19,7 @@ app('pocket', {
   },
   pages: {
     '/': home,
-    // '/guide': pages.guide,
+    '/guide': guide,
     // '/api': pages.api,
     // '/games': pages.games,
     // '/about': pages.about,
@@ -28,6 +29,6 @@ app('pocket', {
     '/test': test
   },
   rewrites: [
-    // nothing yet...
+    // Nothing yet...
   ]
 })
