@@ -10,6 +10,7 @@ export default (props, children) => {
         <Link to='/' class='logo'>Home</Link>
         <div>{/* empty */}</div>
         <nav>
+          <Link to='/'>Home</Link>
           <Link to='/guide'>Guide</Link>
           <Link to='/games'>TicTacToe</Link>
           <a href='https://github.com/whaaaley/pocket' target='_blank'>GitHub</a>
