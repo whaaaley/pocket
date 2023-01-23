@@ -22,7 +22,7 @@ export default (parentProps, children) => {
     }
 
     return props => {
-      return <div id='install'>
+      return <div key='component-install' id='install'>
         <div class='command'>
           <span>$ </span>npm i @onclick/pocket-superfine
         </div>

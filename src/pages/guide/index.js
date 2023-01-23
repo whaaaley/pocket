@@ -5,16 +5,14 @@ import guideStyles from './_guide.scss'
 import Layout from '~/components/layout'
 import Markdown from '~/components/markdown'
 
-const PageGuide = () => {
-  return <ShadowRoot styles={{ guideStyles }}>
-    <div id='guide'>
+const PageGuide = (props, children) => {
+  return <ShadowRoot styles={{ guideStyles }} slots={{ children }}>
+    {/* CLS - Height from Chrome DevTools */}
+    <div key='page-guide' id='guide' style='min-height: 6077.5px'>
       <div class='page'>
         <Markdown>
           <AsyncComponent module={import('./intro.mdx')}>
-            <div style='min-height: 0px'>
-              <div>Loading...</div>
-              {/* CLS - Height from Chrome DevTools */}
-            </div>
+            <div>Loading...</div>
           </AsyncComponent>
         </Markdown>
       </div>

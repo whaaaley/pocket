@@ -6,7 +6,7 @@ import prismjs from './_prismjs.scss'
 
 export default (props, children) => {
   return <ShadowRoot styles={{ markdownStyles, prismjs }}>
-    <div id='markdown'>
+    <div key='component-markdown' id='markdown'>
       {children}
     </div>
   </ShadowRoot>

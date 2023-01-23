@@ -57,7 +57,7 @@ export function chickenDinner (matrix) {
     const arr = tests[i]
     const player = arr[0]
 
-    const hasWinner = arr.every(function (cell) {
+    const hasWinner = arr.every(cell => {
       return cell === null ? false : cell === player
     })
 
@@ -84,7 +84,7 @@ export function generateMatrix (size) {
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 export function randomLetter (exclude) {
-  const letters = alphabet.split('').filter(function (letter) {
+  const letters = alphabet.split('').filter(letter => {
     return exclude.indexOf(letter) === -1
   })
 

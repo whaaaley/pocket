@@ -6,22 +6,18 @@ import Layout from '~/components/layout'
 import Hero from './hero.js'
 import Install from './install.js'
 
-const Page = (props, children) => {
+const PageHome = (props, children) => {
   return <ShadowRoot styles={{ homeStyles }} slots={{ children }}>
-    <div id='home'>
-      <Layout>
-        <Hero>
-          <Install/>
-        </Hero>
-        <div class='page'>
-          <AsyncComponent module={import('./content.mdx')}>
-            <div style='min-height: 1309px'>
-              <div>Loading...</div>
-              {/* CLS - Height from Chrome DevTools */}
-            </div>
-          </AsyncComponent>
-        </div>
-      </Layout>
+    {/* CLS - Height from Chrome DevTools */}
+    <div key='page-home' id='home' style='min-height: 1963.5px'>
+      <Hero>
+        <Install/>
+      </Hero>
+      <div class='page'>
+        <AsyncComponent module={import('./content.mdx')}>
+          <div>Loading...</div>
+        </AsyncComponent>
+      </div>
     </div>
   </ShadowRoot>
 }
@@ -29,9 +25,9 @@ const Page = (props, children) => {
 export default {
   setup (state, dispatch) {
     return () => {
-      return <div key='page-home'>
-        <Page/>
-      </div>
+      return <Layout>
+        <PageHome/>
+      </Layout>
     }
   },
   destroy () {

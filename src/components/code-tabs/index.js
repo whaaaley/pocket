@@ -40,7 +40,7 @@ export default (props, children) => {
         '-copied': state.copied
       })
 
-      return <div id='code-tabs'>
+      return <div key='component-code-tabs' id='code-tabs'>
         <div class='tabs'>
           {tabs.map((tab, index) => {
             const classList = cc(['btn-tab', index === state.index && '-active'])

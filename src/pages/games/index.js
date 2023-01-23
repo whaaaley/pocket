@@ -1,24 +1,28 @@
 
-import { Async, ShadowRoot } from '~/modules/pocket-superfine/'
-import style from './_games.scss'
+import { AsyncComponent, ShadowRoot } from '~/modules/pocket-superfine/'
+import gamesStyles from './_games.scss'
 
 import Layout from '~/components/layout/'
 
+const PageGames = (props, children) => {
+  return <ShadowRoot styles={{ gamesStyles }}>
+    <div key='page-games' id='games'>
+      <AsyncComponent module={import('./tictactoe')}>
+        <div>Loading...</div>
+      </AsyncComponent>
+    </div>
+  </ShadowRoot>
+}
+
 export default {
   setup (state, dispatch) {
-    return function () {
-      return <div>
-        <ShadowRoot id='games' styles={[style]}>
-          <Layout>
-            <Async module={import('./tictactoe/')}>
-              <div>Loading...</div>
-            </Async>
-          </Layout>
-        </ShadowRoot>
-      </div>
+    return () => {
+      return <Layout>
+        <PageGames/>
+      </Layout>
     }
   },
   destroy () {
-    // ...
+    // Nothing yet...
   }
 }

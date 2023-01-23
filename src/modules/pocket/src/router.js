@@ -104,11 +104,7 @@ export function router (init, app) {
       }
 
       return () => {
-        const key = state.router.to
-
-        return <div id={key} key={key}>
-          {render()}
-        </div>
+        return render()
       }
     }
   })

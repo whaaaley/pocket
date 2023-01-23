@@ -5,14 +5,13 @@ import Link from '~/components/link.js'
 
 export default (props, children) => {
   return <ShadowRoot styles={{ appbarStyles }} slots={{ children }}>
-    <div id='appbar'>
+    <div key='component-appbar' id='appbar'>
       <header>
         <Link to='/' class='logo'>Home</Link>
         <div>{/* empty */}</div>
         <nav>
           <Link to='/guide'>Guide</Link>
-          <Link to='/api'>API</Link>
-          <Link to='/games'>Games</Link>
+          <Link to='/games'>TicTacToe</Link>
           <a href='https://github.com/whaaaley/pocket' target='_blank'>GitHub</a>
         </nav>
       </header>
