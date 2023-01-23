@@ -15,6 +15,6 @@ export default {
     }
   },
   watch: (value, oldValue) => {
-    console.log('xxx =>', value, oldValue)
+    console.log('foobar =>', value, oldValue)
   }
 }

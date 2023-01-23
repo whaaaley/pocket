@@ -11,7 +11,7 @@
 
 #guide {
   color: #fff;
-  font: 16px/2 'Inter', sans-serif;
+  font: 16px/2 Inter, sans-serif;
   box-sizing: border-box;
 }
 
@@ -19,6 +19,6 @@
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  // padding: between(24px, 48px);
+
   padding: linear-clamp(24px, 48px);
 }

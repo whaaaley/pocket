@@ -1,6 +1,7 @@
 
 import { defineComponent } from '~/modules/pocket-superfine'
 import testStyles from './_test.scss'
+import Layout from '~/components/layout'
 
 const DisplayStream = (parentProps, children) => {
   const options = {
@@ -71,21 +72,35 @@ const DisplayStream = (parentProps, children) => {
   })
 }
 
+let idOne
+let idTwo
+
 export default {
   setup (state, dispatch) {
-    setInterval(() => { dispatch('foobar.plusOne') }, 1000)
-    setInterval(() => { dispatch('foobar.plusTwo') }, 1500)
+    idOne = setInterval(() => { dispatch('foobar.plusOne') }, 1000)
+    idTwo = setInterval(() => { dispatch('foobar.plusTwo') }, 1500)
 
-    return () => {
-      return <div id='page-test'>
-        <DisplayStream
-          countOne={state.foobar.countOne}
-          countTwo={state.foobar.countTwo}
-        />
+    return (...args) => {
+      console.log(args)
+      // console.log(
+      //   'state >>',
+      //   JSON.stringify(state, null, 2)
+      // )
+
+      return <div key='page-test'>
+        <Layout>
+          <div id='page-test'>
+            <DisplayStream
+              countOne={state.foobar.countOne}
+              countTwo={state.foobar.countTwo}
+            />
+          </div>
+        </Layout>
       </div>
     }
   },
   destroy () {
-    // Nothing yet...
+    clearInterval(idOne)
+    clearInterval(idTwo)
   }
 }

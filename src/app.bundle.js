@@ -3,18 +3,17 @@
 
 import { app } from '~/modules/pocket-superfine'
 
-import home from './pages/home/index.js'
-import guide from './pages/guide/index.js'
-import retodo from './pages/retodo/index.js'
-import test from './pages/test/index.js'
+import home from './pages/home'
+import guide from './pages/guide'
+import retodo from './pages/retodo'
+import test from './pages/test'
 
 // import pages from './pages/**/*.js'
 import stores from './stores/**/*.js'
 
 app('pocket', {
   stores: {
-    // common: stores.common
-    // docs: stores.docs
+    common: stores.common,
     foobar: stores.foobar
   },
   pages: {

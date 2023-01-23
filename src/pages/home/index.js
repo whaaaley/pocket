@@ -29,7 +29,9 @@ const Page = (props, children) => {
 export default {
   setup (state, dispatch) {
     return () => {
-      return <Page/>
+      return <div key='page-home'>
+        <Page/>
+      </div>
     }
   },
   destroy () {
