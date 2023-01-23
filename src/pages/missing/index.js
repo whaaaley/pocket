@@ -1,8 +1,8 @@
 
 export default {
   setup () {
-    return function () {
-      return <div>missing</div>
+    return () => {
+      return <div>Nope sorry. Doesn't exist.</div>
     }
   }
 }

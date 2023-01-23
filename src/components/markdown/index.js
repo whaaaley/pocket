@@ -1,11 +1,13 @@
 
 import { ShadowRoot } from '~/modules/pocket-superfine'
 
-import style from './_markdown.scss'
+import markdownStyles from './_markdown.scss'
 import prismjs from './_prismjs.scss'
 
-export default function (props, children) {
-  return <ShadowRoot id='markdown' styles={[style, prismjs]}>
-    {children}
+export default (props, children) => {
+  return <ShadowRoot styles={{ markdownStyles, prismjs }}>
+    <div key='component-markdown' id='markdown'>
+      {children}
+    </div>
   </ShadowRoot>
 }

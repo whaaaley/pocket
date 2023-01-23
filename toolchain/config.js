@@ -47,9 +47,7 @@ const javascriptPluginOptions = {
 
     define: {
       'process.env.FF_QUIET': true,
-      'process.env.NODE_ENV': JSON.stringify(production
-        ? 'production'
-        : 'development')
+      'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development')
     },
     inject: [
       './src/modules/superstatic/src/jsx-pragma.js'
@@ -142,11 +140,15 @@ export default {
     // minifiy: production,
     platform: 'node',
     write: false,
+    define: {
+      'process.env.POCKET_STATIC': true
+    },
     entryPoints: [
       './src/index.js'
     ],
     inject: [
       './src/modules/superstatic/src/jsx-pragma.js'
+      // './src/modules/superstatic/src/declarative-shadow-dom.js'
     ],
     loader: {
       '.js': 'jsx',

@@ -1,229 +1,131 @@
 
-# Introduction
+import CodeTabs from '~/components/code-tabs'
+import Markdown from '~/components/markdown'
 
-## What is Pocket?
+import WhatIsPocket from './tabs/what-is-pocket.mdx'
+import ApplyingStyles from './tabs/applying-styles.mdx'
+import ManagingGlobalState from './tabs/managing-global-state.mdx'
+import Routing from './tabs/routing.mdx'
+import ManagingLocalState from './tabs/managing-local-state.mdx'
 
-<audio controls>
-  <source src='audio/what-is-pocket.ogg' type='audio/ogg'/>
-</audio>
+export const whatIsPocketTabs = [{
+  title: 'index.js',
+  content: <WhatIsPocket/>
+}]
 
-Pocket is a library for building web components and small applications. Like many frameworks, it provides a component-based model to create interfaces combined with state management, page routing, and style encapsulation.
+export const applyingStylesTabs = [{
+  title: 'index.js',
+  content: <ApplyingStyles/>
+}]
 
-Here's a basic example showcasing reactivity in Pocket. This example uses [Superfine](https://github.com/jorgebucaran/superfine) and [JSX](https://github.com/facebook/jsx) to render the view. The package `pocket-superfine` wires Pocket and Superfine together! This is the recommended way to use Pocket.
+export const managingGlobalStateTabs = [{
+  title: 'index.js',
+  content: <ManagingGlobalState/>
+}]
 
-```jsx
-import { core } from 'pocket-superfine'
+export const routingTabs = [{
+  title: 'index.js',
+  content: <Routing/>
+}]
 
-const app = core('app')
+export const managingLocalStateTabs = [{
+  title: 'index.js',
+  content: <ManagingLocalState/>
+}]
 
-app({
-  state: {
-    count: 0
-  },
-  setup
-})
+<Markdown>
+  # Introduction
 
-function setup (state) {
-  function plus () {
-    state.count++
-  }
+  ## What is Pocket?
 
-  return <button onclick={plus}>
-    Count: {state.count}
-  </button>
-}
-```
+  <audio controls>
+    <source src='audio/what-is-pocket.ogg' type='audio/ogg'/>
+  </audio>
 
----
+  Pocket is a library for building web components and small applications. Like many frameworks, it provides a component-based model to create interfaces combined with state management, page routing, and style encapsulation.
 
-## Applying Styles
+  Here's a basic example showcasing reactivity in Pocket. This example uses [Superfine](https://github.com/jorgebucaran/superfine) and [JSX](https://github.com/facebook/jsx) to render the view. The package `pocket-superfine` wires Pocket and Superfine together! This is the recommended way to use Pocket.
 
-<audio controls>
-  <source src='audio/applying-styles.ogg' type='audio/ogg'/>
-</audio>
+  <br/>
+  <CodeTabs tabs={whatIsPocketTabs}/>
 
-Pocket uses shadow DOM to encapsulate styles. The package `pocket-superfine` exports functions that wire Pocket and Superfine together!
+  ---
 
-Continuing from the previous example, and assuming you're using a bundler capable of importing CSS as a string, like [Parcel](https://parceljs.org/features/bundle-inlining/), here's how'd you the `ShadowRoot()` component from `pocket-superfine` to apply styles.
+  ## Applying Styles
 
-```jsx
-import { core, ShadowRoot } from 'pocket-superfine'
-import style from './counter.css'
+  <audio controls>
+    <source src='audio/applying-styles.ogg' type='audio/ogg'/>
+  </audio>
 
-const app = core('app')
+  Pocket uses shadow DOM to encapsulate styles. The package `pocket-superfine` exports functions that wire Pocket and Superfine together!
 
-app({
-  state: {
-    count: 0
-  },
-  setup
-})
+  Continuing from the previous example, and assuming you're using a bundler capable of importing CSS as a string, like [Parcel](https://parceljs.org/features/bundle-inlining/), here's how'd you the `ShadowRoot()` component from `pocket-superfine` to apply styles.
 
-function setup (state) {
-  function plus () {
-    state.count++
-  }
+  <br/>
+  <CodeTabs tabs={applyingStylesTabs}/>
 
-  return () => <ShadowRoot id='counter' styles={[style]}>
-    <button onclick={plus}>
-      Count: {state.count}
-    </button>
-  </ShadowRoot>
-}
-```
+  ---
 
----
+  ## Managing Global State
 
-## Managing Global State
+  <audio controls>
+    <source src='audio/managing-global-state.ogg' type='audio/ogg'/>
+  </audio>
 
-<audio controls>
-  <source src='audio/managing-global-state.ogg' type='audio/ogg'/>
-</audio>
+  As your application grows in size it's common to break down concepts of your application into logic containers. In Pocket this is done with the `pocket()` function. This function is a wrapper around `core()` used in previous examples. This function is equivalent to Redux for React or Vuex for Vue.
 
-As your application grows in size it's common to break down concepts of your application into logic containers. In Pocket this is done with the `pocket()` function. This function is a wrapper around `core()` used in previous examples. This function is equivalent to Redux for React or Vuex for Vue.
+  This is what `pocket()` changes:
+    + The `state` and `actions` properties on `app()`'s `init` object are replaced with the `store` property.
+    + State can no longer be mutated to trigger renders.
+    + Actions must now return a state object to trigger renders.
+    + The setup function now exposes a `dispatch()` function in the paramters.
 
-This is what `pocket()` changes:
-  + The `state` and `actions` properties on `app()`'s `init` object are replaced with the `store` property.
-  + State can no longer be mutated to trigger renders.
-  + Actions must now return a state object to trigger renders.
-  + The setup function now exposes a `dispatch()` function in the paramters.
+  Here's how you'd create a simple counter using `pocket()` to manage state globaly.
 
-Here's how you'd create a simple counter using `pocket()` to manage state globaly.
+  <br/>
+  <CodeTabs tabs={managingGlobalStateTabs}/>
 
-```jsx
-import { pocket } from 'pocket-superfine'
+  ---
 
-const app = pocket('app')
+  ## Routing
 
-app({
-  stores: {
-    counter
-  },
-  setup
-})
+  <audio controls>
+    <source src='audio/routing.ogg' type='audio/ogg'/>
+  </audio>
 
-const counter = {
-  state: {
-    count: 0
-  },
-  actions: {
-    plus (state) {
-      state.count++
-      return state
-    }
-  }
-}
+  Much like how `pocket()` wraps `core()` to add logic containers, `router()` wraps `pocket()` to add page routing.
 
-function setup (state, dispatch) {
-  return () => <button onclick={() => dispatch('counter/plus')}>
-    Count: {state.count}
-  </button>
-}
-```
+  Here's what `router()` changes:
+    + Two extra properties are exposed on `app()`'s `init` object, `pages` and `rewrites`.
+    + The `setup()` function is moved from the root of the `init` object to inside each page object.
+    + Each page object also includes a `destroy()` function.
 
----
+  Continuing with the counter example, here is an example of the router.
 
-## Routing
+  <br/>
+  <CodeTabs tabs={routingTabs}/>
 
-<audio controls>
-  <source src='audio/routing.ogg' type='audio/ogg'/>
-</audio>
+  ---
 
-Much like how `pocket()` wraps `core()` to add logic containers, `router()` wraps `pocket()` to add page routing.
+  ## Managing Local State
 
-Here's what `router()` changes:
-  + Two extra properties are exposed on `app()`'s `init` object, `pages` and `rewrites`.
-  + The `setup()` function is moved from the root of the `init` object to inside each page object.
-  + Each page object also includes a `destroy()` function.
+  <audio controls>
+    <source src='audio/managing-local-state.ogg' type='audio/ogg'/>
+  </audio>
 
-Continuing with the counter example, here is an example of the router.
+  As your application grows even further it's also common to avoid adding small bits of state in the global state object and instead keep unimportant parts of state inside of stateful components. In Pocket we use the function `defineComponent()` to do this. Local state in `defineComponent()` internally uses the very same `core()` function used in the first example of this introduction.
 
-```jsx
-import { pocket } from 'pocket-superfine'
+  Also, in Pocket the concept of localized state is combined with the use of shadow DOM for style encapsulation. As a result, much like the `ShadowRoot()` component I recommend using `pocket-superfine` which wires Pocket and Superfine together!
 
-const app = pocket('app')
+  Here is an example of a reusable counter component with local state and encapsulated styles.
 
-app({
-  stores: {
-    counter
-  },
-  pages: {
-    '/': home
-  }
-})
+  <br/>
+  <CodeTabs tabs={managingLocalStateTabs}/>
 
-const counter = {
-  state: {
-    count: 0
-  },
-  actions: {
-    plus (state) {
-      state.count++
-      return state
-    }
-  }
-}
+  ## Using Slots
 
-const home = {
-  setup (state, dispatch) {
-    return () => <button onclick={() => dispatch('counter/plus')}>
-      Count: {state.count}
-    </button>
-  },
-  destroy () {
-    // nothing yet...
-  }
-}
-```
+  ## Watching State Changes
 
----
+  ## Isolating Renders
 
-## Managing Local State
-
-<audio controls>
-  <source src='audio/managing-local-state.ogg' type='audio/ogg'/>
-</audio>
-
-As your application grows even further it's also common to avoid adding small bits of state in the global state object and instead keep unimportant parts of state inside of stateful components. In Pocket we use the function `Component()` to do this. Local state in `Component()` internally uses the very same `core()` function used in the first example of this introduction.
-
-Also, in Pocket the concept of localized state is combined with the use of shadow DOM for style encapsulation. As a result, much like the `ShadowRoot()` component I recommend using `pocket-superfine` which wires Pocket and Superfine together!
-
-Here is an example of a reusable counter component with local state and encapsulated styles.
-
-```jsx
-import { core, Component } from 'pocket-superfine'
-import style from './counter.css'
-
-const app = core('app')
-
-function Counter () {
-  const state = {
-    count: 0
-  }
-
-  return Component({
-    id: 'counter',
-    init: { state, setup },
-    styles: [style]
-  })
-}
-
-function setup (state, commit) {
-  function plus () {
-    state.count++
-  }
-
-  return function () {
-    return <button onclick={plus}>
-      {state.count}
-    </button>
-  }
-}
-
-app({
-  state: {},
-  setup () {
-    return () => <Counter/>
-  }
-})
-```
+</Markdown>

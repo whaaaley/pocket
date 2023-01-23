@@ -1,7 +1,7 @@
 
 import babel from '@babel/core'
 
-export default function (opts) {
+export default function babelPlugin (opts) {
   function handler (args) {
     return {
       loader: 'jsx',

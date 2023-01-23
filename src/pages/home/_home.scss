@@ -4,14 +4,15 @@
 }
 
 * {
-  box-sizing: inherit;
   color: inherit;
   font: inherit;
+  box-sizing: inherit;
 }
 
 #home {
+  color: #fff;
+  font: 16px/1 Inter, sans-serif;
   box-sizing: border-box;
-  font: 16px/1 'Inter', sans-serif;
 }
 
 .page {

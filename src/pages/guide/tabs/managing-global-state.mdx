@@ -1,0 +1,31 @@
+
+```jsx
+import { pocket } from 'pocket-superfine'
+
+const app = pocket('app')
+
+const counterStore = {
+  state: {
+    count: 0
+  },
+  actions: {
+    plus: state => {
+      state.count++
+      return state
+    }
+  }
+}
+
+app({
+  stores: {
+    counter: counterStore
+  },
+  setup: (state, dispatch) => {
+    return () => {
+      return <button onclick={() => { dispatch('counter/plus') }}>
+        Count: {state.count}
+      </button>
+    }
+  }
+})
+```

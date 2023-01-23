@@ -2,7 +2,7 @@
 import cc from 'classcat'
 import { link } from '~/modules/pocket'
 
-export default function (props, children) {
+export default (props, children) => {
   const { to, query } = props
 
   const classList = cc([

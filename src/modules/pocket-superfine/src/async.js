@@ -1,35 +1,38 @@
 
 import { patch } from 'superfine'
-import { Component } from './shadow.js'
+import { defineComponent } from './shadow.js'
 
-export default function (props, children) {
-  const state = {
-    success: null
+export default (parentProps, children) => {
+  const options = {
+    props: {
+      props: parentProps,
+      children
+    },
+    slots: {
+      default: null
+    }
   }
 
-  const host = Component({
-    id: 'async',
-    init: { state, setup },
-    slots: {
-      children,
-      component: null
+  return defineComponent(options, context => {
+    const state = context.reactive({
+      success: null
+    })
+
+    parentProps.module.then(data => {
+      state.success = true
+
+      patch(
+        context.host.querySelector('div[slot=default]'),
+        <div slot='default'>
+          {data.default(parentProps.props, children)}
+        </div>
+      )
+    })
+
+    return props => {
+      return <slot name='default'>
+        {props.children}
+      </slot>
     }
   })
-
-  props.module.then(function (data) {
-    state.success = true
-
-    patch(
-      host.node.querySelector('div[slot=component]'),
-      <div slot='component'>{data.default(props.props, children)}</div>
-    )
-  })
-
-  return host
-}
-
-function setup (state) {
-  return function () {
-    return <slot name={state.success ? 'component' : 'children'}></slot>
-  }
 }

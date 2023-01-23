@@ -1,5 +1,5 @@
 
-import { clone } from './lib'
+import { clone } from './lib.js'
 
 const FF_DEV = process.env.NODE_ENV === 'development'
 
@@ -15,8 +15,8 @@ export function reactive (state, schedule) {
         return data[key]
       },
       set (value) {
+        schedule(key, value, data[key])
         data[key] = value
-        schedule()
       }
     }
   }
@@ -24,7 +24,11 @@ export function reactive (state, schedule) {
   return Object.defineProperties(state, props)
 }
 
-export function core (init, patch) {
+export function core (init, patch, watch) {
+  if (FF_DEV && !init.state) {
+    console.warn('[Pocket] Core >> State is required')
+  }
+
   let lock = true
   const render = init.setup(reactive(init.state, schedule))
 
@@ -35,7 +39,13 @@ export function core (init, patch) {
     lock = false
   }
 
-  function schedule () {
+  function schedule (key, value, oldValue) {
+    const func = watch && watch[key]
+
+    if (func) {
+      func(value, oldValue)
+    }
+
     if (!lock) {
       lock = true
       requestAnimationFrame(update)
@@ -43,9 +53,10 @@ export function core (init, patch) {
   }
 }
 
-export default function (init, patch) {
+export default function pocket (init, patch) {
   const state = {}
   const actions = {}
+  const watch = {}
   const map = {}
 
   const stores = init.stores
@@ -55,16 +66,17 @@ export default function (init, patch) {
 
     state[scope] = store.state
     const storeActions = store.actions
+    watch[scope] = store.watch
 
     for (const key in storeActions) {
-      const name = scope + '/' + key
+      const name = scope + '.' + key
 
       actions[name] = storeActions[key]
       map[name] = scope
     }
   }
 
-  core({ state, setup }, patch)
+  core({ state, setup }, patch, watch)
 
   function setup (state) {
     function dispatch (name, data) {
@@ -76,14 +88,14 @@ export default function (init, patch) {
       const scope = map[name]
 
       if (FF_DEV && typeof action !== 'function') {
-        console.warn('Dispatch >> Invalid action >>', name)
+        console.warn('[Pocket] Dispatch >> Invalid action >>', name)
       }
 
       const result = action(clone(state[scope]), data)
 
       if (typeof result === 'function') {
         if (FF_DEV && typeof result !== 'function') {
-          console.warn('Dispatch >> Invalid effect >>', name)
+          console.warn('[Pocket] Dispatch >> Invalid effect >>', name)
         }
 
         const effect = result(dispatch)

@@ -1,0 +1,17 @@
+
+```jsx
+import { core } from 'pocket-superfine'
+
+const app = core('app')
+
+app({
+  state: {
+    count: 0
+  },
+  setup: state =>{
+    return <button onclick={() => { state.count++ }}>
+      Count: {state.count}
+    </button>
+  }
+})
+```

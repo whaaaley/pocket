@@ -1,5 +1,5 @@
 
-export default function (props) {
+export default function cssConcat (props) {
   let out = ''
 
   for (const key in props) {

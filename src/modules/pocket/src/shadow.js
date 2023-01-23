@@ -1,5 +1,6 @@
+/* eslint-disable no-return-assign */
 
-import { core } from './pocket'
+import { core } from './pocket.js'
 
 const nodeMap = new WeakMap()
 const shadowInit = { mode: 'open' }
@@ -7,7 +8,7 @@ const shadowInit = { mode: 'open' }
 export function ShadowRoot ({ host, patch }, view) {
   let node
 
-  Object.defineProperty(host, 'node', {
+  return Object.defineProperty(host, 'node', {
     get () {
       return node
     },
@@ -22,23 +23,21 @@ export function ShadowRoot ({ host, patch }, view) {
       patch(root, view)
     }
   })
-
-  return host
 }
 
-export function IFrameRoot ({ host, patch }, view) {
+export function InlineFrame ({ host, patch }, view) {
   let node
 
-  Object.defineProperty(host, 'node', {
+  return Object.defineProperty(host, 'node', {
     get () {
       return node
     },
     set (value) {
       let root = nodeMap.get(node = value)
 
-      requestAnimationFrame(function () {
+      requestAnimationFrame(() => {
         if (!root) {
-          nodeMap.set(node, root = document.createElement('div'))
+          nodeMap.set(node, root = document.createElement('iframe'))
           node.contentDocument.documentElement.replaceWith(root)
         }
 
@@ -46,51 +45,52 @@ export function IFrameRoot ({ host, patch }, view) {
       })
     }
   })
-
-  return host
 }
 
-export function Component ({ host, init, props, patch }, view) {
+export function defineComponent ({ props, host, patch, isolate }, setup) {
   let node
 
-  Object.defineProperty(host, 'node', {
+  return Object.defineProperty(host, 'node', {
     get () {
       return node
     },
     set (value) {
-      const data = nodeMap.get(node = value) ?? {}
-      let root = data.root
+      const cache = nodeMap.get(node = value) || {}
+      let shouldUpdate = false
 
-      data.props = props
-      data.view = view
-
-      if (root) {
-        patch(root, data.render())
-      } else {
-        // cache original setup function
-        const setup = init.setup
-
-        init.setup = function (state, dispatch) {
-          const render = setup(state, dispatch)
-
-          // eslint-disable-next-line no-return-assign
-          return data.render = function () {
-            return render(data.props, data.view)
-          }
+      for (const key in props) {
+        if (cache[key] !== props[key]) {
+          shouldUpdate = true
         }
-
-        root = node.attachShadow(shadowInit)
-        root = root.appendChild(data.root = document.createElement('div'))
-
-        // should i unwrap this callback?
-        core(init, function (view) {
-          return patch(root, view)
-        })
       }
 
-      nodeMap.set(node, data)
+      cache.props = props
+
+      if (cache.root) {
+        if (shouldUpdate && !isolate) {
+          patch(cache.root, cache.render())
+        }
+
+        return // early exit
+      }
+
+      const root = value
+        .attachShadow(shadowInit)
+        .appendChild(cache.root = document.createElement('div'))
+
+      const render = setup({
+        host: value,
+        node: root,
+        reactive: state => cache.state = state,
+        watch: watch => cache.watch = watch
+      })
+
+      core({
+        state: cache.state,
+        setup: () => cache.render = () => render(cache.props)
+      }, view => patch(root, view), cache.watch)
+
+      nodeMap.set(value, cache)
     }
   })
-
-  return host
 }

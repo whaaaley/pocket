@@ -43,7 +43,7 @@ async function handler (args, options) {
   }
 }
 
-export default function (options) {
+export default function javascriptPlugin (options) {
   function load (args) {
     return handler(args, options)
   }

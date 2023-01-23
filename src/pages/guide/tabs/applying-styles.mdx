@@ -1,0 +1,22 @@
+
+```jsx
+import { core, ShadowRoot } from 'pocket-superfine'
+import counterStyles from './counter.css'
+
+const app = core('app')
+
+app({
+  state: {
+    count: 0
+  },
+  setup: state => {
+    return () => <ShadowRoot styles={{ counterStyles }}>
+      <div id='counter'>
+        <button onclick={() => { state.count++ }}>
+          Count: {state.count}
+        </button>
+      </div>
+    </ShadowRoot>
+  }
+})
+```

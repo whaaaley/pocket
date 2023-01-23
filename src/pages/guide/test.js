@@ -1,5 +1,5 @@
 
-export default function (props, children) {
+export default (props, children) => {
   function minus () {
     props.onPlus()
   }

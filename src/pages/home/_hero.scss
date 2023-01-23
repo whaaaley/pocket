@@ -5,18 +5,21 @@
 
 * {
   box-sizing: inherit;
-  color: inherit;
   font-family: inherit;
+
+  color: inherit;
 }
 
 #hero {
-  box-sizing: border-box;
   display: grid;
   place-items: center;
+
+  box-sizing: border-box;
   padding: 96px 0;
-  border-bottom: 2px solid color(--dark-300);
+  font-family: Inter, sans-serif;
   color: #fff;
-  font-family: 'Inter', sans-serif;
+
+  border-bottom: 2px solid color(--dark-300);
 }
 
 h1 {
@@ -36,16 +39,20 @@ h2 {
 }
 
 button {
+  cursor: pointer;
+
   padding: 12px 16px;
+
+  font-size: linear-clamp(16px, 18px);
+
+  background: rgb(var(--dark-200));
   border: initial;
   border-radius: 9px;
-  font-size: linear-clamp(16px, 18px);
-  background: rgb(var(--dark-200));
-  cursor: pointer;
+
   transition: background 200ms;
 
   &.-get-started {
-    $icon: tabler('arrow-right', 2, #fff);
+    $icon: tabler("arrow-right", 2, #fff);
 
     padding-right: 6px + 24px + 12px;
     background: color(--red) $icon center right 12px / 24px no-repeat;

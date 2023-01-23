@@ -1,6 +1,6 @@
 
 import { ShadowRoot } from '~/modules/pocket-superfine'
-import style from './_palette.scss'
+import paletteStyles from './_palette.scss'
 
 const rainbow = [
   'red',
@@ -34,12 +34,14 @@ function Group (props) {
 
 export default {
   setup (state, dispatch) {
-    return function () {
-      return <div>
-        <ShadowRoot id='palette' styles={[style]}>
-          <Group arr={rainbow}/>
-          <Group arr={light}/>
-          <Group arr={dark}/>
+    return () => {
+      return <div key='page-palette' id='palette'>
+        <ShadowRoot styles={{ paletteStyles }}>
+          <div key='component-palette' id='palette'>
+            <Group arr={rainbow}/>
+            <Group arr={light}/>
+            <Group arr={dark}/>
+          </div>
         </ShadowRoot>
       </div>
     }

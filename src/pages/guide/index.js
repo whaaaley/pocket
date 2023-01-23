@@ -1,29 +1,36 @@
 
-import { Async, ShadowRoot } from '~/modules/pocket-superfine'
-import style from './_guide.scss'
+import { ShadowRoot, AsyncComponent } from '~/modules/pocket-superfine'
+import guideStyles from './_guide.scss'
 
 import Layout from '~/components/layout'
 import Markdown from '~/components/markdown'
 
+const Guide = (props, children) => {
+  return <ShadowRoot styles={{ guideStyles }} slots={{ children }}>
+    {/* CLS - Height from Chrome DevTools */}
+    <div key='component-guide' id='guide' style='min-height: 6077.5px'>
+      <div class='page'>
+        <Markdown>
+          <AsyncComponent module={import('./intro.mdx')}>
+            <div>Loading...</div>
+          </AsyncComponent>
+        </Markdown>
+      </div>
+    </div>
+  </ShadowRoot>
+}
+
 export default {
   setup (state, dispatch) {
-    return function () {
-      return <div id='app'>
-        <ShadowRoot id='guide' styles={[style]}>
-          <Layout>
-            <div class='page'>
-              <Markdown>
-                <Async module={import('./intro.mdx')}>
-                  <div>Loading...</div>
-                </Async>
-              </Markdown>
-            </div>
-          </Layout>
-        </ShadowRoot>
+    return () => {
+      return <div key='page-guide'>
+        <Layout>
+          <Guide/>
+        </Layout>
       </div>
     }
   },
   destroy () {
-    // nothing yet...
+    // Nothing yet...
   }
 }

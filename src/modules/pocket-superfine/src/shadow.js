@@ -1,55 +1,73 @@
+/* eslint-disable no-return-assign */
 
-import { h, patch } from 'superfine'
-import { ShadowRoot, IFrameRoot, Component } from '~/modules/pocket/'
-import { copy } from './lib/'
+import { h, text, patch } from 'superfine'
+import { ShadowRoot, InlineFrame, defineComponent } from '~/modules/pocket'
 
-function ShadowRoot2 ({ id, styles, slots }, children) {
-  const key = id + '-host'
-  const host = h('div', { key, id: key }, [])
+function ShadowRootWrapper (options, children) {
+  const { styles, slots } = options ?? {}
+  const host = h('div', {}, [])
 
-  copy('style', styles, children)
-  copy('slot', slots, host.children)
-
-  return ShadowRoot({ host, patch }, h('div', { id }, children))
-}
-
-function IFrameRoot2 ({ id, styles }, children) {
-  const key = id + '-host'
-  const host = h('iframe', { key, id: key })
-
-  copy('slot', styles, children)
-
-  return IFrameRoot({ host, patch }, h('div', { id }, children))
-}
-
-function Component2 ({ id, init, props, styles, slots }, children) {
-  const key = id + '-host'
-  const host = h('div', { key, id: key }, [])
-
-  copy('slot', slots, host.children)
-
-  // cache original setup function
-  const setup = init.setup
-
-  init.setup = function (state, dispatch) {
-    const render = setup(state, dispatch)
-
-    return function (props2, children2) {
-      let vdom = render(props2, children2)
-
-      // children cannot be guaranteed to be an array
-      vdom = Array.isArray(vdom) ? vdom : [vdom]
-      copy('style', styles, vdom)
-
-      return h('div', { id }, vdom)
+  if (styles) {
+    for (const key in styles) {
+      children.push(h('style', {}, text(styles[key])))
     }
   }
 
-  return Component({ host, init, props, patch }, children)
+  if (slots) {
+    for (const key in slots) {
+      host.children.push(h('div', { slot: key }, slots[key]))
+    }
+  }
+
+  return ShadowRoot({ host, patch }, h('div', {}, children))
+}
+
+function InlineFrameWrapper (options, children) {
+  const { styles } = options ?? {}
+  const host = h('iframe', {})
+
+  if (styles) {
+    for (const key in styles) {
+      children.push(h('style', {}, text(styles[key])))
+    }
+  }
+
+  return InlineFrame({ host, patch }, h('div', {}, children))
+}
+
+function defineComponentWrapper (options, setup2) {
+  const { props, slots, isolate } = options ?? {}
+  const host = h('div', {}, [])
+
+  if (slots) {
+    for (const key in slots) {
+      host.children.push(h('div', { slot: key }, slots[key]))
+    }
+  }
+
+  return defineComponent({ props, host, patch, isolate }, context => {
+    let styles
+    context.styles = styles2 => styles = styles2
+
+    const render2 = setup2(context)
+
+    return function render (props2) {
+      let children = render2(props2)
+      children = Array.isArray(children) ? children : [children]
+
+      if (styles) {
+        for (const key in styles) {
+          children.push(h('style', {}, text(styles[key])))
+        }
+      }
+
+      return h('div', { id: 'root' }, children)
+    }
+  })
 }
 
 export {
-  ShadowRoot2 as ShadowRoot,
-  IFrameRoot2 as IFrameRoot,
-  Component2 as Component
+  ShadowRootWrapper as ShadowRoot,
+  InlineFrameWrapper as InlineFrame,
+  defineComponentWrapper as defineComponent
 }

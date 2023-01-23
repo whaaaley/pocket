@@ -1,9 +1,11 @@
 
-import CodeTabs from '~/components/code-tabs/index.js'
+import CodeTabs from '~/components/code-tabs'
 import Markdown from '~/components/markdown'
 
 import Script from './tabs/script.mdx'
 import Style from './tabs/style.mdx'
+
+import Counter from './counter'
 
 export const tabs = [{
   title: 'index.js',
@@ -11,6 +13,11 @@ export const tabs = [{
 }, {
   title: '_counter.scss',
   content: <Style/>
+}, {
+  title: 'Live Example!',
+  content: <div style='padding: 48px'>
+    <Counter/>
+  </div>
 }]
 
 <Markdown>

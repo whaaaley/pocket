@@ -81,7 +81,7 @@ export default async function (options) {
   })
 
   server.listen(port, function () {
-    watch(watchDir, async function (xxx, filename) {
+    watch(watchDir, async function (x, filename) {
       if (extensions.includes(path.extname(filename))) {
         console.log(/* New line */)
         log.info('Updated ' + path.join(watchDir, filename))

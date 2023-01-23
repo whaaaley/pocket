@@ -2,7 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 
-export default function ({ loadpaths }) {
+export default function resolvePlugin ({ loadpaths }) {
   function handler (args) {
     // TODO: remove dups
 
@@ -28,6 +28,7 @@ export default function ({ loadpaths }) {
     name: 'plugin-resolve',
     setup (build) {
       build.onResolve({ filter: /^~\// }, handler)
+      build.onResolve({ filter: /^@\// }, handler)
     }
   }
 }

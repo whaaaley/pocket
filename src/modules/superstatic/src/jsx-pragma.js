@@ -41,16 +41,16 @@ export function jsx (type, props, ...children) {
   props = props == null ? EMPTY_OBJ : props
   children = children.flat(Infinity)
 
-  if (typeof type === 'function') {
-    return type(props, children)
-  }
-
   for (let i = 0; i < children.length; i++) {
     const child = children[i]
 
     children[i] = typeof child === 'string' || typeof child === 'number'
       ? virtualText(child)
       : child
+  }
+
+  if (typeof type === 'function') {
+    return type(props, children)
   }
 
   if (type === 'fragment' || type == null) {
@@ -86,8 +86,5 @@ export function jsxStatic (type, props, ...children) {
   return marker + staticNode(type, props, children).replaceAll(marker, '')
 }
 
-/**
- *
- */
-
-export default { jsx, jsxFragment }
+// Note: MDX needs this
+export default { jsx }

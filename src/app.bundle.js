@@ -3,24 +3,35 @@
 
 import { app } from '~/modules/pocket-superfine'
 
-import pages from './pages/**/*.js'
+import home from './pages/home'
+import guide from './pages/guide'
+import games from './pages/games'
+import retodo from './pages/retodo'
+
+import palette from './pages/palette'
+import missing from './pages/missing'
+import test from './pages/test'
+
+// import pages from './pages/**/*.js'
 import stores from './stores/**/*.js'
 
 app('pocket', {
   stores: {
     common: stores.common,
-    docs: stores.docs
+    foobar: stores.foobar
   },
   pages: {
-    '/': pages.home,
-    '/guide': pages.guide,
-    '/api': pages.api,
-    '/games': pages.games,
-    '/about': pages.about,
-    '/palette': pages.palette,
-    '/missing': pages.missing
+    '/': home,
+    '/guide': guide,
+    '/games': games,
+    '/retodo': retodo,
+    //
+    // Extra stuff...
+    '/palette': palette,
+    '/missing': missing,
+    '/test': test
   },
   rewrites: [
-    // nothing yet...
+    // Nothing yet...
   ]
 })

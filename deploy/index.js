@@ -19,8 +19,11 @@ const mediaTypes = {
   '.woff2': 'font/woff2'
 }
 
-async function handler (pathname) {
+async function handler ({ method, url }) {
+  const { pathname } = new URL(url)
   const ext = extname(pathname)
+
+  console.log(method, url, ext)
 
   if (ext === '') {
     return new Response(indexFile, {
@@ -44,7 +47,9 @@ async function handler (pathname) {
       status: 200,
       headers: {
         'content-type': mediaTypes[ext] ?? 'text/plain;charset=utf-8',
-        'cache-control': ext === '.woff2' ? 'max-age=31536000' : 'no-cache' // TODO: expand cached media types
+        'cache-control': ext === '.woff2'
+          ? 'max-age=31536000'
+          : 'no-cache' // TODO: expand cached media types
       }
     })
   } catch {
@@ -57,22 +62,17 @@ async function handler (pathname) {
   }
 }
 
-async function start () {
-  const port = 8000
+// Start server
+void async function () {
+  const server = Deno.listen({ port: 3000 })
 
-  console.log('Listening on https://localhost:' + port)
+  console.log('Listening on http://localhost:3000')
 
-  for await (const conn of Deno.listen({ port })) {
-    for await (const event of Deno.serveHttp(conn)) {
-      //
-      const { method, redirect, url } = event.request
-      const { pathname } = new URL(url)
-
-      console.log(method, redirect, url)
-
-      event.respondWith(await handler(pathname))
-    }
+  for await (const conn of server) {
+    void async function () {
+      for await (const event of Deno.serveHttp(conn)) {
+        event.respondWith(handler(event.request))
+      }
+    }()
   }
-}
-
-start()
+}()
