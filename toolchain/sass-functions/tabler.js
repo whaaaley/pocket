@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import sass from 'sass'
+import * as sass from 'sass'
 import svgDataURI from 'mini-svg-data-uri'
 import svgo from 'svgo'
 

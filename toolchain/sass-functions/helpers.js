@@ -1,4 +1,4 @@
-import sass from 'sass'
+import * as sass from 'sass'
 
 export default {
   'color($variable, $alpha: 1)': function ([variable, alpha]) {

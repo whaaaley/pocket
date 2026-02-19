@@ -1,5 +1,5 @@
 import path from 'path'
-import sass from 'sass'
+import * as sass from 'sass'
 import CleanCSS from 'clean-css'
 
 const production = process.env.NODE_ENV === 'production'
