@@ -1,5 +1,9 @@
 # Changelog
 
+## February 19, 2026 — Resolve all stylelint and ESLint errors
+
+Cleaned up all linting errors across the project. Stylelint and ESLint both pass with zero errors and zero warnings.
+
 ## February 18, 2026 — Lock all dependency versions
 
 Locked every dependency to an exact version to freeze the project and ensure reproducible builds.
