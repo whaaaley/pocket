@@ -10,9 +10,6 @@
 
 #markdown {
   box-sizing: border-box;
-  // color: #fff;
-  // font: 16px/1 'Inter', sans-serif;
-  // font-size: between(16px, 18px);
   font-size: linear-clamp(16px, 18px);
   line-height: 1.75;
 }
@@ -29,13 +26,10 @@ h1, h2 {
 }
 
 h2 {
-  // font-size: between(24px, 36px);
   font-size: linear-clamp(24px, 36px);
 }
 
 h1 {
-
-  // font-size: between(36px, 72px);
   font-size: linear-clamp(36px, 72px);
   color: rgb(var(--red));
 
@@ -61,15 +55,3 @@ hr {
   height: 96px;
   border: initial;
 }
-
-// p {
-//   // font-size: $paragraph;
-//   // line-height: 1.75;
-//
-//   code {
-//     padding: 3px 6px;
-//     border-radius: 6px;
-//     color: rgb(var(--light-500));
-//     background: rgb(var(--dark-300));
-//   }
-// }
