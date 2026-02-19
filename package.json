@@ -11,8 +11,8 @@
     "deno": "npm run build && deno run -A deploy/index.js"
   },
   "dependencies": {
-    "classcat": "^5.0.3",
-    "superfine": "^8.2.0"
+    "classcat": "5.0.5",
+    "superfine": "8.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
