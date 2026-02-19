@@ -188,7 +188,7 @@ function staticChildrenArray () {
   testEqual(result, expected)
 }
 
-export default function () {
+export default function runTests () {
   jsxSingle()
 
   jsxChild()

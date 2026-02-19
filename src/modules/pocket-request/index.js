@@ -25,7 +25,7 @@ function setResponse (state, data) {
 export function mockRequest (scope, data) {
   const key = data.key
 
-  return async function (dispatch) {
+  return async function run (dispatch) {
     dispatch(scope + '/setLoading', { key })
 
     await sleep(data.delay)
@@ -40,7 +40,7 @@ export function mockRequest (scope, data) {
 export function request (scope, data) {
   const key = data.key
 
-  return async function (dispatch) {
+  return async function run (dispatch) {
     dispatch(scope + '/setLoading', { key })
 
     try {
@@ -61,15 +61,11 @@ export function request (scope, data) {
   }
 }
 
-async function authRequest () {
-  //
-}
-
 export function requestStore (options) {
   const state = options.state
   const actions = options.actions
 
-  options.init.forEach(function (key) {
+  options.init.forEach(function initKey (key) {
     state[key] = init
   })
 

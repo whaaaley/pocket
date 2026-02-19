@@ -3,7 +3,7 @@ import css from '~/modules/css-concat.js'
 import { Component } from '~/modules/pocket-superfine'
 import style from './_transition.scss'
 
-export default function ({ duration, slots }, children) {
+export default function transition ({ duration, slots }, children) {
   const state = {
     showFrom: true
   }
@@ -30,7 +30,7 @@ export default function ({ duration, slots }, children) {
 // of this node.
 
 function setup () {
-  return function (props) {
+  return function render (props) {
     const from = cc(['from', props.from && 'fade-out'])
     const to = cc(['to', props.to && 'fade-in'])
     const next = cc(['next', props.next && 'fade-in'])
