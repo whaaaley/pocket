@@ -36,6 +36,7 @@ h2 {
 
 h1 {
   color: rgb(var(--red));
+
   // font-size: between(36px, 72px);
   font-size: linear-clamp(36px, 72px);
 

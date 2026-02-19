@@ -15,7 +15,7 @@
   padding: 12px;
   border-radius: 12px;
   color: #fff;
-  font: 16px/1 'Inter', sans-serif;
+  font: 16px/1 Inter, sans-serif;
   background: rgb(var(--dark-400));
   box-sizing: border-box;
 }
@@ -34,11 +34,11 @@ button {
   cursor: pointer;
 
   &.-minus {
-    background-image: tabler('circle-minus', 2, #fff);
+    background-image: tabler("circle-minus", 2, #fff);
   }
 
   &.-plus {
-    background-image: tabler('circle-plus', 2, #fff);
+    background-image: tabler("circle-plus", 2, #fff);
   }
 }
 

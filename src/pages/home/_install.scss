@@ -12,7 +12,7 @@ $height: calc(48em / 18); // 48px to em
 #install {
   display: flex;
   margin: linear-clamp(36px, 48px) 0 0;
-  font-family: 'Inter', sans-serif;
+  font-family: Inter, sans-serif;
   font-size: linear-clamp(16px, 18px);
 }
 
@@ -20,7 +20,7 @@ $height: calc(48em / 18); // 48px to em
   padding: 0 1em;
   border-radius: 9px 0 0 9px;
   color: color(--light-300);
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Source Code Pro", monospace;
   line-height: $height;
   background: color(--dark-300);
 }
@@ -33,8 +33,7 @@ span {
 
 button {
   $color: color(--dark-200);
-  $icon: tabler('copy', 2, #fff);
-
+  $icon: tabler("copy", 2, #fff);
   $pos-left: calc(12em / 18); // 12px to em
   $bg-size: calc(24em / 18); // 24px to em
 

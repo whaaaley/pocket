@@ -12,7 +12,7 @@
 #appbar {
   border-bottom: 2px solid rgb(var(--dark-300));
   color: #fff;
-  font: 18px/64px 'Inter', sans-serif;
+  font: 18px/64px Inter, sans-serif;
   box-sizing: border-box;
 }
 
@@ -40,7 +40,7 @@ a {
 .logo {
   display: block;
   width: 64px;
-  background: tabler('bolt', 1.5px, #fff) center / 36px no-repeat;
+  background: tabler("bolt", 1.5px, #fff) center / 36px no-repeat;
 
   span {
     display: none;
