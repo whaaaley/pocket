@@ -19,7 +19,7 @@
     "@babel/plugin-syntax-jsx": "7.28.6",
     "@mapbox/rehype-prism": "^0.7.0",
     "@mdx-js/esbuild": "^2.1.2",
-    "@tabler/icons": "^1.78.0",
+    "@tabler/icons": "1.119.0",
     "babel-plugin-preval": "5.1.0",
     "clean-css": "^5.3.1",
     "culori": "^2.0.3",
