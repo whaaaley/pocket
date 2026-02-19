@@ -1,8 +1,10 @@
 # Changelog
 
-## February 19, 2026 — Resolve all stylelint and ESLint errors
+## February 19, 2026 — Code hygiene and documentation fixes
 
 Cleaned up all linting errors across the project. Stylelint and ESLint both pass with zero errors and zero warnings.
+
+Fixed typos and errors in the intro guide: "managment" to "management", "paramters" to "parameters", "globaly" to "globally", corrected awkward phrasing, and fixed the router example to import `router` instead of `pocket`.
 
 ## February 18, 2026 — Lock all dependency versions
 

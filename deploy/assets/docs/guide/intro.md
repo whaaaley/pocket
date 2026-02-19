@@ -38,7 +38,7 @@ function setup (state) {
 The primary goals of Pocket and related modules are as follows:
 
 + Very small bundle size.
-+ Global and local state managment.
++ Global and local state management.
 + A full featured page router.
 + Style encapsulation with shadow DOM.
 + Components that can be used in any framework.
@@ -50,7 +50,7 @@ The primary goals of Pocket and related modules are as follows:
 
 Pocket uses shadow DOM to encapsulate styles. The package `pocket-superfine` exports functions that wire Pocket and Superfine together!
 
-Continuing from the previous example, and assuming you're using a bundler capable of importing CSS as a string, like [Parcel](https://parceljs.org/features/bundle-inlining/), here's how'd you the `ShadowRoot()` component from `pocket-superfine` to apply styles.
+Continuing from the previous example, and assuming you're using a bundler capable of importing CSS as a string, like [Parcel](https://parceljs.org/features/bundle-inlining/), here's how you'd use the `ShadowRoot()` component from `pocket-superfine` to apply styles.
 
 ```jsx
 import { core, ShadowRoot } from 'pocket-superfine'
@@ -88,9 +88,9 @@ This is what `pocket()` changes:
   + The `state` and `actions` properties on `app()`'s `init` object are replaced with the `store` property.
   + State can no longer be mutated to trigger renders.
   + Actions must now return a state object to trigger renders.
-  + The setup function now exposes a `dispatch()` function in the paramters.
+  + The setup function now exposes a `dispatch()` function in the parameters.
 
-Here's how you'd create a simple counter using `pocket()` to manage state globaly.
+Here's how you'd create a simple counter using `pocket()` to manage state globally.
 
 ```jsx
 import { pocket } from 'pocket-superfine'
@@ -141,9 +141,9 @@ Here's what `router()` changes:
 Continuing with the counter example, here is an example of the router.
 
 ```jsx
-import { pocket } from 'pocket-superfine'
+import { router } from 'pocket-superfine'
 
-const app = pocket('app')
+const app = router('app')
 
 app({
   stores: {
