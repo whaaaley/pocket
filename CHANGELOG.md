@@ -6,6 +6,23 @@ Cleaned up all linting errors across the project. Stylelint and ESLint both pass
 
 Fixed typos and errors in the intro guide: "managment" to "management", "paramters" to "parameters", "globaly" to "globally", corrected awkward phrasing, and fixed the router example to import `router` instead of `pocket`.
 
+Updated TypeScript from 4.9.5 to 5.9.3 for `moduleResolution: "bundler"` support needed by `.ts` extension imports during the pocket library migration.
+
+Added `@typescript-eslint/parser` and `@typescript-eslint/eslint-plugin` for TypeScript-aware linting.
+
+### devDependencies
+
+| Package | Published | Version | Notes |
+|---|---|---|---|
+| typescript | September 30, 2025 | 5.9.3 | Updated from 4.9.5; needed `moduleResolution: "bundler"` for `.ts` imports |
+
+### optionalDependencies (linters)
+
+| Package | Published | Version | Notes |
+|---|---|---|---|
+| @typescript-eslint/eslint-plugin | July 29, 2024 | 7.18.0 | Latest 7.x; requires eslint 8 |
+| @typescript-eslint/parser | July 29, 2024 | 7.18.0 | Latest 7.x; requires eslint 8 |
+
 ## February 18, 2026 — Lock all dependency versions
 
 Locked every dependency to an exact version to freeze the project and ensure reproducible builds.
