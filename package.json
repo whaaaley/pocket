@@ -40,7 +40,7 @@
     "eslint-plugin-promise": "6.6.0",
     "eslint-plugin-react": "7.37.5",
     "stylelint": "14.16.1",
-    "stylelint-config-clean-order": "2.3.1",
+    "stylelint-config-clean-order": "6.1.0",
     "stylelint-config-standard-scss": "6.1.0"
   }
 }
