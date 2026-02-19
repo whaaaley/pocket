@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "lib": "node toolchain lib",
-    "gzip": "gzip --best --keep --no-name deploy/dist/index.html",
-    "prepare": "rm -rf deploy/dist && mkdir deploy/dist",
     "build": "npm run prepare && NODE_ENV=production node toolchain build",
-    "start": "npm run prepare && NODE_ENV=development node toolchain start",
-    "deno": "npm run build && deno run -A deploy/index.js"
+    "deno": "npm run build && deno run -A deploy/index.js",
+    "gzip": "gzip --best --keep --no-name deploy/dist/index.html",
+    "lib": "node toolchain lib",
+    "prepare": "rm -rf deploy/dist && mkdir deploy/dist",
+    "start": "npm run prepare && NODE_ENV=development node toolchain start"
   },
   "dependencies": {
     "classcat": "5.0.5",
