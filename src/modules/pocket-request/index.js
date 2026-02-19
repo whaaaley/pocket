@@ -1,4 +1,3 @@
-
 import sleep from '~/modules/helpers/sleep.js'
 
 function model (data, error, loading, success) {

@@ -1,4 +1,3 @@
-
 import escapeHTML from 'escape-html'
 
 function isSafe (value) {

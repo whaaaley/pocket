@@ -1,4 +1,3 @@
-
 export default function cssConcat (props) {
   let out = ''
 

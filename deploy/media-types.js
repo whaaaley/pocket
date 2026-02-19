@@ -1,4 +1,3 @@
-
 // TODO: Find good default values for these
 export default {
   '.css': {

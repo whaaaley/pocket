@@ -1,4 +1,3 @@
-
 import cc from 'classcat'
 import css from '~/modules/css-concat.js'
 import { Component } from '~/modules/pocket-superfine'

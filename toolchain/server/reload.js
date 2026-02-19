@@ -1,4 +1,3 @@
-
 import crypto from 'crypto'
 import * as log from './modules/log.js'
 

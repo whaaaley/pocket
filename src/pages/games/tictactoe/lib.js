@@ -1,4 +1,3 @@
-
 export function chickenDinner (matrix) {
   const size = matrix.length // assume that matrix is a square
   const tests = []

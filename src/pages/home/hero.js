@@ -1,4 +1,3 @@
-
 import { link } from '~/modules/pocket'
 import { ShadowRoot } from '~/modules/pocket-superfine'
 import heroStyles from './_hero.scss'

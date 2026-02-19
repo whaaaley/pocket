@@ -1,4 +1,3 @@
-
 import { ShadowRoot, AsyncComponent } from '~/modules/pocket-superfine'
 import homeStyles from './_home.scss'
 

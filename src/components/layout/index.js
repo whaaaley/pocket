@@ -1,4 +1,3 @@
-
 import { ShadowRoot } from '~/modules/pocket-superfine'
 import layoutStyles from './_layout.scss'
 import Appbar from '~/components/appbar'

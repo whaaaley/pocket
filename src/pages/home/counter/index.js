@@ -1,4 +1,3 @@
-
 import { defineComponent } from '~/modules/pocket-superfine'
 import counterStyles from './_counter.scss'
 

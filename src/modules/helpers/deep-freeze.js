@@ -1,4 +1,3 @@
-
 export default function deepFreeze (src) {
   if (src === null) {
     return null

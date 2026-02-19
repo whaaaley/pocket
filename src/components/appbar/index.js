@@ -1,4 +1,3 @@
-
 import { ShadowRoot } from '~/modules/pocket-superfine'
 import appbarStyles from './_appbar.scss'
 import Link from '~/components/link.js'

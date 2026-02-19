@@ -1,4 +1,3 @@
-
 export default function clone (src) {
   const target = {}
 

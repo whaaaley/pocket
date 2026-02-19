@@ -1,4 +1,3 @@
-
 import { ShadowRoot } from '~/modules/pocket-superfine'
 
 import markdownStyles from './_markdown.scss'

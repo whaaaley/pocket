@@ -1,4 +1,3 @@
-
 import { AsyncComponent, ShadowRoot } from '~/modules/pocket-superfine/'
 import gamesStyles from './_games.scss'
 

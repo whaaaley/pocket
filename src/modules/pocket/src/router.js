@@ -1,4 +1,3 @@
-
 import { decode, encode } from './lib.js'
 
 const pushstate = new CustomEvent('pocket-pushstate')

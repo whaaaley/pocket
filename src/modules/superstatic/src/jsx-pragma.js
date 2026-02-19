@@ -1,4 +1,3 @@
-
 /**
  * Learn to setup JSX with esbuild here:
  * https://esbuild.github.io/content-types/#jsx

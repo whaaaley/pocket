@@ -1,4 +1,3 @@
-
 export function clone (data) {
   const result = {}
 

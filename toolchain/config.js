@@ -1,4 +1,3 @@
-
 import path from 'node:path'
 
 import mdx from '@mdx-js/esbuild'

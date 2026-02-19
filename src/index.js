@@ -1,4 +1,3 @@
-
 'use strict'
 
 import style from './_main.scss'

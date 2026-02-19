@@ -1,4 +1,3 @@
-
 const colorMap = {
   black: '\x1b[30m',
   red: '\x1b[31m',

@@ -1,4 +1,3 @@
-
 import { defineComponent } from '~/modules/pocket-superfine'
 import testStyles from './_test.scss'
 import Layout from '~/components/layout'

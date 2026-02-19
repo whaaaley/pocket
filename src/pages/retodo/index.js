@@ -1,4 +1,3 @@
-
 import { defineComponent } from '~/modules/pocket-superfine'
 import cc from 'classcat'
 import Layout from '~/components/layout'

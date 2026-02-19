@@ -1,4 +1,3 @@
-
 import { defineComponent } from '~/modules/pocket-superfine'
 import tictactoeStyles from './_tictactoe.scss'
 import { chickenDinner, generateMatrix, randomLetter } from './lib.js'

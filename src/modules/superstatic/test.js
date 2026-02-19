@@ -1,4 +1,3 @@
-
 import { jsx, jsxStatic } from './src/jsx-pragma.js'
 import deepEqual from '~/modules/helpers/deep-equal.js'
 

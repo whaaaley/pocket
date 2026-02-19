@@ -1,4 +1,3 @@
-
 export default {
   state: {
     countOne: 0,

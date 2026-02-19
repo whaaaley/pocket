@@ -1,4 +1,3 @@
-
 import { ShadowRoot } from '~/modules/pocket-superfine'
 import paletteStyles from './_palette.scss'
 

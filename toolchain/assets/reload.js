@@ -1,4 +1,3 @@
-
 const source = new EventSource('/reload')
 
 source.onmessage = function (body) {
