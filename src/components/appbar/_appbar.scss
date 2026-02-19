@@ -1,19 +1,18 @@
-
 :host {
   all: initial;
 }
 
 * {
-  color: inherit;
-  font: inherit;
   box-sizing: inherit;
+  font: inherit;
+  color: inherit;
 }
 
 #appbar {
-  border-bottom: 2px solid rgb(var(--dark-300));
-  color: #fff;
-  font: 18px/64px Inter, sans-serif;
   box-sizing: border-box;
+  font: 18px/64px Inter, sans-serif;
+  color: #fff;
+  border-bottom: 2px solid rgb(var(--dark-300));
 }
 
 header {

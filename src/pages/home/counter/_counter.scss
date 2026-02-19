@@ -1,23 +1,25 @@
-
 :host {
   all: initial;
 }
 
 * {
-  color: inherit;
-  font: inherit;
   box-sizing: inherit;
+  font: inherit;
+  color: inherit;
 }
 
 #counter {
   display: flex;
+
+  box-sizing: border-box;
   width: (48px * 3) + 24px;
   padding: 12px;
-  border-radius: 12px;
-  color: #fff;
+
   font: 16px/1 Inter, sans-serif;
+  color: #fff;
+
   background: rgb(var(--dark-400));
-  box-sizing: border-box;
+  border-radius: 12px;
 }
 
 // stylelint-disable-next-line selector-list-comma-newline-after
@@ -27,11 +29,13 @@ button, .count {
 }
 
 button {
+  cursor: pointer;
+
+  color: #fff;
+
+  background: rgb(var(--red)) center / 24px no-repeat;
   border: initial;
   border-radius: 6px;
-  color: #fff;
-  background: rgb(var(--red)) center / 24px no-repeat;
-  cursor: pointer;
 
   &.-minus {
     background-image: tabler("circle-minus", 2, #fff);

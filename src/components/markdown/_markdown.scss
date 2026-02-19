@@ -1,21 +1,20 @@
-
 :host {
   all: initial;
 }
 
 * {
-  color: inherit;
-  font: inherit;
   box-sizing: inherit;
+  font: inherit;
+  color: inherit;
 }
 
 #markdown {
+  box-sizing: border-box;
   // color: #fff;
   // font: 16px/1 'Inter', sans-serif;
   // font-size: between(16px, 18px);
   font-size: linear-clamp(16px, 18px);
   line-height: 1.75;
-  box-sizing: border-box;
 }
 
 // stylelint-disable-next-line selector-list-comma-newline-after
@@ -25,8 +24,8 @@ h1, h2, p {
 
 // stylelint-disable-next-line selector-list-comma-newline-after
 h1, h2 {
-  color: rgb(var(--red));
   font-weight: 600;
+  color: rgb(var(--red));
 }
 
 h2 {
@@ -35,10 +34,10 @@ h2 {
 }
 
 h1 {
-  color: rgb(var(--red));
 
   // font-size: between(36px, 72px);
   font-size: linear-clamp(36px, 72px);
+  color: rgb(var(--red));
 
   ~ h2 {
     color: #fff;

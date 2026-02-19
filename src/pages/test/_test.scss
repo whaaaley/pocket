@@ -1,10 +1,11 @@
-
 button {
   padding: 12px;
+
   font-size: 16px;
-  border-radius: 12px;
   color: white;
+
   background: dodgerblue;
+  border-radius: 12px;
 }
 
 .page {
@@ -19,7 +20,9 @@ button {
 .item {
   display: flex;
   gap: 12px;
-  border-radius: 12px;
-  background: gray;
+
   padding: 12px;
+
+  background: gray;
+  border-radius: 12px;
 }

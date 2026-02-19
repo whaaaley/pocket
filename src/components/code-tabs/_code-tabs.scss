@@ -1,30 +1,29 @@
-
 :host {
   all: initial;
 }
 
 * {
-  color: inherit;
-  font: inherit;
   box-sizing: inherit;
+  font: inherit;
+  color: inherit;
 }
 
 button {
-  border: initial;
-  background: initial;
   cursor: pointer;
+  background: initial;
+  border: initial;
 }
 
 #code-tabs {
-  color: #fff;
-  font: 16px/1 Inter, sans-serif;
   box-sizing: border-box;
+  font: 16px/1 Inter, sans-serif;
+  color: #fff;
 }
 
 .tabs {
   padding: 12px 12px 0;
-  border-radius: 9px 9px 0 0;
   background: rgb(var(--dark-450));
+  border-radius: 9px 9px 0 0;
 }
 
 .btn-tab {
@@ -32,16 +31,16 @@ button {
   border-top: 3px solid transparent;
 
   &.-active {
+    background: rgb(var(--dark-300));
     border-top: 2px solid rgb(var(--blue));
     border-radius: 2px 2px 0 0;
-    background: rgb(var(--dark-300));
   }
 }
 
 .content {
   position: relative;
-  border-radius: 0 0 9px 9px;
   background: rgb(var(--dark-300));
+  border-radius: 0 0 9px 9px;
 }
 
 .btn-copy {
@@ -51,12 +50,17 @@ button {
   position: absolute;
   right: 24px;
   bottom: 24px;
+
+  overflow: hidden;
+
   width: 48px;
   height: 42px;
-  border-radius: 9px;
+
   color: transparent;
-  overflow: hidden;
+
   background: $color $icon center left 12px / 24px no-repeat;
+  border-radius: 9px;
+
   transition: background 200ms, color 200ms, width 150ms;
 
   &:hover {

@@ -1,4 +1,3 @@
-
 $height: calc(48em / 18); // 48px to em
 
 :host {
@@ -18,17 +17,19 @@ $height: calc(48em / 18); // 48px to em
 
 .command {
   padding: 0 1em;
-  border-radius: 9px 0 0 9px;
-  color: color(--light-300);
+
   font-family: "Source Code Pro", monospace;
   line-height: $height;
+  color: color(--light-300);
+
   background: color(--dark-300);
+  border-radius: 9px 0 0 9px;
 }
 
 span {
-  color: color(--dark-100);
-  font-weight: 600;
   user-select: none;
+  font-weight: 600;
+  color: color(--dark-100);
 }
 
 button {
@@ -37,16 +38,21 @@ button {
   $pos-left: calc(12em / 18); // 12px to em
   $bg-size: calc(24em / 18); // 24px to em
 
+  cursor: pointer;
+
+  overflow: hidden;
+
   // TODO: Remove text only after transitions are complete
 
   width: $height;
+
+  color: transparent;
+
+  background: $color $icon center left #{$pos-left} / #{$bg-size} no-repeat;
   border: initial;
   border-radius: 0 9px 9px 0;
-  color: transparent;
-  overflow: hidden;
-  background: $color $icon center left #{$pos-left} / #{$bg-size} no-repeat;
+
   transition: background 200ms, color 200ms, width 150ms;
-  cursor: pointer;
 
   &:hover {
     background-color: color(--dark-250);

@@ -1,4 +1,3 @@
-
 $red: #f0727d;
 $orange: #f9a559;
 $yellow: #f3d37b;
@@ -13,11 +12,11 @@ $comment: #768390;
 $foreground: #cdd9e5;
 
 pre {
-  margin: initial;
-  padding: 18px 24px;
 
   // border-radius: 6px;
   overflow: auto;
+  margin: initial;
+  padding: 18px 24px;
 
   // background: rgb(var(--dark-300));
 }
@@ -25,8 +24,8 @@ pre {
 .language-js,
 .language-jsx,
 .language-scss {
-  color: $foreground;
   font: 14px/21px "Source Code Pro", monospace;
+  color: $foreground;
 }
 
 .token {

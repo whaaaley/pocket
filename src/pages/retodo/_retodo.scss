@@ -1,13 +1,10 @@
-
 :host {
   all: initial;
-
   box-sizing: border-box;
 }
 
 * {
   box-sizing: inherit;
-
   font: inherit;
   color: inherit;
 }
@@ -18,12 +15,11 @@
 }
 
 .retodo {
-  padding: 24px;
   min-height: calc(100vh - 240px - 64px); // 240px footer, 64px appbar
+  padding: 24px;
 
   h1, h2 {
     margin: initial;
-
     text-align: center;
   }
 
@@ -61,14 +57,11 @@
 .add-todo {
   display: flex;
   gap: 12px;
-
   padding: 0 0 12px;
-
   line-height: 20px;
 
   button, input {
     padding: 8px 12px;
-
     border: initial;
     border-radius: 6px;
   }
@@ -79,7 +72,6 @@
 
   input {
     flex: 1;
-
     background: rgb(var(--dark-200));
     border: 2px solid transparent;
     outline: none;
@@ -115,7 +107,6 @@
 .checkbox {
   width: 24px;
   height: 24px;
-
   background: rgb(var(--dark-400));
   border-radius: 12px;
 
@@ -127,7 +118,6 @@
 .handle {
   width: 24px;
   height: 24px;
-
   background: rgb(var(--dark-400));
   border-radius: 12px;
 }

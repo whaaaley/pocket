@@ -1,27 +1,22 @@
-
 :host {
   all: initial;
 }
 
 * {
   box-sizing: inherit;
-
   font: inherit;
   color: inherit;
 }
 
 #tictactoe {
   box-sizing: border-box;
-
   font: 16px/1 Inter, sans-serif;
   color: #000;
 }
 
 button {
   cursor: pointer;
-
   padding: initial;
-
   border: initial;
 }
 
@@ -55,9 +50,7 @@ h1, h2, h3 {
 
   button.-reset {
     padding: 0 12px 0 (12px + 36px + 12px);
-
     font: 24px/1 Inter, sans-serif;
-
     background:
       rgb(var(--red))
       tabler("refresh", 2px, #fff) center left 12px / 36px no-repeat;
@@ -67,15 +60,12 @@ h1, h2, h3 {
 
 .sidebar {
   padding: 18px 24px;
-
   color: #fff;
-
   background: rgba(var(--dark-300));
   border-radius: 9px;
 
   button {
     padding: 6px 12px;
-
     background: rgb(var(--red));
     border-radius: 9px;
   }
@@ -96,7 +86,6 @@ h1, h2, h3 {
   button {
     min-width: 48px;
     height: 36px;
-
     background: rgb(var(--red)) center / 24px no-repeat;
 
     &.circle-minus {
@@ -161,9 +150,7 @@ h1, h2, h3 {
 
   button::before {
     content: "";
-
     display: block;
-
     padding: 100% 0 0;
   }
 

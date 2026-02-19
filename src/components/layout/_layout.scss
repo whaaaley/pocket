@@ -1,18 +1,17 @@
-
 :host {
   all: initial;
 }
 
 * {
-  color: inherit;
-  font: inherit;
   box-sizing: inherit;
+  font: inherit;
+  color: inherit;
 }
 
 #layout {
-  color: #fff;
-  font: 16px/1 Inter, sans-serif;
   box-sizing: border-box;
+  font: 16px/1 Inter, sans-serif;
+  color: #fff;
 }
 
 // main {
